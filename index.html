@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>廖文彬 | Artworks</title>
+    <title>廖文彬作品 | Liao Wen-Bin Artworks</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -111,6 +111,7 @@
             background: linear-gradient(135deg, #FEFEFE 0%, #F5F5F3 100%);
             position: relative;
             overflow: hidden;
+            margin-top: 0;
         }
 
         .hero::before {
@@ -577,6 +578,345 @@
             font-weight: 300;
         }
 
+        /* Artist Detail Section */
+        .artist-detail-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .artist-detail-container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            background: var(--primary-white);
+            padding: 4rem;
+            position: relative;
+        }
+
+        .close-detail {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--soft-black);
+            transition: transform 0.3s ease;
+        }
+
+        .close-detail:hover {
+            transform: rotate(90deg);
+        }
+
+        .detail-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            letter-spacing: 4px;
+        }
+
+        .detail-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin: 3rem 0 2rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--mid-gray);
+            padding-bottom: 1rem;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            align-items: baseline;
+        }
+
+        .timeline-item .year {
+            font-weight: 400;
+            color: var(--accent-gold);
+            min-width: 100px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .exhibition-list, .awards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .exhibition-item, .award-item {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .ex-year, .award-year {
+            font-weight: 400;
+            color: var(--accent-gold);
+            min-width: 80px;
+            letter-spacing: 1px;
+        }
+
+        .exhibition-item h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .exhibition-item p, .award-item p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Collection Detail View */
+        .collection-detail-view {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-white);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: slideInRight 0.5s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .collection-detail-header {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--mid-gray);
+            position: sticky;
+            top: 0;
+            background: rgba(254, 254, 254, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .collection-detail-title h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .collection-detail-title p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: 1px solid var(--soft-black);
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--soft-black);
+            color: var(--primary-white);
+        }
+
+        .collection-detail-grid {
+            max-width: 1600px;
+            margin: 4rem auto;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .collection-artwork-item {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .collection-artwork-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .collection-artwork-image {
+            width: 100%;
+            height: 500px;
+            background: var(--warm-gray);
+            overflow: hidden;
+        }
+
+        .collection-artwork-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .collection-artwork-item:hover .collection-artwork-image img {
+            transform: scale(1.05);
+        }
+
+        .collection-artwork-info {
+            padding: 1.5rem 0;
+        }
+
+        .collection-artwork-info h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .collection-artwork-meta {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Artwork Modal */
+        .artwork-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-image-container {
+            flex: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+        }
+
+        .modal-image-container img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .modal-info-container {
+            flex: 1;
+            background: var(--primary-white);
+            padding: 4rem;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--primary-white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            background: var(--accent-gold);
+        }
+
+        .modal-info-container h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .modal-detail-item {
+            margin-bottom: 2rem;
+        }
+
+        .modal-detail-item label {
+            display: block;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .modal-detail-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .modal-concept {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--mid-gray);
+        }
+
+        .modal-concept h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .modal-concept p {
+            color: var(--text-gray);
+            line-height: 2;
+            font-size: 1rem;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .nav-container {
@@ -649,11 +989,11 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">GALERIE</a>
+            <a href="#" class="logo">廖文彬作品</a>
             <ul class="nav-links">
                 <li><a href="#artist">藝術家</a></li>
                 <li><a href="#collections">系列作品</a></li>
-                <li><a href="#artworks">作品</a></li>
+                <li><a href="#artworks">精選作品</a></li>
                 <li><a href="#news">最新消息</a></li>
                 <li><a href="#contact">聯絡</a></li>
             </ul>
@@ -679,13 +1019,119 @@
             <img src="data:image/svg+xml,%3Csvg width='600' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='600' height='600' fill='%23E8E8E6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='24' fill='%23999'%3E藝術家肖像%3C/text%3E%3C/svg%3E" alt="Artist Portrait">
         </div>
         <div class="artist-info">
-            <h2>陳藝文</h2>
-            <p class="artist-subtitle">當代抽象藝術家</p>
+            <h2>廖文彬</h2>
+            <p class="artist-subtitle">當代藝術家</p>
             <div class="artist-bio">
-                <p>陳藝文,1985年生於台北,是當代最具影響力的抽象藝術家之一。她的作品融合東方哲學與西方現代主義,創造出獨特的視覺語言。</p>
+                <p>廖文彬,1985年生於台北,是當代最具影響力的藝術家之一。她的作品融合東方哲學與西方現代主義,創造出獨特的視覺語言。</p>
                 <p style="margin-top: 1rem;">畢業於巴黎國立高等美術學院,作品曾在紐約、倫敦、東京等地展出。她擅長運用色彩與空間的對話,探索人類情感與自然的深層聯繫。</p>
             </div>
-            <a href="#" class="cta-button">了解更多</a>
+            <a href="#artist-detail" class="cta-button">了解更多</a>
+        </div>
+    </section>
+
+    <!-- Artist Detail Section (Hidden by default) -->
+    <section class="artist-detail-section" id="artist-detail" style="display: none;">
+        <div class="artist-detail-container">
+            <button class="close-detail" onclick="closeArtistDetail()">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="detail-content">
+                <h2>廖文彬</h2>
+                <h3>個人經歷</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="year">1985</span>
+                        <p>生於台北</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="year">2007</span>
+                        <p>台灣藝術大學美術系學士</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="year">2010</span>
+                        <p>巴黎國立高等美術學院碩士</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="year">2012</span>
+                        <p>返台開始專職創作</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="year">2015-現在</span>
+                        <p>活躍於國際藝術舞台</p>
+                    </div>
+                </div>
+
+                <h3>展覽經歷</h3>
+                <div class="exhibition-list">
+                    <div class="exhibition-item">
+                        <span class="ex-year">2024</span>
+                        <div>
+                            <h4>「時光流轉」個展</h4>
+                            <p>台北當代藝術館, 台北, 台灣</p>
+                        </div>
+                    </div>
+                    <div class="exhibition-item">
+                        <span class="ex-year">2023</span>
+                        <div>
+                            <h4>巴黎國際藝術博覽會</h4>
+                            <p>大皇宮, 巴黎, 法國</p>
+                        </div>
+                    </div>
+                    <div class="exhibition-item">
+                        <span class="ex-year">2023</span>
+                        <div>
+                            <h4>「靜謐時光」個展</h4>
+                            <p>國立台灣美術館, 台中, 台灣</p>
+                        </div>
+                    </div>
+                    <div class="exhibition-item">
+                        <span class="ex-year">2022</span>
+                        <div>
+                            <h4>亞洲當代藝術聯展</h4>
+                            <p>東京都現代美術館, 東京, 日本</p>
+                        </div>
+                    </div>
+                    <div class="exhibition-item">
+                        <span class="ex-year">2021</span>
+                        <div>
+                            <h4>「都市印象」個展</h4>
+                            <p>誠品畫廊, 台北, 台灣</p>
+                        </div>
+                    </div>
+                    <div class="exhibition-item">
+                        <span class="ex-year">2020</span>
+                        <div>
+                            <h4>紐約軍械庫藝術展</h4>
+                            <p>紐約, 美國</p>
+                        </div>
+                    </div>
+                    <div class="exhibition-item">
+                        <span class="ex-year">2019</span>
+                        <div>
+                            <h4>倫敦弗里茲藝術博覽會</h4>
+                            <p>倫敦, 英國</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>獲獎紀錄</h3>
+                <div class="awards-list">
+                    <div class="award-item">
+                        <span class="award-year">2025</span>
+                        <p>亞洲藝術雜誌年度最佳當代藝術家</p>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-year">2022</span>
+                        <p>台灣當代藝術獎首獎</p>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-year">2019</span>
+                        <p>巴黎青年藝術家獎</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -696,34 +1142,64 @@
             <p>探索不同時期的創作主題</p>
         </div>
         <div class="collections-grid">
-            <div class="collection-card">
+            <div class="collection-card" onclick="viewCollection('youth')">
                 <div class="collection-image">
-                    <img src="data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F5E6D3'/%3E%3Cstop offset='100%25' style='stop-color:%23D4C5B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g1)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3E靜謐時光系列%3C/text%3E%3C/svg%3E" alt="Collection">
+                    <img src="data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F5E6D3'/%3E%3Cstop offset='100%25' style='stop-color:%23D4C5B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g1)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3E少年系列%3C/text%3E%3C/svg%3E" alt="Collection">
                     <div class="collection-overlay"></div>
                 </div>
                 <div class="collection-info">
-                    <h3>靜謐時光</h3>
-                    <p class="collection-count">12 件作品</p>
+                    <h3>少年系列</h3>
+                    <p class="collection-count">7 件作品</p>
                 </div>
             </div>
-            <div class="collection-card">
+            <div class="collection-card" onclick="viewCollection('animal')">
                 <div class="collection-image">
-                    <img src="data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8D8E4'/%3E%3Cstop offset='100%25' style='stop-color:%23A8B8C4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g2)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3E都市印象系列%3C/text%3E%3C/svg%3E" alt="Collection">
+                    <img src="data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8D8E4'/%3E%3Cstop offset='100%25' style='stop-color:%23A8B8C4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g2)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3E動物的獨白%3C/text%3E%3C/svg%3E" alt="Collection">
                     <div class="collection-overlay"></div>
                 </div>
                 <div class="collection-info">
-                    <h3>都市印象</h3>
-                    <p class="collection-count">18 件作品</p>
+                    <h3>動物的獨白</h3>
+                    <p class="collection-count">22 件作品</p>
                 </div>
             </div>
-            <div class="collection-card">
+            <div class="collection-card" onclick="viewCollection('pets')">
                 <div class="collection-image">
-                    <img src="data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D4C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B4A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g3)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3E自然對話系列%3C/text%3E%3C/svg%3E" alt="Collection">
+                    <img src="data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D4C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B4A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g3)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3E寵物vs寵物%3C/text%3E%3C/svg%3E" alt="Collection">
                     <div class="collection-overlay"></div>
                 </div>
                 <div class="collection-info">
-                    <h3>自然對話</h3>
-                    <p class="collection-count">15 件作品</p>
+                    <h3>寵物vs寵物</h3>
+                    <p class="collection-count">14 件作品</p>
+                </div>
+            </div>
+            <div class="collection-card" onclick="viewCollection('happy-town')">
+                <div class="collection-image">
+                    <img src="data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F8E8D8'/%3E%3Cstop offset='100%25' style='stop-color:%23D8C8B8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g4)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3E快樂町%3C/text%3E%3C/svg%3E" alt="Collection">
+                    <div class="collection-overlay"></div>
+                </div>
+                <div class="collection-info">
+                    <h3>快樂町</h3>
+                    <p class="collection-count">9 件作品</p>
+                </div>
+            </div>
+            <div class="collection-card" onclick="viewCollection('forgotten')">
+                <div class="collection-image">
+                    <img src="data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D8D8D0'/%3E%3Cstop offset='100%25' style='stop-color:%23B8B8B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g5)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3E被城市遺忘的人%3C/text%3E%3C/svg%3E" alt="Collection">
+                    <div class="collection-overlay"></div>
+                </div>
+                <div class="collection-info">
+                    <h3>被城市遺忘的人</h3>
+                    <p class="collection-count">10 件作品</p>
+                </div>
+            </div>
+            <div class="collection-card" onclick="viewCollection('weight-of-life')">
+                <div class="collection-image">
+                    <img src="data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E0D0C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C0B0A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g6)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3E生命重量之承載%3C/text%3E%3C/svg%3E" alt="Collection">
+                    <div class="collection-overlay"></div>
+                </div>
+                <div class="collection-info">
+                    <h3>生命重量之承載</h3>
+                    <p class="collection-count">5 件作品</p>
                 </div>
             </div>
         </div>
@@ -847,7 +1323,7 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-about">
-                <h3>GALERIE</h3>
+                <h3>廖文彬作品</h3>
                 <p>致力於推廣當代藝術,為藝術家與收藏家搭建橋樑,創造獨特的藝術體驗與對話空間。</p>
             </div>
             <div class="footer-section">
@@ -855,16 +1331,14 @@
                 <ul class="footer-links">
                     <li><a href="#artist">藝術家</a></li>
                     <li><a href="#collections">系列作品</a></li>
-                    <li><a href="#artworks">作品</a></li>
+                    <li><a href="#artworks">精選作品</a></li>
                     <li><a href="#news">最新消息</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>聯絡資訊</h4>
                 <ul class="footer-links">
-                    <li><a href="mailto:info@galerie.com">info@galerie.com</a></li>
-                    <li><a href="tel:+886-2-1234-5678">+886 2 1234 5678</a></li>
-                    <li>台北市信義區藝術路 100 號</li>
+                    <li><a href="mailto:info@liaowenbin.com">info@liaowenbin.com</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -877,7 +1351,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 GALERIE. All rights reserved.</p>
+            <p>© 2026 廖文彬作品. All rights reserved.</p>
         </div>
     </footer>
 
@@ -898,20 +1372,240 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    // Special handling for artist detail
+                    if (this.getAttribute('href') === '#artist-detail') {
+                        showArtistDetail();
+                    } else {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
 
-        // Add subtle parallax effect to hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        // Artist detail functions
+        function showArtistDetail() {
+            const detailSection = document.getElementById('artist-detail');
+            detailSection.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArtistDetail() {
+            const detailSection = document.getElementById('artist-detail');
+            detailSection.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Collection data (示例數據 - 之後可替換為實際圖片)
+        const collections = {
+            'youth': {
+                title: '少年系列',
+                count: 7,
+                artworks: [
+                    {
+                        title: '少年時光 No.1',
+                        size: '120 × 90 cm',
+                        medium: '油畫',
+                        year: '2023',
+                        concept: '這件作品探索青春期的迷惘與成長。透過抽象的色彩和線條,呈現少年內心的複雜情感與對未來的憧憬。畫面中的流動感象徵著時光的流逝,而深淺不一的色調則代表著成長過程中的起伏。',
+                        image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='y1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D8C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B8A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23y1)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='24' fill='%23666'%3E少年時光 No.1%3C/text%3E%3C/svg%3E"
+                    },
+                    {
+                        title: '少年時光 No.2',
+                        size: '100 × 80 cm',
+                        medium: '壓克力',
+                        year: '2023',
+                        concept: '延續第一件作品的主題,這幅畫聚焦於少年對自我認同的探索。色彩的對比與衝突反映了內心的掙扎,而整體構圖的平衡則暗示著最終將找到屬於自己的道路。',
+                        image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='y2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D8C8B8'/%3E%3Cstop offset='100%25' style='stop-color:%23B8A898'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23y2)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='24' fill='%23666'%3E少年時光 No.2%3C/text%3E%3C/svg%3E"
+                    }
+                    // 可以繼續添加其他作品...
+                ]
+            },
+            'animal': {
+                title: '動物的獨白',
+                count: 22,
+                artworks: [
+                    {
+                        title: '沉默的凝視',
+                        size: '150 × 120 cm',
+                        medium: '油畫',
+                        year: '2024',
+                        concept: '透過動物的眼神,傳達出牠們對人類世界的觀察與思考。這件作品試圖打破人類中心主義,讓觀者從動物的視角重新思考人與自然的關係。',
+                        image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8D8E4'/%3E%3Cstop offset='100%25' style='stop-color:%23A8B8C4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a1)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='24' fill='%23666'%3E沉默的凝視%3C/text%3E%3C/svg%3E"
+                    }
+                ]
+            },
+            'pets': {
+                title: '寵物vs寵物',
+                count: 14,
+                artworks: [
+                    {
+                        title: '相遇',
+                        size: '130 × 100 cm',
+                        medium: '混合媒材',
+                        year: '2024',
+                        concept: '探討不同寵物之間的互動與關係。作品呈現出寵物們獨特的個性與情感,以及牠們之間微妙的社交動態。',
+                        image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='p1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D4C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B4A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23p1)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='24' fill='%23666'%3E相遇%3C/text%3E%3C/svg%3E"
+                    }
+                ]
+            },
+            'happy-town': {
+                title: '快樂町',
+                count: 9,
+                artworks: [
+                    {
+                        title: '街角的笑聲',
+                        size: '140 × 110 cm',
+                        medium: '壓克力',
+                        year: '2023',
+                        concept: '描繪一個理想中的社區,人們和諧相處,充滿歡樂與溫暖。作品運用明亮的色彩和輕快的筆觸,營造出一種烏托邦式的氛圍。',
+                        image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='h1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F8E8D8'/%3E%3Cstop offset='100%25' style='stop-color:%23D8C8B8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23h1)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='24' fill='%23666'%3E街角的笑聲%3C/text%3E%3C/svg%3E"
+                    }
+                ]
+            },
+            'forgotten': {
+                title: '被城市遺忘的人',
+                count: 10,
+                artworks: [
+                    {
+                        title: '角落的身影',
+                        size: '160 × 120 cm',
+                        medium: '油畫',
+                        year: '2024',
+                        concept: '關注都市中被邊緣化的群體。透過暗沉的色調和模糊的輪廓,表達這些人在繁華城市中的孤獨與無助,喚起觀者的同理心與社會關懷。',
+                        image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='f1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D8D8D0'/%3E%3Cstop offset='100%25' style='stop-color:%23B8B8B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23f1)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='24' fill='%23666'%3E角落的身影%3C/text%3E%3C/svg%3E"
+                    }
+                ]
+            },
+            'weight-of-life': {
+                title: '生命重量之承載',
+                count: 5,
+                artworks: [
+                    {
+                        title: '負重前行',
+                        size: '180 × 140 cm',
+                        medium: '油畫',
+                        year: '2023',
+                        concept: '探討生命中不可承受之重。作品通過厚重的筆觸和層疊的色彩,表現人們在面對生活壓力時的堅韌與掙扎,同時也傳達出希望與力量。',
+                        image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='w1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E0D0C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C0B0A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23w1)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='24' fill='%23666'%3E負重前行%3C/text%3E%3C/svg%3E"
+                    }
+                ]
+            }
+        };
+
+        // View collection function
+        function viewCollection(collectionId) {
+            const collection = collections[collectionId];
+            if (!collection) return;
+
+            // Create collection detail view
+            const detailView = document.createElement('div');
+            detailView.className = 'collection-detail-view';
+            detailView.id = 'collection-detail';
+            
+            let artworksHTML = '';
+            collection.artworks.forEach((artwork, index) => {
+                artworksHTML += `
+                    <div class="collection-artwork-item" onclick="openArtworkModal('${collectionId}', ${index})">
+                        <div class="collection-artwork-image">
+                            <img src="${artwork.image}" alt="${artwork.title}">
+                        </div>
+                        <div class="collection-artwork-info">
+                            <h4>${artwork.title}</h4>
+                            <p class="collection-artwork-meta">${artwork.year} | ${artwork.medium} | ${artwork.size}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            detailView.innerHTML = `
+                <div class="collection-detail-header">
+                    <div class="collection-detail-title">
+                        <h2>${collection.title}</h2>
+                        <p>${collection.count} 件作品</p>
+                    </div>
+                    <button class="back-button" onclick="closeCollectionDetail()">
+                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        返回
+                    </button>
+                </div>
+                <div class="collection-detail-grid">
+                    ${artworksHTML}
+                </div>
+            `;
+
+            document.body.appendChild(detailView);
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close collection detail
+        function closeCollectionDetail() {
+            const detailView = document.getElementById('collection-detail');
+            if (detailView) {
+                detailView.remove();
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Open artwork modal
+        function openArtworkModal(collectionId, artworkIndex) {
+            const collection = collections[collectionId];
+            const artwork = collection.artworks[artworkIndex];
+
+            const modal = document.createElement('div');
+            modal.className = 'artwork-modal';
+            modal.id = 'artwork-modal';
+            modal.innerHTML = `
+                <button class="modal-close" onclick="closeArtworkModal()">
+                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <div class="modal-image-container">
+                    <img src="${artwork.image}" alt="${artwork.title}">
+                </div>
+                <div class="modal-info-container">
+                    <h3>${artwork.title}</h3>
+                    <div class="modal-detail-item">
+                        <label>年份</label>
+                        <p>${artwork.year}</p>
+                    </div>
+                    <div class="modal-detail-item">
+                        <label>媒材</label>
+                        <p>${artwork.medium}</p>
+                    </div>
+                    <div class="modal-detail-item">
+                        <label>尺寸</label>
+                        <p>${artwork.size}</p>
+                    </div>
+                    <div class="modal-concept">
+                        <h4>創作理念</h4>
+                        <p>${artwork.concept}</p>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+        }
+
+        // Close artwork modal
+        function closeArtworkModal() {
+            const modal = document.getElementById('artwork-modal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        // ESC key to close modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeArtworkModal();
+                closeCollectionDetail();
+                closeArtistDetail();
             }
         });
     </script>
