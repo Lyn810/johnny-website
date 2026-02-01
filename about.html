@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johnny Leo | About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-white: #FEFEFE;
+            --soft-black: #1A1A1A;
+            --warm-gray: #F5F5F3;
+            --mid-gray: #D4D4D4;
+            --accent-gold: #C5A572;
+            --text-gray: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Force light mode - prevent dark mode override */
+        html {
+            color-scheme: light;
+            background-color: #FEFEFE;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: var(--primary-white);
+            color: var(--soft-black);
+            line-height: 1.6;
+            forced-color-adjust: none;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(254, 254, 254, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--mid-gray);
+        }
+
+        .nav-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 1.8rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--soft-black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        .main-content {
+            margin-top: 100px;
+            padding: 4rem 4rem 6rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .page-header .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--text-gray);
+            letter-spacing: 2px;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .bio-section {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--mid-gray);
+        }
+
+        .bio-section p {
+            color: var(--text-gray);
+            line-height: 2;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--mid-gray);
+        }
+
+        .timeline-section {
+            margin-bottom: 4rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 1.5rem;
+            align-items: baseline;
+        }
+
+        .timeline-year {
+            min-width: 120px;
+            font-weight: 400;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .timeline-content p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .exhibition-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .exhibition-year {
+            min-width: 80px;
+            font-weight: 400;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .exhibition-content h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .exhibition-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: var(--soft-black);
+            color: var(--primary-white);
+            padding: 4rem 4rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(254, 254, 254, 0.1);
+        }
+
+        .footer-left p {
+            color: rgba(254, 254, 254, 0.7);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-left a {
+            color: rgba(254, 254, 254, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-left a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(254, 254, 254, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            font-weight: 300;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            color: rgba(254, 254, 254, 0.5);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .main-content {
+                padding: 4rem 2rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .timeline-item,
+            .exhibition-item {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Johnny Leo</a>
+            <ul class="nav-links">
+                <li><a href="news.html">News</a></li>
+                <li><a href="index.html">Selected Works</a></li>
+                <li><a href="collections.html">Collections</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Johnny Leo</h1>
+            <p class="subtitle">Wen-ping Liao</p>
+        </div>
+
+        <div class="bio-section">
+            <p>Over 20 years of graphic art experience in comics, illustration, magazine, newspaper, cartoon, script writing and filmmaking.</p>
+            <p>Well-known cartoonist with media recognition from national TV, broadcast, newspapers and magazines in the Asian Pacific region.</p>
+        </div>
+
+        <div class="timeline-section">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline-item">
+                <span class="timeline-year">1990 - 1993</span>
+                <div class="timeline-content">
+                    <p>Television, Film & Video, UCLA</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-section">
+            <h2 class="section-title">Award</h2>
+            <div class="timeline-item">
+                <span class="timeline-year"></span>
+                <div class="timeline-content">
+                    <p>National Army Art Award winner for sculpture item</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-section">
+            <h2 class="section-title">Career Highlights</h2>
+            <div class="timeline-item">
+                <span class="timeline-year">2000</span>
+                <div class="timeline-content">
+                    <p>Coca Cola's assigned artist in the Asian Pacific region</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">1999</span>
+                <div class="timeline-content">
+                    <p>Walt Disney's exclusive and authorized artist representative in Asia</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">1998</span>
+                <div class="timeline-content">
+                    <p>Published well-known comic series, "Young Master" (exclusive copyright) that appeared in film, cartoon, books and VCD/DVD in China, Singapore, Thailand and Korean markets</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-section">
+            <h2 class="section-title">Exhibitions</h2>
+            
+            <div class="exhibition-item">
+                <span class="exhibition-year">2016</span>
+                <div class="exhibition-content">
+                    <h4>University Lecture Tour in Mainland China</h4>
+                    <p>Invited to travel to Taiyuan (Shanxi Media Institute), Kunming, Yunnan University of Finance and Economics, Guilin University of Electronic Science and Technology (Dec 08-17)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2016</span>
+                <div class="exhibition-content">
+                    <h4>First Film Toy Exhibition</h4>
+                    <p>Comic artworks participation (invited guest and improvisation) (Nov 25-27)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2016</span>
+                <div class="exhibition-content">
+                    <h4>First Cross-Strait Animation Festival</h4>
+                    <p>Wuhan, China (representative of Taiwan guests) (Nov 10)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2016</span>
+                <div class="exhibition-content">
+                    <h4>Fourth Greater China Illustrations Awards</h4>
+                    <p>Invited guest (Oct 22)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2016</span>
+                <div class="exhibition-content">
+                    <h4>Good Idea Festival</h4>
+                    <p>Cross-border art festival, Taipei Songshan Wensheng Park 2+3 Warehouse (Jun 18-27)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2015</span>
+                <div class="exhibition-content">
+                    <h4>New North City Animation Contest</h4>
+                    <p>Invited to serve as review judge (Dec)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2015</span>
+                <div class="exhibition-content">
+                    <h4>New North City Animation Exhibition</h4>
+                    <p>Attendance & Interview (Nov 20)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2015</span>
+                <div class="exhibition-content">
+                    <h4>Keynote Speech at Taibei High School</h4>
+                    <p>Taipei City (Nov 19)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2015</span>
+                <div class="exhibition-content">
+                    <h4>Taipei World Trade Center</h4>
+                    <p>Invited Guest Cartoonist (Aug 06-11)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2015</span>
+                <div class="exhibition-content">
+                    <h4>Flora Expo Charitable Event</h4>
+                    <p>Taipei Yuanshan (Jul 11)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2015</span>
+                <div class="exhibition-content">
+                    <h4>"Hoping & Jones" Comic Book Part2</h4>
+                    <p>New Issue Announcement Campaign at MRT Taipei City Mall (Jul 04)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2015</span>
+                <div class="exhibition-content">
+                    <h4>Taipei International Comics & Animation Festival</h4>
+                    <p>Invited Guest (Feb 10)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2014</span>
+                <div class="exhibition-content">
+                    <h4>Kaohsiung International Comic Artist Conference</h4>
+                    <p>Invited Guest (Nov 13)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2014</span>
+                <div class="exhibition-content">
+                    <h4>Taoyuan International ACGT Fair</h4>
+                    <p>Invited Guest (Jul 04)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2014-2015</span>
+                <div class="exhibition-content">
+                    <h4>Hoping & Jones Comic Books</h4>
+                    <p>Join the Related Plan</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2014</span>
+                <div class="exhibition-content">
+                    <h4>Summer Comic Camp</h4>
+                    <p>National Taiwan University of Science & Technology</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2013</span>
+                <div class="exhibition-content">
+                    <h4>Solo Exhibition "Modern Manga"</h4>
+                    <p>by Johnny Leo</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2013</span>
+                <div class="exhibition-content">
+                    <h4>Young Art Exhibition</h4>
+                    <p>Taipei ~ Taichung</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2011</span>
+                <div class="exhibition-content">
+                    <h4>Solo Exhibition "The Animals' Soliloquy"</h4>
+                    <p>Butch Art Center, Taipei (Apr 20 - May 20)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2010</span>
+                <div class="exhibition-content">
+                    <h4>National Oil Painting Contest</h4>
+                    <p>Artwork "A New Century Revelation" (200F) was selected</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2009-2010</span>
+                <div class="exhibition-content">
+                    <h4>Animamix Biennial – Visual Attract & Attack</h4>
+                    <p>MOCA Taipei, Kaohsiung Museum of Fine Arts, MOCA Shanghai, Today Art Museum-Beijing</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2008</span>
+                <div class="exhibition-content">
+                    <h4>"100 Tales in Animamix"</h4>
+                    <p>Linda Gallery in Beijing, Singapore & Indonesia (Dec 19, 2008 - May 15, 2009)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2008</span>
+                <div class="exhibition-content">
+                    <h4>"Surfing Animamix"</h4>
+                    <p>Linda Gallery in Shanghai; Art Singapore (Nov); Beijing 798 Art Zone (Dec) (Sep 10 - Oct 29)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2008</span>
+                <div class="exhibition-content">
+                    <h4>Art Taipei 2008</h4>
+                    <p>Art Touch Collection, U.S.A., World Trade Center, Taipei (Aug 29 - Sep 02)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2008</span>
+                <div class="exhibition-content">
+                    <h4>Two Sides of Taiwan Straits Artists</h4>
+                    <p>Animamix New Generation, Capital Art Center, Taipei (Jun 07-29)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2008</span>
+                <div class="exhibition-content">
+                    <h4>Animamix / Super Animamix</h4>
+                    <p>Metaphysical Art Gallery, Taipei (Jan 05-27)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2007</span>
+                <div class="exhibition-content">
+                    <h4>3L4D / 3rd Life 4th Dimension</h4>
+                    <p>National Dr Sun Yat-sen Memorial Hall, Taipei (Oct 20 - Nov 08)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2007</span>
+                <div class="exhibition-content">
+                    <h4>Shanghai Animamix Biennial</h4>
+                    <p>From Modernity To Eternity, Museum of Contemporary Art Shanghai, China (Oct 17 - Nov 04)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2007</span>
+                <div class="exhibition-content">
+                    <h4>Modern Art Revolution</h4>
+                    <p>Taiwan Mitsukoshi Dept. Store (Jul 19 - Aug 26)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2007</span>
+                <div class="exhibition-content">
+                    <h4>Guest Artist / Residence</h4>
+                    <p>London Royal Holloway University, UK (Jun 01 - Jul 30)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2007</span>
+                <div class="exhibition-content">
+                    <h4>Japan & China Group Exhibition</h4>
+                    <p>The Moon River Museum of Contemporary Art, Beijing (May 01-30)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2007</span>
+                <div class="exhibition-content">
+                    <h4>International Contemporary Art Festival</h4>
+                    <p>EXIT Festival and VIA Festival, Maison des Arts et de la Culture (MAC), the Manege of Maubeuge, France (Mar 08 - Apr 01)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2006</span>
+                <div class="exhibition-content">
+                    <h4>The Original Animamix</h4>
+                    <p>Museum of Contemporary Art, Shanghai, China (Jul 01-30)</p>
+                </div>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhibition-year">2006</span>
+                <div class="exhibition-content">
+                    <h4>The 2nd China International Cartoon and Animation Festival</h4>
+                    <p>Hangzhou, China (Jun 01-30)</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p><a href="mailto:info@johnnyleo.com">info@johnnyleo.com</a></p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="news.html">News</a></li>
+                <li><a href="index.html">Selected Works</a></li>
+                <li><a href="collections.html">Collections</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Johnny Leo. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
