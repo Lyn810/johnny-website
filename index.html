@@ -23,11 +23,18 @@
             box-sizing: border-box;
         }
 
+        /* Force light mode - prevent dark mode override */
+        html {
+            color-scheme: light;
+            background-color: #FEFEFE;
+        }
+
         body {
             font-family: 'Jost', sans-serif;
             background-color: var(--primary-white);
             color: var(--soft-black);
             line-height: 1.6;
+            forced-color-adjust: none;
         }
 
         /* Navigation */
