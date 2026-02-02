@@ -533,6 +533,7 @@
             }
         }
     </style>
+    <script src="data.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -628,54 +629,49 @@
         </div>
     </footer>
     <script>
-        // 1. 全域變數：確保所有函式都能讀到同樣的資料
-        let artworksData = []; 
+        /* 注意：請確保你的 data.js 內容長得像這樣：
+           const artworksData = [ { ... }, { ... } ];
+           或者你在 data.js 裡定義的是 selectedWorks
+        */
+    
+        // 1. 全域變數
         let currentIndex = 0;
         let autoScrollTimer;
+        
+        // 如果你的 data.js 裡面變數名稱是 selectedWorks，請取消下面這行的註解
+        // let artworksData = selectedWorks; 
     
-        // 2. 載入資料
-        async function loadData() {
-            try {
-                const response = await fetch('data.js');
-                const data = await response.json();
-                // 存入全域變數
-                artworksData = data.selectedWorks; 
-                renderGallery(); 
-            } catch (error) {
-                console.error('資料載入失敗:', error);
-                document.getElementById('galleryWall').innerHTML = '讀取失敗，請檢查 data.json';
-            }
-        }
-    
-        // 3. 渲染畫廊
+        // 2. 初始化畫面
         function renderGallery() {
             const gallery = document.getElementById('galleryWall');
             if (!gallery) return;
             gallery.innerHTML = '';
             
+            // 這裡會直接讀取來自 data.js 的 artworksData 變數
             artworksData.forEach((artwork, index) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
                 card.onclick = () => openModal(index);
+                
                 card.innerHTML = `
-                    <div class=\"artwork-image-wrapper\">
-                        <img src=\"${artwork.image}\" alt=\"${artwork.title}\" loading=\"lazy\">
+                    <div class="artwork-image-wrapper">
+                        <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
                     </div>
-                    <div class=\"artwork-info\">
+                    <div class="artwork-info">
                         <h3>${artwork.title}</h3>
-                        <p class=\"artwork-meta\">${artwork.year} | ${artwork.size}</p>
+                        <p class="artwork-meta">${artwork.year} | ${artwork.size}</p>
                     </div>
                 `;
                 gallery.appendChild(card);
             });
     
-            // 如果是手機版，啟動輪播
+            // 手機版自動輪播
             if (window.innerWidth <= 768) {
                 startAutoScroll();
             }
         }
     
-        // 4. 手機輪播邏輯
+        // 3. 手機輪播邏輯
         function startAutoScroll() {
             const gallery = document.getElementById('galleryWall');
             let scrollIndex = 0;
@@ -692,12 +688,12 @@
             gallery.addEventListener('touchstart', () => clearInterval(autoScrollTimer), { passive: true });
         }
     
-        // 5. Modal 彈窗控制
+        // 4. Modal 控制 (含左右切換)
         function openModal(index) {
             currentIndex = index;
             updateModalContent();
             document.getElementById('artworkModal').classList.add('active');
-            document.body.style.overflow = 'hidden'; // 禁止底層捲動
+            document.body.style.overflow = 'hidden'; 
         }
     
         function updateModalContent() {
@@ -710,19 +706,19 @@
             modalImage.src = artwork.image;
             modalInfo.innerHTML = `
                 <h3>${artwork.title}</h3>
-                <div class=\"modal-detail-item\"><label>Year</label><p>${artwork.year}</p></div>
-                <div class=\"modal-detail-item\"><label>Medium</label><p>${artwork.medium}</p></div>
-                <div class=\"modal-detail-item\"><label>Size</label><p>${artwork.size}</p></div>
-                <div class=\"modal-concept\"><h4>Artist's Statement</h4><p>${artwork.concept}</p></div>
+                <div class="modal-detail-item"><label>Year</label><p>${artwork.year}</p></div>
+                <div class="modal-detail-item"><label>Medium</label><p>${artwork.medium}</p></div>
+                <div class="modal-detail-item"><label>Size</label><p>${artwork.size}</p></div>
+                <div class="modal-concept"><h4>Artist's Statement</h4><p>${artwork.concept}</p></div>
             `;
             document.getElementById('artworkModal').scrollTop = 0;
         }
     
-        // 6. 左右切換按鈕函式
+        // 左右切換按鈕
         function changeArtwork(direction) {
-            // 阻止事件冒泡防止誤關 Modal
             if (window.event) window.event.stopPropagation();
             
+            // 循環邏輯
             currentIndex = (currentIndex + direction + artworksData.length) % artworksData.length;
             updateModalContent();
         }
@@ -737,21 +733,29 @@
             if (menu) menu.classList.toggle('active');
         }
     
-        // 7. 初始化與按鍵監聽
+        // 5. 事件監聽
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
             if (e.key === 'ArrowRight') changeArtwork(1);
             if (e.key === 'ArrowLeft') changeArtwork(-1);
         });
     
+        // 6. 頁面啟動
         document.addEventListener('DOMContentLoaded', () => {
-            loadData();
-            // 基礎圖片保護
+            // 因為改成了 data.js，我們不需要寫 async loadData，直接執行 render
+            if (typeof artworksData !== 'undefined') {
+                renderGallery();
+            } else {
+                console.error("錯誤：找不到 artworksData 變數，請檢查 data.js 是否正確載入。");
+            }
+    
+            // 圖片保護
             document.addEventListener('contextmenu', (e) => e.preventDefault());
             document.addEventListener('dragstart', (e) => {
                 if (e.target.tagName === 'IMG') e.preventDefault();
             });
         });
+ 
     </script>
     
 </body>
