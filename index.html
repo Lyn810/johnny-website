@@ -294,6 +294,7 @@
 
         /* Gallery Wall Layout */
         .gallery-wall {
+            display: block; /* 確保不是 grid */
             column-count: 2; /* 手機版（SE）維持兩欄 */
             column-gap: 1.5rem;
             padding: 1rem 0;
@@ -302,12 +303,13 @@
         /* 針對大螢幕增加欄數 */
         @media (min-width: 1024px) {
             .gallery-wall {
-                column-count: 3; 
+                column-count: 3; /* 電腦版三欄 */
             }
         }
 
         .artwork-card {
-            display: inline-block; /* 關鍵：防止作品被切斷 */
+            break-inside: avoid; /* 防止作品被切斷到下一欄 */
+            display: inline-block;
             width: 100%;
             margin-bottom: 2rem; /* 作品之間的垂直間距 */
             cursor: pointer;
@@ -316,16 +318,19 @@
 
         .artwork-image-wrapper {
             position: relative;
-            overflow: hidden;
-            background: var(--warm-gray);
+            width: 100%;
+            height: auto;
+            background: none;
             margin-bottom: 1rem;
-            padding-bottom: 0; /* 移除強制比例，讓圖片依據原圖顯示高度 */
+            padding-bottom: 0 !important; /* 強制移除之前設定的比例 */
         }
 
         .artwork-image-wrapper img {
+            position: static; /* 移除絕對定位 */
             display: block;
             width: 100%;
             height: auto; /* 讓圖片等比例完整呈現 */
+            max-height: 70vh; /* 限制單張圖片最大高度 */
             object-fit: contain;
         }
         .artwork-info {
@@ -531,6 +536,26 @@
         }
 
         @media (max-width: 768px) {
+            /* 讓手機版變成橫向滑動輪播 */
+            .gallery-wall {
+                display: flex; /* 改為橫向排列 */
+                flex-wrap: nowrap;
+                overflow-x: auto; /* 允許橫向滑動 */
+                scroll-snap-type: x mandatory; /* 自動吸附到單張圖片 */
+                gap: 0;
+                padding: 0;
+                scrollbar-width: none; /* 隱藏捲軸 */
+            }
+            .gallery-wall::-webkit-scrollbar {
+                display: none;
+            }
+            /* 每張作品佔滿螢幕寬度 */
+            .artwork-card {
+                flex: 0 0 100%;
+                scroll-snap-align: center;
+                padding: 0 1.5rem; /* 左右留一點縫隙 */
+                margin-bottom: 0;
+            }
             .nav-links {
                 display: none;
             }
@@ -567,8 +592,20 @@
                 gap: 1rem;
             }
 
+            /* 解決圖片下方過長的問題 */
             .artwork-image-wrapper {
-                padding-bottom: 140%;
+                padding-bottom: 0 !important; /* 移除原本 140% 的固定比例 */
+                height: 55vh; /* 限制圖片區域高度 */
+                display: flex;
+                align-items: center;
+                background: none;
+            }
+            .artwork-image-wrapper img {
+                position: static;
+                max-height: 100%;
+                width: auto;
+                margin: 0 auto;
+                object-fit: contain; /* 確保畫作完整不被裁切 */
             }
 
             .artwork-info h3 {
