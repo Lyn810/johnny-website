@@ -107,17 +107,18 @@
             position: absolute; /* 改為絕對定位 */
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.8) !important; /* 淺色底色確保看得到 */
+            background: rgba(255, 255, 255, 0.2) !important; /* 平時極度半透明 */
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 5000; /* 極高層級，確保蓋過所有內容 */
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            color: rgba(255, 255, 255, 0.6); /* 箭頭也設為半透明 */
         }
         
         /* 讓箭頭顏色變成深灰色，才不會在白色背景中隱形 */
@@ -342,11 +343,12 @@
         }
 
         .modal-image-container {
+            position: relative;
             flex: 1.5;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 0 60px; /* 為兩側按鈕預留空間 */
             background: #000; /* 讓圖片在黑底中完整呈現更有質感 */
         }
 
