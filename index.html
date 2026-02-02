@@ -104,45 +104,45 @@
         }
 
         .nav-btn {
-            position: fixed;
+            position: absolute; /* 改為絕對定位 */
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.05); /* 極淺的底色 */
+            background: rgba(255, 255, 255, 0.8) !important; /* 淺色底色確保看得到 */
             border: none;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             cursor: pointer;
-            z-index: 4000; /* 確保在最上層 */
+            z-index: 5000; /* 極高層級，確保蓋過所有內容 */
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
         /* 讓箭頭顏色變成深灰色，才不會在白色背景中隱形 */
         .nav-btn svg {
-            stroke: #1A1A1A !important; 
+            stroke: #1A1A1A !important; /* 強制深色箭頭 */
         }
         
         .nav-btn:hover {
             background: rgba(0, 0, 0, 0.1);
         }
         
-        .prev-btn { left: 20px; }
-        .next-btn { right: 20px; }
+        .prev-btn { left: 2rem; }
+        .next-btn { right: 2rem; }
         
         /* 手機版調整：確保按鈕不會被擋住 */
         @media (max-width: 768px) {
             .nav-btn {
                 width: 44px;
                 height: 44px;
-                top: 35%; /* 往上移一點，避開手機版下方大片的文字區 */
+                top: 50%; /* 往上移一點，避開手機版下方大片的文字區 */
                 background: rgba(255, 255, 255, 0.8); /* 手機版用白色半透明 */
                 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             }
-            .prev-btn { left: 10px; }
-            .next-btn { right: 10px; }
+            .prev-btn { left: 1rem; }
+            .next-btn { right: 1rem; }
         }
 
         /* Mobile Menu */
@@ -346,12 +346,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 4rem;
+            padding: 2rem;
+            background: #000; /* 讓圖片在黑底中完整呈現更有質感 */
         }
 
         .modal-image-container img {
             max-width: 100%;
-            max-height: 90vh;
+            max-height: 85vh;/* 限制最高為螢幕的 85% */
+            width: auto;      /* 確保不被拉伸 */
+            height: auto;     /* 確保等比例 */
             object-fit: contain;
         }
 
