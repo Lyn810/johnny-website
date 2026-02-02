@@ -846,8 +846,12 @@
         
         // 4. 新增切換按鈕的邏輯
         function changeArtwork(direction) {
-            // 加上 event.stopPropagation() 防止點擊按鈕時觸發到 modal 的其他事件
-            if (event) event.stopPropagation();
+            // 阻止事件冒泡防止誤關 Modal
+            if (event) {
+                event.stopPropagation();
+                // 強制移除按鈕的焦點狀態，讓它恢復半透明
+                if (event.currentTarget) event.currentTarget.blur();
+            }
             
             currentIndex += direction;
             // 循環邏輯：最後一張往後變第一張，第一張往前變最後一張
