@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Johnny Leo | Selected Works</title>
+    <meta name="color-scheme" content="light">
+    <title>Johnny Leo | Pieces</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-white: #FEFEFE;
+            --primary-white: #FFFFFF;
             --soft-black: #1A1A1A;
             --warm-gray: #F5F5F3;
             --mid-gray: #D4D4D4;
@@ -23,17 +24,17 @@
             box-sizing: border-box;
         }
 
-        /* Force light mode - prevent dark mode override */
         html {
-            color-scheme: light;
-            background-color: #FEFEFE;
+            color-scheme: light !important;
+            background-color: #FFFFFF !important;
         }
 
         body {
             font-family: 'Jost', sans-serif;
-            background-color: var(--primary-white);
-            color: var(--soft-black);
+            background-color: #FFFFFF !important;
+            color: #1A1A1A !important;
             line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
             forced-color-adjust: none;
         }
 
@@ -42,7 +43,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(254, 254, 254, 0.98);
+            background: #FFFFFF !important;
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid var(--mid-gray);
@@ -77,7 +78,7 @@
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 300;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: all 0.3s ease;
             position: relative;
         }
@@ -102,10 +103,77 @@
             color: var(--accent-gold);
         }
 
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--soft-black);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            max-width: 300px;
+            height: 100vh;
+            background: #FFFFFF !important;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-close svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--soft-black);
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            margin-top: 4rem;
+        }
+
+        .mobile-menu-links li {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-links a {
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
         /* Main Content */
         .main-content {
             margin-top: 100px;
-            padding: 4rem 4rem 6rem;
+            padding: 3rem 2rem 4rem;
             max-width: 1800px;
             margin-left: auto;
             margin-right: auto;
@@ -113,20 +181,21 @@
 
         .page-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .page-header h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: 300;
-            letter-spacing: 6px;
-            margin-bottom: 1rem;
+            letter-spacing: 8px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
         }
 
         .page-header p {
             color: var(--text-gray);
-            font-size: 1.05rem;
+            font-size: 1rem;
             letter-spacing: 2px;
             font-weight: 300;
         }
@@ -134,9 +203,9 @@
         /* Gallery Wall Layout */
         .gallery-wall {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
         }
 
         .artwork-card {
@@ -153,19 +222,8 @@
             position: relative;
             overflow: hidden;
             background: var(--warm-gray);
-            margin-bottom: 1.2rem;
-        }
-
-        .artwork-card:nth-child(3n+1) .artwork-image-wrapper {
-            padding-bottom: 133%; /* Portrait */
-        }
-
-        .artwork-card:nth-child(3n+2) .artwork-image-wrapper {
-            padding-bottom: 75%; /* Landscape */
-        }
-
-        .artwork-card:nth-child(3n) .artwork-image-wrapper {
-            padding-bottom: 100%; /* Square */
+            margin-bottom: 1rem;
+            padding-bottom: 125%;
         }
 
         .artwork-image-wrapper img {
@@ -183,20 +241,20 @@
         }
 
         .artwork-info {
-            padding: 0.5rem 0;
+            padding: 0.3rem 0;
         }
 
         .artwork-info h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 400;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             letter-spacing: 1px;
         }
 
         .artwork-meta {
             color: var(--text-gray);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 0.5px;
             font-weight: 300;
         }
@@ -212,6 +270,8 @@
             z-index: 3000;
             display: none;
             animation: fadeIn 0.3s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .artwork-modal.active {
@@ -224,7 +284,7 @@
         }
 
         .modal-close {
-            position: absolute;
+            position: fixed;
             top: 2rem;
             right: 2rem;
             background: var(--primary-white);
@@ -237,7 +297,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            z-index: 10;
+            z-index: 3001;
         }
 
         .modal-close:hover {
@@ -317,7 +377,7 @@
         footer {
             background: var(--soft-black);
             color: var(--primary-white);
-            padding: 4rem 4rem 2rem;
+            padding: 3rem 2rem 1.5rem;
         }
 
         .footer-content {
@@ -326,7 +386,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 2rem;
+            padding-bottom: 1.5rem;
             border-bottom: 1px solid rgba(254, 254, 254, 0.1);
         }
 
@@ -358,6 +418,7 @@
             font-size: 0.9rem;
             transition: color 0.3s ease;
             font-weight: 300;
+            letter-spacing: 2px;
         }
 
         .footer-links a:hover {
@@ -366,7 +427,7 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             color: rgba(254, 254, 254, 0.5);
             font-size: 0.85rem;
             letter-spacing: 1px;
@@ -374,16 +435,8 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .nav-container {
-                padding: 1.5rem 2rem;
-            }
-
-            .main-content {
-                padding: 4rem 2rem;
-            }
-
             .gallery-wall {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             }
         }
 
@@ -392,30 +445,91 @@
                 display: none;
             }
 
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 1.5rem 1.5rem;
+            }
+
+            .main-content {
+                margin-top: 85px;
+                padding: 2rem 1rem 3rem;
+            }
+
             .page-header h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                letter-spacing: 6px;
+            }
+
+            .page-header p {
+                font-size: 0.9rem;
             }
 
             .gallery-wall {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .artwork-image-wrapper {
+                padding-bottom: 140%;
+            }
+
+            .artwork-info h3 {
+                font-size: 1rem;
+            }
+
+            .artwork-meta {
+                font-size: 0.75rem;
+            }
+
+            .modal-close {
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
             }
 
             .modal-image-container {
-                padding: 2rem;
+                padding: 1rem;
+                min-height: 40vh;
+                max-height: 50vh;
+            }
+
+            .modal-image-container img {
+                max-height: 50vh;
             }
 
             .modal-info-container {
-                padding: 2rem;
+                padding: 2rem 1.5rem;
+                flex: none;
+            }
+
+            .modal-info-container h3 {
+                font-size: 1.8rem;
             }
 
             .artwork-modal.active {
                 flex-direction: column;
+                align-items: stretch;
             }
 
             .footer-content {
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1.5rem;
                 text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
             }
         }
     </style>
@@ -426,25 +540,46 @@
         <div class="nav-container">
             <a href="index.html" class="logo">Johnny Leo</a>
             <ul class="nav-links">
-                <li><a href="news.html">News</a></li>
-                <li><a href="index.html" class="active">Selected Works</a></li>
-                <li><a href="collections.html">Collections</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="news.html">JOURNAL</a></li>
+                <li><a href="index.html" class="active">PIECES</a></li>
+                <li><a href="collections.html">SERIES</a></li>
+                <li><a href="about.html">ARTIST</a></li>
+                <li><a href="contact.html">INQUIRY</a></li>
             </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <ul class="mobile-menu-links">
+            <li><a href="news.html">JOURNAL</a></li>
+            <li><a href="index.html">PIECES</a></li>
+            <li><a href="collections.html">SERIES</a></li>
+            <li><a href="about.html">ARTIST</a></li>
+            <li><a href="contact.html">INQUIRY</a></li>
+        </ul>
+    </div>
 
     <!-- Main Content -->
     <main class="main-content">
         <div class="page-header">
-            <h1>Selected Works</h1>
+            <h1>SELECTED PIECES</h1>
             <p>A curated collection of contemporary art</p>
         </div>
 
         <!-- Gallery Wall -->
         <div class="gallery-wall" id="galleryWall">
-            <!-- Artworks will be dynamically generated -->
+            <!-- Artworks will be dynamically generated from data.json -->
         </div>
     </main>
 
@@ -470,11 +605,11 @@
                 <p><a href="mailto:info@johnnyleo.com">info@johnnyleo.com</a></p>
             </div>
             <ul class="footer-links">
-                <li><a href="news.html">News</a></li>
-                <li><a href="index.html">Selected Works</a></li>
-                <li><a href="collections.html">Collections</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="news.html">JOURNAL</a></li>
+                <li><a href="index.html">PIECES</a></li>
+                <li><a href="collections.html">SERIES</a></li>
+                <li><a href="about.html">ARTIST</a></li>
+                <li><a href="contact.html">INQUIRY</a></li>
             </ul>
         </div>
         <div class="footer-bottom">
@@ -483,78 +618,104 @@
     </footer>
 
     <script>
-        // Sample artworks data
-        const artworks = [
-            {
-                title: "Morning Light",
-                titleCh: "晨曦之間",
-                year: "2024",
-                medium: "Oil on Canvas",
-                size: "120 × 90 cm",
-                concept: "This piece explores the quiet moments of dawn, when light first breaks through darkness. The interplay of warm and cool tones represents the delicate balance between night and day, capturing the essence of transformation and renewal.",
-                image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F0E8D8'/%3E%3Cstop offset='100%25' style='stop-color:%23D8C8B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a1)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3EMorning Light%3C/text%3E%3C/svg%3E"
-            },
-            {
-                title: "Urban Voice",
-                titleCh: "城市之聲",
-                year: "2024",
-                medium: "Acrylic",
-                size: "150 × 100 cm",
-                concept: "An exploration of the rhythm and energy of metropolitan life. The dynamic composition reflects the constant movement, noise, and vitality that defines modern urban existence.",
-                image: "data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D8E8F0'/%3E%3Cstop offset='100%25' style='stop-color:%23B0C8D8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23a2)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3EUrban Voice%3C/text%3E%3C/svg%3E"
-            },
-            {
-                title: "Silent Forest",
-                titleCh: "靜默森林",
-                year: "2023",
-                medium: "Mixed Media",
-                size: "100 × 100 cm",
-                concept: "A meditation on nature's quietude and the healing power of natural spaces. The layered textures evoke the depth and mystery of ancient woodlands.",
-                image: "data:image/svg+xml,%3Csvg width='600' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D8C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B0A0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='600' fill='url(%23a3)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3ESilent Forest%3C/text%3E%3C/svg%3E"
-            },
-            {
-                title: "Traces of Time",
-                titleCh: "時間的痕跡",
-                year: "2023",
-                medium: "Oil on Canvas",
-                size: "130 × 95 cm",
-                concept: "Time leaves its mark on everything it touches. This work examines the visible and invisible ways that temporal passage shapes our world and ourselves.",
-                image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F8F0E8'/%3E%3Cstop offset='100%25' style='stop-color:%23E0D0C0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a4)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3ETraces of Time%3C/text%3E%3C/svg%3E"
-            },
-            {
-                title: "Metropolitan Rhythm",
-                titleCh: "都會律動",
-                year: "2024",
-                medium: "Acrylic",
-                size: "140 × 110 cm",
-                concept: "The pulse of city life captured through bold gestures and vibrant color. Each stroke represents the collective heartbeat of millions moving through shared spaces.",
-                image: "data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8D8E0'/%3E%3Cstop offset='100%25' style='stop-color:%23A0B8C8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23a5)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3EMetropolitan Rhythm%3C/text%3E%3C/svg%3E"
-            },
-            {
-                title: "Light and Shadow",
-                titleCh: "光影交織",
-                year: "2023",
-                medium: "Mixed Media",
-                size: "110 × 85 cm",
-                concept: "An investigation into the eternal dance between illumination and darkness. The composition plays with contrast to reveal how each defines and enhances the other.",
-                image: "data:image/svg+xml,%3Csvg width='600' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E0D0C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C0B0A0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='600' fill='url(%23a6)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' fill='%23666'%3ELight and Shadow%3C/text%3E%3C/svg%3E"
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Load data from JSON
+        let artworksData = [];
+
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                artworksData = data.selectedWorks;
+                renderGallery();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                // Fallback to placeholder images
+                artworksData = generatePlaceholderData();
+                renderGallery();
             }
-        ];
+        }
+
+        // Generate placeholder data if JSON fails to load
+        function generatePlaceholderData() {
+            return [
+                {
+                    title: "Morning Light",
+                    titleCh: "晨曦之間",
+                    year: "2024",
+                    medium: "Oil on Canvas",
+                    size: "120 × 90 cm",
+                    concept: "This piece explores the quiet moments of dawn, when light first breaks through darkness.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F0E8D8'/%3E%3Cstop offset='100%25' style='stop-color:%23D8C8B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a1)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Urban Voice",
+                    titleCh: "城市之聲",
+                    year: "2024",
+                    medium: "Acrylic",
+                    size: "150 × 100 cm",
+                    concept: "An exploration of the rhythm and energy of metropolitan life.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D8E8F0'/%3E%3Cstop offset='100%25' style='stop-color:%23B0C8D8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a2)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Silent Forest",
+                    titleCh: "靜默森林",
+                    year: "2023",
+                    medium: "Mixed Media",
+                    size: "100 × 100 cm",
+                    concept: "A meditation on nature's quietude and the healing power of natural spaces.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D8C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B0A0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a3)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Traces of Time",
+                    titleCh: "時間的痕跡",
+                    year: "2023",
+                    medium: "Oil on Canvas",
+                    size: "130 × 95 cm",
+                    concept: "Time leaves its mark on everything it touches.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F8F0E8'/%3E%3Cstop offset='100%25' style='stop-color:%23E0D0C0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a4)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Metropolitan Rhythm",
+                    titleCh: "都會律動",
+                    year: "2024",
+                    medium: "Acrylic",
+                    size: "140 × 110 cm",
+                    concept: "The pulse of city life captured through bold gestures and vibrant color.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8D8E0'/%3E%3Cstop offset='100%25' style='stop-color:%23A0B8C8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a5)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Light and Shadow",
+                    titleCh: "光影交織",
+                    year: "2023",
+                    medium: "Mixed Media",
+                    size: "110 × 85 cm",
+                    concept: "An investigation into the eternal dance between illumination and darkness.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E0D0C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C0B0A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a6)'/%3E%3C/svg%3E"
+                }
+            ];
+        }
 
         // Render gallery
         function renderGallery() {
             const gallery = document.getElementById('galleryWall');
-            artworks.forEach((artwork, index) => {
+            gallery.innerHTML = '';
+            artworksData.forEach((artwork, index) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
                 card.onclick = () => openModal(index);
                 card.innerHTML = `
                     <div class="artwork-image-wrapper">
-                        <img src="${artwork.image}" alt="${artwork.title}">
+                        <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
                     </div>
                     <div class="artwork-info">
                         <h3>${artwork.title}</h3>
-                        <p class="artwork-meta">${artwork.year} | ${artwork.medium} | ${artwork.size}</p>
+                        <p class="artwork-meta">${artwork.year} | ${artwork.size}</p>
                     </div>
                 `;
                 gallery.appendChild(card);
@@ -563,7 +724,7 @@
 
         // Open modal
         function openModal(index) {
-            const artwork = artworks[index];
+            const artwork = artworksData[index];
             const modal = document.getElementById('artworkModal');
             const modalImage = document.getElementById('modalImage');
             const modalInfo = document.getElementById('modalInfo');
@@ -601,11 +762,13 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeModal();
+                const menu = document.getElementById('mobileMenu');
+                menu.classList.remove('active');
             }
         });
 
         // Initialize
-        renderGallery();
+        loadData();
     </script>
 </body>
 </html>
