@@ -792,6 +792,36 @@
             }
         }
 
+        let autoScrollTimer; // 定義計時器變數
+
+        function startAutoScroll() {
+            const gallery = document.getElementById('galleryWall');
+            let scrollIndex = 0;
+        
+            // 清除可能重複的計時器
+            if (autoScrollTimer) clearInterval(autoScrollTimer);
+        
+            autoScrollTimer = setInterval(() => {
+                scrollIndex++;
+                
+                // 如果滑到最後一張，就回到第一張
+                if (scrollIndex >= artworksData.length) {
+                    scrollIndex = 0;
+                }
+                
+                // 取得單張卡片的寬度進行捲動
+                const cardWidth = gallery.offsetWidth;
+                gallery.scrollTo({
+                    left: cardWidth * scrollIndex,
+                    behavior: 'smooth'
+                });
+            }, 4000); // 4000 毫秒 = 4 秒換一張
+        
+            // 當使用者動手觸碰螢幕滑動時，自動暫停計時器，避免干擾使用者閱讀
+            gallery.addEventListener('touchstart', () => {
+                clearInterval(autoScrollTimer);
+            }, { passive: true });
+        }
         // Generate placeholder data if JSON fails to load
         function generatePlaceholderData() {
             return [
