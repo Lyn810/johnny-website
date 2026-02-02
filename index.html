@@ -1,785 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light">
     <title>Johnny Leo | Pieces</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
-        /* 1. 先對所有圖片進行基礎防護 */
-        img {
-            -webkit-touch-callout: none; /* 禁用 iOS 長按圖片彈出選單 (最核心) */
-            -webkit-user-select: none;   /* 禁用文字/圖片選取 */
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            /* 暫時不要加 pointer-events: none; 否則點擊會失效 */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --accent-color: #888;
         }
-        
-        /* 2. 針對「作品集」與「彈窗圖片」強化：禁止拖拽但保留點擊 */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Jost', 'Cormorant Garamond', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header 排版 */
+        header {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 1.5rem; letter-spacing: 2px; font-weight: 300; }
+
+        /* --- 藝廊牆排版 (電腦版) --- */
+        .gallery-container {
+            padding: 0 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-wall {
+            column-count: 3;
+            column-gap: 2rem;
+            display: block;
+        }
+
+        .artwork-card {
+            break-inside: avoid;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 3rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .artwork-card:hover { opacity: 0.8; }
+
+        .artwork-image-wrapper { width: 100%; margin-bottom: 1rem; }
         .artwork-image-wrapper img {
             width: 100%;
             height: auto;
-            max-height: 70vh; /* 關鍵：限制圖片最高只佔螢幕的 70%，防止過長 */
             display: block;
-            object-fit: contain; /* 確保完整呈現不裁切 */
-        } 
-        .modal-image-container img {
-            pointer-events: auto; /* 確保使用者還是可以點擊圖片來開啟或切換 */
-            -webkit-user-drag: none; /* 禁用 Webkit 瀏覽器的圖片拖拽 */
-        }    
-        :root {
-            --primary-white: #FFFFFF;
-            --soft-black: #1A1A1A;
-            --warm-gray: #F5F5F3;
-            --mid-gray: #D4D4D4;
-            --accent-gold: #C5A572;
-            --text-gray: #666666;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            color-scheme: light !important;
-            background-color: #FFFFFF !important;
-        }
-
-        body {
-            font-family: 'Jost', sans-serif;
-            background-color: #FFFFFF !important;
-            color: #1A1A1A !important;
-            line-height: 1.6;
-            -webkit-text-size-adjust: 100%;
-            forced-color-adjust: none;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #FFFFFF !important;
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--mid-gray);
-        }
-
-        .nav-container {
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 1.8rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
+        .artwork-info h3 { 
+            font-family: 'Cormorant Garamond'; 
+            font-size: 1.2rem; 
             font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--soft-black);
-            text-decoration: none;
         }
+        .artwork-meta { font-size: 0.8rem; color: var(--accent-color); font-weight: 200; }
 
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--soft-black);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent-gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-links a.active {
-            color: var(--accent-gold);
-        }
-
-        .nav-btn {
-            position: absolute; /* 改為絕對定位 */
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2) !important; /* 平時極度半透明 */
-            border: none !important;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 5000; /* 極高層級，確保蓋過所有內容 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            color: rgba(255, 255, 255, 0.5); /* 箭頭也設為半透明 */
-            outline: none;
-        }
-        
-        /* 2. 交互狀態：點擊完放開即恢復半透明 */
-        .nav-btn:hover, 
-        .nav-btn:focus {
-            color: #000 !important;
-        }
-        
-        /* 3. 確保點擊瞬間變白，放開後因為失去 focus 會回到半透明 */
-        .nav-btn:active {
-            background: #FFFFFF !important;
-            transform: translateY(-50%) scale(0.95); /* 點擊縮放回饋 */
-        }
-        
-        /* 4. 位置修正 */
-        .prev-btn { left: 20px !important; right: auto !important; }
-        .next-btn { right: 20px !important; left: auto !important; }
-
-
-        /* 只有滑鼠懸停時變亮 (網頁版) */
-        @media (hover: hover) {
-            .nav-btn:hover {
-                background: rgba(255, 255, 255, 0.8) !important;
-                color: #000 !important;
-            }
-        }
-        
-        /* 點擊瞬間變白 (Active)，放開即消失 */
-        .nav-btn:active {
-            background: rgba(255, 255, 255, 0.9) !important;
-            transform: translateY(-50%) scale(0.9);
-            transition: 0s; /* 點擊回饋要快 */
-        }
-        
-        /* 5. 手機版 (iPhone SE) 專屬修正 */
+        /* --- 手機版專屬樣式 (輪播模式) --- */
         @media (max-width: 768px) {
-            /* Gallery Wall Layout */
             .gallery-wall {
-                display: flex !important; /* 強制橫排 */
-                flex-wrap: nowrap !important;
+                display: flex !important;
+                column-count: auto;
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-            }
-    
-    
-            .artwork-card {
-                flex: 0 0 100% !important; /* 強制每張卡片佔滿畫面 */
-                min-width: 100%; /* 防止被擠壓 */
-                scroll-snap-align: center;
-            }
-    
-            .artwork-image-wrapper {
-                height: 60vh !important; /* 給予固定高度讓圖片顯現 */
-                padding-bottom: 0 !important;
-            }
-    
-            .artwork-image-wrapper img {
-                position: static; /* 移除絕對定位 */
-                display: block;
-                width: 100%;
-                height: auto; /* 讓圖片等比例完整呈現 */
-                max-height: 70vh; /* 限制單張圖片最大高度 */
-                object-fit: contain;
-            }
-            .modal-image-container {
-                padding: 0 !important; /* 移除內距讓圖片最大化 */
-                min-height: 45vh !important;
-            }
-            
-            .nav-btn {
-                width: 40px;
-                height: 40px;
-                top: 50%; /* 確保在圖片區域的垂直中央 */
-                background: rgba(255, 255, 255, 0.3) !important; /* 手機版稍微明顯一點 */
-            }
-        
-            .prev-btn { left: 10px !important; }
-            .next-btn { right: 10px !important; }
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-btn svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--soft-black);
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 70%;
-            max-width: 300px;
-            height: 100vh;
-            background: #FFFFFF !important;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-            transition: right 0.3s ease;
-            z-index: 2000;
-            padding: 2rem;
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-close svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--soft-black);
-        }
-
-        .mobile-menu-links {
-            list-style: none;
-            margin-top: 4rem;
-        }
-
-        .mobile-menu-links li {
-            margin-bottom: 2rem;
-        }
-
-        .mobile-menu-links a {
-            color: var(--soft-black);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-top: 100px;
-            padding: 3rem 2rem 4rem;
-            max-width: 1800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .page-header h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 300;
-            letter-spacing: 8px;
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-        }
-
-        .page-header p {
-            color: var(--text-gray);
-            font-size: 1rem;
-            letter-spacing: 2px;
-            font-weight: 300;
-        }
-
-        
-        .artwork-info {
-            padding: 0.3rem 0;
-        }
-        .artwork-info h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            font-weight: 300;
-            margin-bottom: 0.4rem;
-            letter-spacing: 1px;
-        }
-         .artwork-meta {
-            color: var(--text-gray);
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-            font-weight: 300;
-        }
-
-        /* Artwork Modal */
-        .artwork-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 3000;
-            display: none;
-            animation: fadeIn 0.3s ease;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .artwork-modal.active {
-            display: flex;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-close {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            background: var(--primary-white);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 3001;
-        }
-
-        .modal-close:hover {
-            transform: rotate(90deg);
-            background: var(--accent-gold);
-        }
-
-        .modal-image-container {
-            position: relative;
-            flex: 1.5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 60px; /* 為兩側按鈕預留空間 */
-            background: #000; /* 讓圖片在黑底中完整呈現更有質感 */
-        }
-
-        .modal-image-container img {
-            max-width: 100%;
-            max-height: 85vh;/* 限制最高為螢幕的 85% */
-            width: auto;      /* 確保不被拉伸 */
-            height: auto;     /* 確保等比例 */
-            object-fit: contain;
-        }
-
-        .modal-info-container {
-            flex: 1;
-            background: var(--primary-white);
-            padding: 4rem;
-            overflow-y: auto;
-        }
-
-        .modal-info-container h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-            letter-spacing: 2px;
-        }
-
-        .modal-detail-item {
-            margin-bottom: 2rem;
-        }
-
-        .modal-detail-item label {
-            display: block;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            color: var(--accent-gold);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-
-        .modal-detail-item p {
-            color: var(--text-gray);
-            line-height: 1.8;
-            font-size: 1rem;
-        }
-
-        .modal-concept {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--mid-gray);
-        }
-
-        .modal-concept h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
-        }
-
-        .modal-concept p {
-            color: var(--text-gray);
-            line-height: 2;
-            font-size: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--soft-black);
-            color: var(--primary-white);
-            padding: 3rem 2rem 1.5rem;
-        }
-
-        .footer-content {
-            max-width: 1800px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(254, 254, 254, 0.1);
-        }
-
-        .footer-left p {
-            color: rgba(254, 254, 254, 0.7);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .footer-left a {
-            color: rgba(254, 254, 254, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-left a:hover {
-            color: var(--accent-gold);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .footer-links a {
-            color: rgba(254, 254, 254, 0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-gold);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 1.5rem;
-            color: rgba(254, 254, 254, 0.5);
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .gallery-wall {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            /* 讓手機版變成橫向滑動輪播 */
-            .gallery-wall {
-                display: flex !important; /* 改為橫向排列 */
-                flex-wrap: nowrap !important;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory; /* 自動吸附效果 */
-                -webkit-overflow-scrolling: touch;
                 gap: 0;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
             }
-            
-            /* 每張作品佔滿螢幕寬度 */
+            .gallery-wall::-webkit-scrollbar { display: none; }
+
             .artwork-card {
-                flex: 0 0 100% !important; /* 每張作品佔滿 100% 寬度 */
-                min-width: 100%;
+                flex: 0 0 100% !important;
                 scroll-snap-align: center;
                 padding: 0 1.5rem;
                 margin-bottom: 0;
             }
-            .nav-links {
-                display: none;
-            }
 
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .nav-container {
-                padding: 1.5rem 1.5rem;
-            }
-
-            .main-content {
-                margin-top: 85px;
-                padding: 2rem 1rem 3rem;
-                background-color: #FFFFFF !important; /* 明確指定主區域背景 */
-            }
-
-            .page-header h1 {
-                font-size: 1.8rem;
-                letter-spacing: 4px;/* 縮小一點字距，防止在 SE 上斷行 */
-            }
-
-            .page-header p {
-                font-size: 0.9rem;
-            }
-
-            .gallery-wall {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-                gap: 2rem;
-                overflow: visible;
-            }
-
-            /* 解決圖片下方過長的問題 */
             .artwork-image-wrapper {
-                height: 60vh !important; /* 限制高度，解決下方過長問題 */
-                padding-bottom: 0 !important;
+                height: 55vh;
                 display: flex;
                 align-items: center;
+                justify-content: center;
             }
+
             .artwork-image-wrapper img {
-                position: static;
                 max-height: 100%;
                 width: auto;
-                margin: 0 auto;
-                object-fit: contain; /* 確保畫作完整不被裁切 */
+                object-fit: contain;
             }
-
-            .artwork-info h3 {
-                font-size: 1rem;
-            }
-
-            .artwork-meta {
-                font-size: 0.75rem;
-            }
-
-            .modal-close {
-                position: fixed;
-                top: 1rem;
-                right: 1rem;
-                width: 36px;
-                height: 36px;
-            }
-
-            .modal-image-container {
-                padding: 1rem;
-                min-height: 40vh;
-                max-height: 50vh;
-            }
-
-            .modal-image-container img {
-                max-height: 50vh;
-            }
-
-            .modal-info-container {
-                padding: 2rem 1.5rem;
-                flex: none;
-            }
-
-            .modal-info-container h3 {
-                font-size: 1.8rem;
-            }
-
-            .artwork-modal.active {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: center;
-            }
-
-            .footer-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
+            
+            .artwork-info { text-align: center; margin-top: 1rem; }
         }
+
+        /* --- Modal 彈出視窗 --- */
+        .artwork-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            z-index: 2000;
+            display: none;
+            overflow-y: auto;
+        }
+
+        .artwork-modal.active { display: block; }
+
+        .modal-close {
+            position: fixed;
+            top: 20px; right: 20px;
+            background: none; border: none; cursor: pointer; z-index: 2100;
+        }
+
+        /* 左右切換按鈕 */
+        .nav-btn {
+            position: fixed;
+            top: 40%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2050;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        .modal-image-container { text-align: center; padding: 60px 20px 20px; }
+        .modal-image-container img { max-width: 100%; max-height: 70vh; }
+
+        .modal-info-container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .modal-detail-item { margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+        .modal-detail-item label { font-size: 0.7rem; text-transform: uppercase; color: #999; }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">Johnny Leo</a>
-            <ul class="nav-links">
-                <li><a href="news.html">JOURNAL</a></li>
-                <li><a href="index.html" class="active">PIECES</a></li>
-                <li><a href="collections.html">SERIES</a></li>
-                <li><a href="about.html">ARTIST</a></li>
-                <li><a href="contact.html">INQUIRY</a></li>
-            </ul>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-            </button>
-        </div>
-    </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
-            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-        <ul class="mobile-menu-links">
-            <li><a href="news.html">JOURNAL</a></li>
-            <li><a href="index.html">PIECES</a></li>
-            <li><a href="collections.html">SERIES</a></li>
-            <li><a href="about.html">ARTIST</a></li>
-            <li><a href="contact.html">INQUIRY</a></li>
-        </ul>
+    <header>
+        <div class="logo">JOHNNY LEO</div>
+    </header>
+
+    <div class="gallery-container">
+        <div class="gallery-wall" id="galleryWall">
+            </div>
     </div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="page-header">
-            <h1>SELECTED PIECES</h1>
-            <p>A curated collection of contemporary art</p>
-        </div>
-
-        <!-- Gallery Wall -->
-        <div class="gallery-wall" id="galleryWall">
-            <!-- Artworks will be dynamically generated from data.js -->
-        </div>
-    </main>
-
-    <!-- Artwork Modal -->
     <div class="artwork-modal" id="artworkModal">
-        <button class="modal-close" onclick="closeModal()">
-            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
+        <button class="modal-close" onclick="closeModal()">✕ CLOSE</button>
+        
+        <button class="nav-btn prev-btn" onclick="changeArtwork(-1)">←</button>
+        <button class="nav-btn next-btn" onclick="changeArtwork(1)">→</button>
 
         <div class="modal-image-container">
-           <button class="nav-btn prev-btn" onclick="changeArtwork(-1); event.stopPropagation();">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M15 18l-6-6 6-6"/>
-                </svg>
-            </button>
-        
             <img id="modalImage" src="" alt="">
-
-            <button class="nav-btn next-btn" onclick="changeArtwork(1)"; event.stopPropagation();">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M9 18l6-6-6-6"/>
-                </svg>
-            </button>
         </div>
-        <div class="modal-info-container" id="modalInfo">
-            <!-- Content will be dynamically filled -->
-        </div>
+        <div class="modal-info-container" id="modalInfo"></div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-left">
-                <p><a href="mailto:info@johnnyleo.com">info@johnnyleo.com</a></p>
-            </div>
-            <ul class="footer-links">
-                <li><a href="news.html">JOURNAL</a></li>
-                <li><a href="index.html">PIECES</a></li>
-                <li><a href="collections.html">SERIES</a></li>
-                <li><a href="about.html">ARTIST</a></li>
-                <li><a href="contact.html">INQUIRY</a></li>
-            </ul>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Johnny Leo. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
-        let artworksData = []; // 全域變數
+        let artworksData = [];
         let currentIndex = 0;
         let autoScrollTimer;
-    
+
         // 1. 載入資料
         async function loadData() {
             try {
                 const response = await fetch('data.json');
                 const data = await response.json();
-                // 根據你的 data.json 結構，取 selectedWorks
-                artworksData = data.selectedWorks; 
-                console.log("Data loaded:", artworksData);
-                renderGallery(); // 資料載入後才執行渲染
+                artworksData = data.selectedWorks;
+                renderGallery();
             } catch (error) {
-                console.error('Error loading data:', error);
+                console.error('Fetch error:', error);
             }
         }
-    
-        // 2. 渲染畫面 (確保在 loadData 外面)
+
+        // 2. 渲染畫廊
         function renderGallery() {
             const gallery = document.getElementById('galleryWall');
-            if (!gallery) return;
             gallery.innerHTML = '';
-            
-            // 修正：必須使用 artworksData
+
             artworksData.forEach((artwork, index) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
                 card.onclick = () => openModal(index);
-                
                 card.innerHTML = `
                     <div class="artwork-image-wrapper">
-                        <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
+                        <img src="${artwork.image}" alt="${artwork.title}">
                     </div>
                     <div class="artwork-info">
                         <h3>${artwork.title}</h3>
@@ -788,48 +215,40 @@
                 `;
                 gallery.appendChild(card);
             });
-    
-            // 啟動手機輪播
-            if (window.innerWidth <= 768) {
-                startAutoScroll();
-            }
+
+            if (window.innerWidth <= 768) startAutoScroll();
         }
-    
-        // 3. 輪播控制
+
+        // 3. 手機自動輪播
         function startAutoScroll() {
             const gallery = document.getElementById('galleryWall');
             let scrollIndex = 0;
             if (autoScrollTimer) clearInterval(autoScrollTimer);
-    
+
             autoScrollTimer = setInterval(() => {
                 scrollIndex++;
                 if (scrollIndex >= artworksData.length) scrollIndex = 0;
-                
-                const cardWidth = gallery.offsetWidth;
                 gallery.scrollTo({
-                    left: cardWidth * scrollIndex,
+                    left: gallery.offsetWidth * scrollIndex,
                     behavior: 'smooth'
                 });
             }, 4000);
-    
-            gallery.addEventListener('touchstart', () => clearInterval(autoScrollTimer), { passive: true });
+
+            gallery.addEventListener('touchstart', () => clearInterval(autoScrollTimer), {passive: true});
         }
-    
+
         // 4. Modal 控制
         function openModal(index) {
             currentIndex = index;
             updateModalContent();
             document.getElementById('artworkModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // 禁止背景捲動
         }
-    
+
         function updateModalContent() {
             const artwork = artworksData[currentIndex];
-            const modalImage = document.getElementById('modalImage');
-            const modalInfo = document.getElementById('modalInfo');
-            if (!artwork) return;
-    
-            modalImage.src = artwork.image;
-            modalInfo.innerHTML = `
+            document.getElementById('modalImage').src = artwork.image;
+            document.getElementById('modalInfo').innerHTML = `
                 <h3>${artwork.title}</h3>
                 <div class="modal-detail-item"><label>Year</label><p>${artwork.year}</p></div>
                 <div class="modal-detail-item"><label>Medium</label><p>${artwork.medium}</p></div>
@@ -838,38 +257,28 @@
             `;
             document.getElementById('artworkModal').scrollTop = 0;
         }
-    
-        function changeArtwork(direction) {
-            if (window.event) window.event.stopPropagation();
-            currentIndex += direction;
+
+        function changeArtwork(dir) {
+            if (event) event.stopPropagation();
+            currentIndex += dir;
             if (currentIndex >= artworksData.length) currentIndex = 0;
             if (currentIndex < 0) currentIndex = artworksData.length - 1;
             updateModalContent();
         }
-    
+
         function closeModal() {
             document.getElementById('artworkModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
-    
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            if (menu) menu.classList.toggle('active');
-        }
-    
-        // 5. 事件監聽與初始化
+
+        // 5. 初始化
+        window.onload = loadData;
+
+        // 鍵盤支援
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
             if (e.key === 'ArrowRight') changeArtwork(1);
             if (e.key === 'ArrowLeft') changeArtwork(-1);
-        });
-    
-        document.addEventListener('DOMContentLoaded', () => {
-            loadData();
-            // 圖片保護
-            document.addEventListener('contextmenu', (e) => e.preventDefault());
-            document.addEventListener('dragstart', (e) => {
-                if (e.target.tagName === 'IMG') e.preventDefault();
-            });
         });
     </script>
 </body>
