@@ -851,15 +851,17 @@
                 }
             ];
         }
-
+        let autoScrollTimer;
         // Render gallery
         function renderGallery() {
             const gallery = document.getElementById('galleryWall');
             gallery.innerHTML = '';
+            
             artworksData.forEach((artwork, index) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
-                card.onclick = () => openModal(index);
+                card.onclick = () => openModal(index);// 保持點開詳細資訊的功能
+                
                 card.innerHTML = `
                     <div class="artwork-image-wrapper">
                         <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
@@ -871,6 +873,27 @@
                 `;
                 gallery.appendChild(card);
             });
+            // 如果是手機版，啟動自動輪播
+            if (window.innerWidth <= 768) {
+                startAutoScroll();
+            }
+        }
+        function startAutoScroll() {
+            const gallery = document.getElementById('galleryWall');
+            let scrollIndex = 0;
+        
+            autoScrollTimer = setInterval(() => {
+                scrollIndex++;
+                if (scrollIndex >= artworksData.length) scrollIndex = 0;
+                
+                gallery.scrollTo({
+                    left: gallery.offsetWidth * scrollIndex,
+                    behavior: 'smooth'
+                });
+            }, 4000); // 每 4 秒換下一張
+        
+            // 使用者手動滑動時，暫停自動輪播
+            gallery.addEventListener('touchstart', () => clearInterval(autoScrollTimer));
         }
 
         // Open modal
