@@ -1,189 +1,632 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
     <title>Johnny Leo | Pieces</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-color: #1a1a1a;
-            --accent-color: #888;
+            --primary-white: #FFFFFF;
+            --soft-black: #1A1A1A;
+            --warm-gray: #F5F5F3;
+            --mid-gray: #D4D4D4;
+            --accent-gold: #C5A572;
+            --text-gray: #666666;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            color-scheme: light !important;
+            background-color: #FFFFFF !important;
+        }
 
         body {
-            font-family: 'Jost', 'Cormorant Garamond', serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Jost', sans-serif;
+            background-color: #FFFFFF !important;
+            color: #1A1A1A !important;
             line-height: 1.6;
-            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            forced-color-adjust: none;
         }
 
-        /* Header 排版 */
-        header {
-            padding: 2rem;
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #FFFFFF !important;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--mid-gray);
+        }
+
+        .nav-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 1.8rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--soft-black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--soft-black);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
             top: 0;
-            background: white;
-            z-index: 1000;
+            right: -100%;
+            width: 70%;
+            max-width: 300px;
+            height: 100vh;
+            background: #FFFFFF !important;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            padding: 2rem;
         }
 
-        .logo { font-size: 1.5rem; letter-spacing: 2px; font-weight: 300; }
-
-        /* --- 藝廊牆排版 (電腦版) --- */
-        .gallery-container {
-            padding: 0 2rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
+        .mobile-menu.active {
+            right: 0;
         }
 
+        .mobile-menu-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-close svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--soft-black);
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            margin-top: 4rem;
+        }
+
+        .mobile-menu-links li {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-links a {
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 3rem 2rem 4rem;
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* Gallery Wall Layout */
         .gallery-wall {
-            column-count: 3;
-            column-gap: 2rem;
-            display: block;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
         }
 
         .artwork-card {
-            break-inside: avoid;
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 3rem;
             cursor: pointer;
-            transition: opacity 0.3s;
+            transition: all 0.4s ease;
+            break-inside: avoid;
         }
 
-        .artwork-card:hover { opacity: 0.8; }
+        .artwork-card:hover {
+            transform: translateY(-8px);
+        }
 
-        .artwork-image-wrapper { width: 100%; margin-bottom: 1rem; }
+        .artwork-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            background: var(--warm-gray);
+            margin-bottom: 1rem;
+            padding-bottom: 125%;
+        }
+
         .artwork-image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
         }
 
-        .artwork-info h3 { 
-            font-family: 'Cormorant Garamond'; 
-            font-size: 1.2rem; 
+        .artwork-card:hover .artwork-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .artwork-info {
+            padding: 0.3rem 0;
+        }
+
+        .artwork-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+            letter-spacing: 1px;
+        }
+
+        .artwork-meta {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
             font-weight: 300;
         }
-        .artwork-meta { font-size: 0.8rem; color: var(--accent-color); font-weight: 200; }
 
-        /* --- 手機版專屬樣式 (輪播模式) --- */
-        @media (max-width: 768px) {
-            .gallery-wall {
-                display: flex !important;
-                column-count: auto;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                gap: 0;
-                scrollbar-width: none;
-                -webkit-overflow-scrolling: touch;
-            }
-            .gallery-wall::-webkit-scrollbar { display: none; }
-
-            .artwork-card {
-                flex: 0 0 100% !important;
-                scroll-snap-align: center;
-                padding: 0 1.5rem;
-                margin-bottom: 0;
-            }
-
-            .artwork-image-wrapper {
-                height: 55vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .artwork-image-wrapper img {
-                max-height: 100%;
-                width: auto;
-                object-fit: contain;
-            }
-            
-            .artwork-info { text-align: center; margin-top: 1rem; }
-        }
-
-        /* --- Modal 彈出視窗 --- */
+        /* Artwork Modal */
         .artwork-modal {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: white;
-            z-index: 2000;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
             display: none;
+            animation: fadeIn 0.3s ease;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .artwork-modal.active { display: block; }
+        .artwork-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
         .modal-close {
             position: fixed;
-            top: 20px; right: 20px;
-            background: none; border: none; cursor: pointer; z-index: 2100;
-        }
-
-        /* 左右切換按鈕 */
-        .nav-btn {
-            position: fixed;
-            top: 40%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.8);
+            top: 2rem;
+            right: 2rem;
+            background: var(--primary-white);
             border: none;
-            width: 50px; height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            z-index: 2050;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 3001;
         }
-        .prev-btn { left: 10px; }
-        .next-btn { right: 10px; }
 
-        .modal-image-container { text-align: center; padding: 60px 20px 20px; }
-        .modal-image-container img { max-width: 100%; max-height: 70vh; }
+        .modal-close:hover {
+            transform: rotate(90deg);
+            background: var(--accent-gold);
+        }
 
-        .modal-info-container { max-width: 800px; margin: 0 auto; padding: 2rem; }
-        .modal-detail-item { margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
-        .modal-detail-item label { font-size: 0.7rem; text-transform: uppercase; color: #999; }
+        .modal-image-container {
+            flex: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+        }
+
+        .modal-image-container img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .modal-info-container {
+            flex: 1;
+            background: var(--primary-white);
+            padding: 4rem;
+            overflow-y: auto;
+        }
+
+        .modal-info-container h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .modal-detail-item {
+            margin-bottom: 2rem;
+        }
+
+        .modal-detail-item label {
+            display: block;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .modal-detail-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .modal-concept {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--mid-gray);
+        }
+
+        .modal-concept h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .modal-concept p {
+            color: var(--text-gray);
+            line-height: 2;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--soft-black);
+            color: var(--primary-white);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(254, 254, 254, 0.1);
+        }
+
+        .footer-left p {
+            color: rgba(254, 254, 254, 0.7);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-left a {
+            color: rgba(254, 254, 254, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-left a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(254, 254, 254, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            color: rgba(254, 254, 254, 0.5);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery-wall {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 1.5rem 1.5rem;
+            }
+
+            .main-content {
+                margin-top: 85px;
+                padding: 2rem 1rem 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+                letter-spacing: 6px;
+            }
+
+            .page-header p {
+                font-size: 0.9rem;
+            }
+
+            .gallery-wall {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .artwork-image-wrapper {
+                padding-bottom: 140%;
+            }
+
+            .artwork-info h3 {
+                font-size: 1rem;
+            }
+
+            .artwork-meta {
+                font-size: 0.75rem;
+            }
+
+            .modal-close {
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
+            }
+
+            .modal-image-container {
+                padding: 1rem;
+                min-height: 40vh;
+                max-height: 50vh;
+            }
+
+            .modal-image-container img {
+                max-height: 50vh;
+            }
+
+            .modal-info-container {
+                padding: 2rem 1.5rem;
+                flex: none;
+            }
+
+            .modal-info-container h3 {
+                font-size: 1.8rem;
+            }
+
+            .artwork-modal.active {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Johnny Leo</a>
+            <ul class="nav-links">
+                <li><a href="news.html">JOURNAL</a></li>
+                <li><a href="index.html" class="active">PIECES</a></li>
+                <li><a href="collections.html">SERIES</a></li>
+                <li><a href="about.html">ARTIST</a></li>
+                <li><a href="contact.html">INQUIRY</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </nav>
 
-    <header>
-        <div class="logo">JOHNNY LEO</div>
-    </header>
-
-    <div class="gallery-container">
-        <div class="gallery-wall" id="galleryWall">
-            </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <ul class="mobile-menu-links">
+            <li><a href="news.html">JOURNAL</a></li>
+            <li><a href="index.html">PIECES</a></li>
+            <li><a href="collections.html">SERIES</a></li>
+            <li><a href="about.html">ARTIST</a></li>
+            <li><a href="contact.html">INQUIRY</a></li>
+        </ul>
     </div>
 
-    <div class="artwork-modal" id="artworkModal">
-        <button class="modal-close" onclick="closeModal()">✕ CLOSE</button>
-        
-        <button class="nav-btn prev-btn" onclick="changeArtwork(-1)">←</button>
-        <button class="nav-btn next-btn" onclick="changeArtwork(1)">→</button>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1>SELECTED PIECES</h1>
+            <p>A curated collection of contemporary art</p>
+        </div>
 
+        <!-- Gallery Wall -->
+        <div class="gallery-wall" id="galleryWall">
+            <!-- Artworks will be dynamically generated from data.json -->
+        </div>
+    </main>
+
+    <!-- Artwork Modal -->
+    <div class="artwork-modal" id="artworkModal">
+        <button class="modal-close" onclick="closeModal()">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
         <div class="modal-image-container">
             <img id="modalImage" src="" alt="">
         </div>
-        <div class="modal-info-container" id="modalInfo"></div>
+        <div class="modal-info-container" id="modalInfo">
+            <!-- Content will be dynamically filled -->
+        </div>
     </div>
 
-    <script>
-        let artworksData = [];
-        let currentIndex = 0;
-        let autoScrollTimer;
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p><a href="mailto:info@johnnyleo.com">info@johnnyleo.com</a></p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="news.html">JOURNAL</a></li>
+                <li><a href="index.html">PIECES</a></li>
+                <li><a href="collections.html">SERIES</a></li>
+                <li><a href="about.html">ARTIST</a></li>
+                <li><a href="contact.html">INQUIRY</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Johnny Leo. All rights reserved.</p>
+        </div>
+    </footer>
 
-        // 1. 載入資料
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Load data from JSON
+        let artworksData = [];
+
         async function loadData() {
             try {
                 const response = await fetch('data.json');
@@ -191,22 +634,84 @@
                 artworksData = data.selectedWorks;
                 renderGallery();
             } catch (error) {
-                console.error('Fetch error:', error);
+                console.error('Error loading data:', error);
+                // Fallback to placeholder images
+                artworksData = generatePlaceholderData();
+                renderGallery();
             }
         }
 
-        // 2. 渲染畫廊
+        // Generate placeholder data if JSON fails to load
+        function generatePlaceholderData() {
+            return [
+                {
+                    title: "Morning Light",
+                    titleCh: "晨曦之間",
+                    year: "2024",
+                    medium: "Oil on Canvas",
+                    size: "120 × 90 cm",
+                    concept: "This piece explores the quiet moments of dawn, when light first breaks through darkness.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F0E8D8'/%3E%3Cstop offset='100%25' style='stop-color:%23D8C8B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a1)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Urban Voice",
+                    titleCh: "城市之聲",
+                    year: "2024",
+                    medium: "Acrylic",
+                    size: "150 × 100 cm",
+                    concept: "An exploration of the rhythm and energy of metropolitan life.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D8E8F0'/%3E%3Cstop offset='100%25' style='stop-color:%23B0C8D8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a2)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Silent Forest",
+                    titleCh: "靜默森林",
+                    year: "2023",
+                    medium: "Mixed Media",
+                    size: "100 × 100 cm",
+                    concept: "A meditation on nature's quietude and the healing power of natural spaces.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D8C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B0A0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a3)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Traces of Time",
+                    titleCh: "時間的痕跡",
+                    year: "2023",
+                    medium: "Oil on Canvas",
+                    size: "130 × 95 cm",
+                    concept: "Time leaves its mark on everything it touches.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F8F0E8'/%3E%3Cstop offset='100%25' style='stop-color:%23E0D0C0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a4)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Metropolitan Rhythm",
+                    titleCh: "都會律動",
+                    year: "2024",
+                    medium: "Acrylic",
+                    size: "140 × 110 cm",
+                    concept: "The pulse of city life captured through bold gestures and vibrant color.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8D8E0'/%3E%3Cstop offset='100%25' style='stop-color:%23A0B8C8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a5)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Light and Shadow",
+                    titleCh: "光影交織",
+                    year: "2023",
+                    medium: "Mixed Media",
+                    size: "110 × 85 cm",
+                    concept: "An investigation into the eternal dance between illumination and darkness.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E0D0C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C0B0A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a6)'/%3E%3C/svg%3E"
+                }
+            ];
+        }
+
+        // Render gallery
         function renderGallery() {
             const gallery = document.getElementById('galleryWall');
             gallery.innerHTML = '';
-
             artworksData.forEach((artwork, index) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
                 card.onclick = () => openModal(index);
                 card.innerHTML = `
                     <div class="artwork-image-wrapper">
-                        <img src="${artwork.image}" alt="${artwork.title}">
+                        <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
                     </div>
                     <div class="artwork-info">
                         <h3>${artwork.title}</h3>
@@ -215,71 +720,55 @@
                 `;
                 gallery.appendChild(card);
             });
-
-            if (window.innerWidth <= 768) startAutoScroll();
         }
 
-        // 3. 手機自動輪播
-        function startAutoScroll() {
-            const gallery = document.getElementById('galleryWall');
-            let scrollIndex = 0;
-            if (autoScrollTimer) clearInterval(autoScrollTimer);
-
-            autoScrollTimer = setInterval(() => {
-                scrollIndex++;
-                if (scrollIndex >= artworksData.length) scrollIndex = 0;
-                gallery.scrollTo({
-                    left: gallery.offsetWidth * scrollIndex,
-                    behavior: 'smooth'
-                });
-            }, 4000);
-
-            gallery.addEventListener('touchstart', () => clearInterval(autoScrollTimer), {passive: true});
-        }
-
-        // 4. Modal 控制
+        // Open modal
         function openModal(index) {
-            currentIndex = index;
-            updateModalContent();
-            document.getElementById('artworkModal').classList.add('active');
-            document.body.style.overflow = 'hidden'; // 禁止背景捲動
-        }
+            const artwork = artworksData[index];
+            const modal = document.getElementById('artworkModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalInfo = document.getElementById('modalInfo');
 
-        function updateModalContent() {
-            const artwork = artworksData[currentIndex];
-            document.getElementById('modalImage').src = artwork.image;
-            document.getElementById('modalInfo').innerHTML = `
+            modalImage.src = artwork.image;
+            modalInfo.innerHTML = `
                 <h3>${artwork.title}</h3>
-                <div class="modal-detail-item"><label>Year</label><p>${artwork.year}</p></div>
-                <div class="modal-detail-item"><label>Medium</label><p>${artwork.medium}</p></div>
-                <div class="modal-detail-item"><label>Size</label><p>${artwork.size}</p></div>
-                <div class="modal-concept"><h4>Artist's Statement</h4><p>${artwork.concept}</p></div>
+                <div class="modal-detail-item">
+                    <label>Year</label>
+                    <p>${artwork.year}</p>
+                </div>
+                <div class="modal-detail-item">
+                    <label>Medium</label>
+                    <p>${artwork.medium}</p>
+                </div>
+                <div class="modal-detail-item">
+                    <label>Size</label>
+                    <p>${artwork.size}</p>
+                </div>
+                <div class="modal-concept">
+                    <h4>Artist's Statement</h4>
+                    <p>${artwork.concept}</p>
+                </div>
             `;
-            document.getElementById('artworkModal').scrollTop = 0;
+
+            modal.classList.add('active');
         }
 
-        function changeArtwork(dir) {
-            if (event) event.stopPropagation();
-            currentIndex += dir;
-            if (currentIndex >= artworksData.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = artworksData.length - 1;
-            updateModalContent();
-        }
-
+        // Close modal
         function closeModal() {
             document.getElementById('artworkModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
         }
 
-        // 5. 初始化
-        window.onload = loadData;
-
-        // 鍵盤支援
+        // ESC key to close
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowRight') changeArtwork(1);
-            if (e.key === 'ArrowLeft') changeArtwork(-1);
+            if (e.key === 'Escape') {
+                closeModal();
+                const menu = document.getElementById('mobileMenu');
+                menu.classList.remove('active');
+            }
         });
+
+        // Initialize
+        loadData();
     </script>
 </body>
 </html>
