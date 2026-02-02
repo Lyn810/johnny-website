@@ -126,12 +126,14 @@
             stroke: #1A1A1A !important; /* 強制深色箭頭 */
         }
         
-        .nav-btn:hover {
-            background: rgba(0, 0, 0, 0.1);
+        /* 點擊（Active）或懸停（Hover）時變白 */
+        .nav-btn:hover, .nav-btn:active {
+            background: rgba(255, 255, 255, 0.9) !important;
+            color: #000;
         }
         
-        .prev-btn { left: 2rem; }
-        .next-btn { right: 2rem; }
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
         
         /* 手機版調整：確保按鈕不會被擋住 */
         @media (max-width: 768px) {
@@ -144,6 +146,14 @@
             }
             .prev-btn { left: 1rem; }
             .next-btn { right: 1rem; }
+            .modal-image-container {
+                padding: 0 40px;
+                min-height: 50vh; /* 確保手機版圖片區域足夠大 */
+            }
+            .nav-btn {
+                width: 36px;
+                height: 36px;
+            }
         }
 
         /* Mobile Menu */
