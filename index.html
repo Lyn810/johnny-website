@@ -839,6 +839,9 @@
         
         // 4. 新增切換按鈕的邏輯
         function changeArtwork(direction) {
+            // 加上 event.stopPropagation() 防止點擊按鈕時觸發到 modal 的其他事件
+            if (event) event.stopPropagation();
+            
             currentIndex += direction;
             // 循環邏輯：最後一張往後變第一張，第一張往前變最後一張
             if (currentIndex >= artworksData.length) currentIndex = 0;
