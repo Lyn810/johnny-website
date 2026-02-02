@@ -1,4 +1,4 @@
-function renderGallery() {
+const artworksData = [
 {
   "site": {
     "title": "Johnny Leo",
@@ -11,7 +11,7 @@ function renderGallery() {
     "artist": "ARTIST",
     "inquiry": "INQUIRY"
   },
-  "selectedWorks": [
+  "artworksData": [
     {
       "id": "morning-light",
       "title": "Morning Light",
@@ -219,4 +219,4 @@ function renderGallery() {
     }
   ]
 }
-}
+];
