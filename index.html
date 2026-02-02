@@ -109,51 +109,52 @@
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.2) !important; /* 平時極度半透明 */
             border: none;
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 5000; /* 極高層級，確保蓋過所有內容 */
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
-            color: rgba(255, 255, 255, 0.6); /* 箭頭也設為半透明 */
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.5); /* 箭頭也設為半透明 */
+            outline: none;
         }
         
-        /* 讓箭頭顏色變成深灰色，才不會在白色背景中隱形 */
-        .nav-btn svg {
-            stroke: #1A1A1A !important; /* 強制深色箭頭 */
+        /* 2. 交互狀態：點擊完放開即恢復半透明 */
+        .nav-btn:hover, 
+        .nav-btn:focus {
+            background: rgba(255, 255, 255, 0.8) !important;
+            color: #000 !important;
         }
         
-        /* 點擊（Active）或懸停（Hover）時變白 */
-        .nav-btn:hover, .nav-btn:active {
-            background: rgba(255, 255, 255, 0.9) !important;
-            color: #000;
+        /* 3. 確保點擊瞬間變白，放開後因為失去 focus 會回到半透明 */
+        .nav-btn:active {
+            background: #FFFFFF !important;
+            transform: translateY(-50%) scale(0.95); /* 點擊縮放回饋 */
         }
         
-        .prev-btn { left: 15px; }
-        .next-btn { right: 15px; }
+        /* 4. 位置修正 */
+        .prev-btn { left: 20px !important; right: auto !important; }
+        .next-btn { right: 20px !important; left: auto !important; }
         
-        /* 手機版調整：確保按鈕不會被擋住 */
+        /* 5. 手機版 (iPhone SE) 專屬修正 */
         @media (max-width: 768px) {
-            .nav-btn {
-                width: 44px;
-                height: 44px;
-                top: 20%; /* 往上移一點，避開手機版下方大片的文字區 */
-                background: rgba(255, 255, 255, 0.8); /* 手機版用白色半透明 */
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            }
-            .prev-btn { left: 1rem; }
-            .next-btn { right: 1rem; }
             .modal-image-container {
-                padding: 0 40px;
-                min-height: 50vh; /* 確保手機版圖片區域足夠大 */
+                padding: 0 !important; /* 移除內距讓圖片最大化 */
+                min-height: 45vh !important;
             }
+            
             .nav-btn {
-                width: 36px;
-                height: 36px;
+                width: 40px;
+                height: 40px;
+                top: 50%; /* 確保在圖片區域的垂直中央 */
+                background: rgba(255, 255, 255, 0.3) !important; /* 手機版稍微明顯一點 */
             }
+        
+            .prev-btn { left: 10px !important; }
+            .next-btn { right: 10px !important; }
         }
 
         /* Mobile Menu */
@@ -642,18 +643,9 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
-        <button class="nav-btn prev-btn" onclick="changeArtwork(-1)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-                <path d="M15 18l-6-6 6-6"/>
-            </svg>
-        </button>
-        <button class="nav-btn next-btn" onclick="changeArtwork(1)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-                <path d="M9 18l6-6-6-6"/>
-            </svg>
-        </button>
+
         <div class="modal-image-container">
-           <button class="nav-btn prev-btn" onclick="changeArtwork(-1)">
+           <button class="nav-btn prev-btn" onclick="changeArtwork(-1); event.stopPropagation();">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M15 18l-6-6 6-6"/>
                 </svg>
@@ -661,7 +653,7 @@
         
             <img id="modalImage" src="" alt="">
 
-            <button class="nav-btn next-btn" onclick="changeArtwork(1)">
+            <button class="nav-btn next-btn" onclick="changeArtwork(1)"; event.stopPropagation();">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M9 18l6-6-6-6"/>
                 </svg>
