@@ -9,6 +9,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* 1. 先對所有圖片進行基礎防護 */
+        img {
+            -webkit-touch-callout: none; /* 禁用 iOS 長按圖片彈出選單 (最核心) */
+            -webkit-user-select: none;   /* 禁用文字/圖片選取 */
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            /* 暫時不要加 pointer-events: none; 否則點擊會失效 */
+        }
+        
+        /* 2. 針對「作品集」與「彈窗圖片」強化：禁止拖拽但保留點擊 */
+        .artwork-image-wrapper img, 
+        .modal-image-container img {
+            pointer-events: auto; /* 確保使用者還是可以點擊圖片來開啟或切換 */
+            -webkit-user-drag: none; /* 禁用 Webkit 瀏覽器的圖片拖拽 */
+        }    
         :root {
             --primary-white: #FFFFFF;
             --soft-black: #1A1A1A;
@@ -699,6 +716,16 @@
     </footer>
 
     <script>
+        // 禁用全站右鍵
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+        // 禁止圖片被拖拽
+        document.addEventListener('dragstart', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
         // Mobile menu toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -875,7 +902,18 @@
         });
 
         // Initialize
-        loadData();
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. 啟動資料載入
+            loadData();
+        
+            // 2. 禁用右鍵選單
+            document.addEventListener('contextmenu', (e) => e.preventDefault());
+        
+            // 3. 禁止圖片被滑鼠拖動
+            document.addEventListener('dragstart', (e) => {
+                if (e.target.tagName === 'IMG') e.preventDefault();
+            });
+        });
     </script>
 </body>
 </html>
