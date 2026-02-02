@@ -751,35 +751,31 @@
     </footer>
 
     <script>
-        // Load data from JSON
-        let artworksData = []; // 存放資料
-        let currentIndex = 0;//在最上方先定義一個變數記錄目前索引
-        let autoScrollTimer; // 輪播計時器
-        
-        // 1. 載入資料 (正確的非同步處理)
+        let artworksData = []; // 全域變數
+        let currentIndex = 0;
+        let autoScrollTimer;
+    
+        // 1. 載入資料
         async function loadData() {
             try {
-                console.log("正在讀取資料...");
                 const response = await fetch('data.json');
                 const data = await response.json();
-                
-                // 確保對應到你 data.json 裡的變數名稱
+                // 根據你的 data.json 結構，取 selectedWorks
                 artworksData = data.selectedWorks; 
-                
-                console.log("資料讀取成功:", artworksData);
-                renderGallery(); // 資料拿到後才開始畫畫面
+                console.log("Data loaded:", artworksData);
+                renderGallery(); // 資料載入後才執行渲染
             } catch (error) {
-                console.error('讀取失敗:', error);
-                document.getElementById('galleryWall').innerHTML = '<p style="padding:2rem;">無法載入作品，請檢查 data.json 路徑是否正確。</p>';
+                console.error('Error loading data:', error);
             }
         }
-        // 2. 渲染畫面
+    
+        // 2. 渲染畫面 (確保在 loadData 外面)
         function renderGallery() {
             const gallery = document.getElementById('galleryWall');
             if (!gallery) return;
             gallery.innerHTML = '';
             
-            // 使用 artworksData 渲染
+            // 修正：必須使用 artworksData
             artworksData.forEach((artwork, index) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
@@ -796,114 +792,85 @@
                 `;
                 gallery.appendChild(card);
             });
-            // 啟動手機版自動輪播
+    
+            // 啟動手機輪播
             if (window.innerWidth <= 768) {
                 startAutoScroll();
             }
         }
-        
-       // 3. 啟動自動輪播 (手機版專用)
+    
+        // 3. 輪播控制
         function startAutoScroll() {
             const gallery = document.getElementById('galleryWall');
             let scrollIndex = 0;
-        
             if (autoScrollTimer) clearInterval(autoScrollTimer);
-        
+    
             autoScrollTimer = setInterval(() => {
                 scrollIndex++;
                 if (scrollIndex >= artworksData.length) scrollIndex = 0;
                 
-                // 取得單張作品寬度進行捲動
                 const cardWidth = gallery.offsetWidth;
                 gallery.scrollTo({
                     left: cardWidth * scrollIndex,
                     behavior: 'smooth'
                 });
-            }, 4000); // 4秒換一張
-        
-            // 當使用者手動觸碰時暫停輪播
+            }, 4000);
+    
             gallery.addEventListener('touchstart', () => clearInterval(autoScrollTimer), { passive: true });
         }
-        }
-        // Open modal
-        // 2. 修改原本的 openModal 函式
+    
+        // 4. Modal 控制
         function openModal(index) {
-            currentIndex = index; // 記錄點開的是哪一張
+            currentIndex = index;
             updateModalContent();
             document.getElementById('artworkModal').classList.add('active');
         }
-        // 3. 新增更新內容的函式
+    
         function updateModalContent() {
-            const artwork = artworksData[currentIndex]; // 這裡要對應你從 data.json 讀取的變數名稱
+            const artwork = artworksData[currentIndex];
             const modalImage = document.getElementById('modalImage');
             const modalInfo = document.getElementById('modalInfo');
-
             if (!artwork) return;
-            
+    
             modalImage.src = artwork.image;
             modalInfo.innerHTML = `
                 <h3>${artwork.title}</h3>
-                <div class="modal-detail-item">
-                    <label>Year</label>
-                    <p>${artwork.year}</p>
-                </div>
-                <div class="modal-detail-item">
-                    <label>Medium</label>
-                    <p>${artwork.medium}</p>
-                </div>
-                <div class="modal-detail-item">
-                    <label>Size</label>
-                    <p>${artwork.size}</p>
-                </div>
-                <div class="modal-concept">
-                    <h4>Artist's Statement</h4>
-                    <p>${artwork.concept}</p>
-                </div>
+                <div class="modal-detail-item"><label>Year</label><p>${artwork.year}</p></div>
+                <div class="modal-detail-item"><label>Medium</label><p>${artwork.medium}</p></div>
+                <div class="modal-detail-item"><label>Size</label><p>${artwork.size}</p></div>
+                <div class="modal-concept"><h4>Artist's Statement</h4><p>${artwork.concept}</p></div>
             `;
-            // 切換後自動回到 Modal 頂部，這對 iPhone SE 長文字很有幫助
             document.getElementById('artworkModal').scrollTop = 0;
         }
-         // 4. 新增切換按鈕的邏輯
+    
         function changeArtwork(direction) {
-            // 防止誤觸
-            if (event) {
-                event.stopPropagation();
-                // 強制移除按鈕的焦點狀態，讓它恢復半透明
-                if (event.currentTarget) event.currentTarget.blur();
-            }
-            
+            if (window.event) window.event.stopPropagation();
             currentIndex += direction;
-            // 循環邏輯：最後一張往後變第一張，第一張往前變最後一張
             if (currentIndex >= artworksData.length) currentIndex = 0;
             if (currentIndex < 0) currentIndex = artworksData.length - 1;
             updateModalContent();
         }
-
-        // Close modal
+    
         function closeModal() {
             document.getElementById('artworkModal').classList.remove('active');
         }
-         // Mobile menu toggle
+    
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
+            if (menu) menu.classList.toggle('active');
         }
-        // ESC key to close
+    
+        // 5. 事件監聽與初始化
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
             if (e.key === 'ArrowRight') changeArtwork(1);
             if (e.key === 'ArrowLeft') changeArtwork(-1);
-        });       
-
-        // Initialize
+        });
+    
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. 啟動資料載入
             loadData();
-        
-            // 2. 禁用右鍵選單
+            // 圖片保護
             document.addEventListener('contextmenu', (e) => e.preventDefault());
-        
-            // 3. 禁止圖片被滑鼠拖動
             document.addEventListener('dragstart', (e) => {
                 if (e.target.tagName === 'IMG') e.preventDefault();
             });
