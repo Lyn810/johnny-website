@@ -21,7 +21,13 @@
         }
         
         /* 2. 針對「作品集」與「彈窗圖片」強化：禁止拖拽但保留點擊 */
-        .artwork-image-wrapper img, 
+        .artwork-image-wrapper img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh; /* 關鍵：限制圖片最高只佔螢幕的 70%，防止過長 */
+            display: block;
+            object-fit: contain; /* 確保完整呈現不裁切 */
+        } 
         .modal-image-container img {
             pointer-events: auto; /* 確保使用者還是可以點擊圖片來開啟或切換 */
             -webkit-user-drag: none; /* 禁用 Webkit 瀏覽器的圖片拖拽 */
