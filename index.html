@@ -232,7 +232,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* 改為 contain，圖片就不會被裁切 */
+            background: var(--warm-gray); /* 留白處顯示淺灰色，像畫框一樣 */
             transition: transform 0.6s ease;
         }
 
@@ -460,11 +461,12 @@
             .main-content {
                 margin-top: 85px;
                 padding: 2rem 1rem 3rem;
+                background-color: #FFFFFF !important; /* 明確指定主區域背景 */
             }
 
             .page-header h1 {
-                font-size: 2rem;
-                letter-spacing: 6px;
+                font-size: 1.8rem;
+                letter-spacing: 4px;/* 縮小一點字距，防止在 SE 上斷行 */
             }
 
             .page-header p {
