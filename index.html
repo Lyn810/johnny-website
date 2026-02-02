@@ -294,10 +294,11 @@
 
         /* Gallery Wall Layout */
         .gallery-wall {
-            display: block; /* 確保不是 grid */
-            column-count: 2; /* 手機版（SE）維持兩欄 */
-            column-gap: 1.5rem;
-            padding: 1rem 0;
+            display: flex !important; /* 強制橫排 */
+            flex-wrap: nowrap !important;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* 針對大螢幕增加欄數 */
@@ -308,21 +309,15 @@
         }
 
         .artwork-card {
-            break-inside: avoid; /* 防止作品被切斷到下一欄 */
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 2rem; /* 作品之間的垂直間距 */
-            cursor: pointer;
-            transition: all 0.4s ease;
+            flex: 0 0 100% !important; /* 強制每張卡片佔滿畫面 */
+            min-width: 100%; /* 防止被擠壓 */
+            scroll-snap-align: center;
+            padding: 0 1.5rem;
         }
 
         .artwork-image-wrapper {
-            position: relative;
-            width: 100%;
-            height: auto;
-            background: none;
-            margin-bottom: 1rem;
-            padding-bottom: 0 !important; /* 強制移除之前設定的比例 */
+            height: 60vh !important; /* 給予固定高度讓圖片顯現 */
+            padding-bottom: 0 !important;
         }
 
         .artwork-image-wrapper img {
@@ -538,22 +533,20 @@
         @media (max-width: 768px) {
             /* 讓手機版變成橫向滑動輪播 */
             .gallery-wall {
-                display: flex; /* 改為橫向排列 */
-                flex-wrap: nowrap;
-                overflow-x: auto; /* 允許橫向滑動 */
-                scroll-snap-type: x mandatory; /* 自動吸附到單張圖片 */
+                display: flex !important; /* 改為橫向排列 */
+                flex-wrap: nowrap !important;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory; /* 自動吸附效果 */
+                -webkit-overflow-scrolling: touch;
                 gap: 0;
-                padding: 0;
-                scrollbar-width: none; /* 隱藏捲軸 */
             }
-            .gallery-wall::-webkit-scrollbar {
-                display: none;
-            }
+            
             /* 每張作品佔滿螢幕寬度 */
             .artwork-card {
-                flex: 0 0 100%;
+                flex: 0 0 100% !important; /* 每張作品佔滿 100% 寬度 */
+                min-width: 100%;
                 scroll-snap-align: center;
-                padding: 0 1.5rem; /* 左右留一點縫隙 */
+                padding: 0 1.5rem;
                 margin-bottom: 0;
             }
             .nav-links {
@@ -594,11 +587,10 @@
 
             /* 解決圖片下方過長的問題 */
             .artwork-image-wrapper {
-                padding-bottom: 0 !important; /* 移除原本 140% 的固定比例 */
-                height: 55vh; /* 限制圖片區域高度 */
+                height: 60vh !important; /* 限制高度，解決下方過長問題 */
+                padding-bottom: 0 !important;
                 display: flex;
                 align-items: center;
-                background: none;
             }
             .artwork-image-wrapper img {
                 position: static;
@@ -776,20 +768,71 @@
         }
 
         // Load data from JSON
-        let artworksData = [];
-
+        let artworksData = []; // 存放資料
+        let currentIndex = 0;
+        let autoScrollTimer; // 輪播計時器
+        
         async function loadData() {
             try {
                 const response = await fetch('data.json');
                 const data = await response.json();
-                artworksData = data.selectedWorks;
+                artworksData = data.selectedWorks; // 確保與下方的變數名稱一致
                 renderGallery();
             } catch (error) {
                 console.error('Error loading data:', error);
-                // Fallback to placeholder images
-                artworksData = generatePlaceholderData();
-                renderGallery();
             }
+        }
+        
+        function renderGallery() {
+            const gallery = document.getElementById('galleryWall');
+            if (!gallery) return;
+            gallery.innerHTML = '';
+            
+            // 使用正確的變數名稱 artworksData
+            artworksData.forEach((artwork, index) => {
+                const card = document.createElement('div');
+                card.className = 'artwork-card';
+                card.onclick = () => openModal(index);
+                card.innerHTML = `
+                    <div class="artwork-image-wrapper">
+                        <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>${artwork.title}</h3>
+                        <p class="artwork-meta">${artwork.year} | ${artwork.size}</p>
+                    </div>
+                `;
+                gallery.appendChild(card);
+            });
+        
+            // 渲染完後，如果是手機版則啟動輪播
+            if (window.innerWidth <= 768) {
+                startAutoScroll();
+            }
+        }
+        
+        // 新增此函式來控制自動輪播
+        function startAutoScroll() {
+            const gallery = document.getElementById('galleryWall');
+            let scrollIndex = 0;
+        
+            if (autoScrollTimer) clearInterval(autoScrollTimer);
+        
+            autoScrollTimer = setInterval(() => {
+                scrollIndex++;
+                if (scrollIndex >= artworksData.length) scrollIndex = 0;
+                
+                // 取得單張作品寬度進行捲動
+                const cardWidth = gallery.offsetWidth;
+                gallery.scrollTo({
+                    left: cardWidth * scrollIndex,
+                    behavior: 'smooth'
+                });
+            }, 4000); // 4秒換一張
+        
+            // 當使用者手動觸碰時暫停輪播
+            gallery.addEventListener('touchstart', () => clearInterval(autoScrollTimer), { passive: true });
+        }
         }
 
         let autoScrollTimer; // 定義計時器變數
@@ -881,16 +924,33 @@
                 }
             ];
         }
-        let autoScrollTimer;
+        let artworksData = []; // 用來存放從 JSON 讀取的資料
+        let currentIndex = 0;
+        let autoScrollTimer;// 輪播計時器
         // Render gallery
+        // 1. 載入資料
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                artworksData = data.selectedWorks; // 確保存入 artworksData
+                renderGallery();
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+        
+        // 2. 渲染畫面 (修正變數名稱)
         function renderGallery() {
             const gallery = document.getElementById('galleryWall');
+            if (!gallery) return;
             gallery.innerHTML = '';
             
+            // 注意這裡必須使用 artworksData
             artworksData.forEach((artwork, index) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
-                card.onclick = () => openModal(index);// 保持點開詳細資訊的功能
+                card.onclick = () => openModal(index);
                 
                 card.innerHTML = `
                     <div class="artwork-image-wrapper">
@@ -903,29 +963,35 @@
                 `;
                 gallery.appendChild(card);
             });
-            // 如果是手機版，啟動自動輪播
+        
+            // 渲染完後，如果是手機版則啟動輪播
             if (window.innerWidth <= 768) {
                 startAutoScroll();
             }
         }
+        // 3. 啟動自動輪播
         function startAutoScroll() {
             const gallery = document.getElementById('galleryWall');
             let scrollIndex = 0;
+        
+            if (autoScrollTimer) clearInterval(autoScrollTimer);
         
             autoScrollTimer = setInterval(() => {
                 scrollIndex++;
                 if (scrollIndex >= artworksData.length) scrollIndex = 0;
                 
+                const cardWidth = gallery.offsetWidth;
                 gallery.scrollTo({
-                    left: gallery.offsetWidth * scrollIndex,
+                    left: cardWidth * scrollIndex,
                     behavior: 'smooth'
                 });
-            }, 4000); // 每 4 秒換下一張
+            }, 4000);
         
-            // 使用者手動滑動時，暫停自動輪播
-            gallery.addEventListener('touchstart', () => clearInterval(autoScrollTimer));
+            // 手動觸碰時停止輪播
+            gallery.addEventListener('touchstart', () => {
+                clearInterval(autoScrollTimer);
+            }, { passive: true });
         }
-
         // Open modal
         // 1. 在最上方先定義一個變數記錄目前索引
         let currentIndex = 0;
