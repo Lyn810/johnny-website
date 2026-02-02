@@ -179,6 +179,35 @@
         
         /* 5. 手機版 (iPhone SE) 專屬修正 */
         @media (max-width: 768px) {
+            /* Gallery Wall Layout */
+            .gallery-wall {
+                display: flex !important; /* 強制橫排 */
+                flex-wrap: nowrap !important;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+    
+    
+            .artwork-card {
+                flex: 0 0 100% !important; /* 強制每張卡片佔滿畫面 */
+                min-width: 100%; /* 防止被擠壓 */
+                scroll-snap-align: center;
+            }
+    
+            .artwork-image-wrapper {
+                height: 60vh !important; /* 給予固定高度讓圖片顯現 */
+                padding-bottom: 0 !important;
+            }
+    
+            .artwork-image-wrapper img {
+                position: static; /* 移除絕對定位 */
+                display: block;
+                width: 100%;
+                height: auto; /* 讓圖片等比例完整呈現 */
+                max-height: 70vh; /* 限制單張圖片最大高度 */
+                object-fit: contain;
+            }
             .modal-image-container {
                 padding: 0 !important; /* 移除內距讓圖片最大化 */
                 min-height: 45vh !important;
@@ -292,36 +321,7 @@
             font-weight: 300;
         }
 
-        /* Gallery Wall Layout */
-        .gallery-wall {
-            display: flex !important; /* 強制橫排 */
-            flex-wrap: nowrap !important;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-
-
-        .artwork-card {
-            flex: 0 0 100% !important; /* 強制每張卡片佔滿畫面 */
-            min-width: 100%; /* 防止被擠壓 */
-            scroll-snap-align: center;
-            padding: 0 1.5rem;
-        }
-
-        .artwork-image-wrapper {
-            height: 60vh !important; /* 給予固定高度讓圖片顯現 */
-            padding-bottom: 0 !important;
-        }
-
-        .artwork-image-wrapper img {
-            position: static; /* 移除絕對定位 */
-            display: block;
-            width: 100%;
-            height: auto; /* 讓圖片等比例完整呈現 */
-            max-height: 70vh; /* 限制單張圖片最大高度 */
-            object-fit: contain;
-        }
+        
         .artwork-info {
             padding: 0.3rem 0;
         }
