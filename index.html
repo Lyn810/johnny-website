@@ -636,7 +636,7 @@
         // 2. 載入資料
         async function loadData() {
             try {
-                const response = await fetch('data.json');
+                const response = await fetch('data.js');
                 const data = await response.json();
                 // 存入全域變數
                 artworksData = data.selectedWorks; 
