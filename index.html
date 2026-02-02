@@ -751,48 +751,40 @@
     </footer>
 
     <script>
-        // 禁用全站右鍵
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
-        // 禁止圖片被拖拽
-        document.addEventListener('dragstart', (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-            }
-        });
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-        }
-
         // Load data from JSON
         let artworksData = []; // 存放資料
-        let currentIndex = 0;
+        let currentIndex = 0;//在最上方先定義一個變數記錄目前索引
         let autoScrollTimer; // 輪播計時器
         
+        // 1. 載入資料 (正確的非同步處理)
         async function loadData() {
             try {
+                console.log("正在讀取資料...");
                 const response = await fetch('data.json');
                 const data = await response.json();
-                artworksData = data.selectedWorks; // 確保與下方的變數名稱一致
-                renderGallery();
+                
+                // 確保對應到你 data.json 裡的變數名稱
+                artworksData = data.selectedWorks; 
+                
+                console.log("資料讀取成功:", artworksData);
+                renderGallery(); // 資料拿到後才開始畫畫面
             } catch (error) {
-                console.error('Error loading data:', error);
+                console.error('讀取失敗:', error);
+                document.getElementById('galleryWall').innerHTML = '<p style="padding:2rem;">無法載入作品，請檢查 data.json 路徑是否正確。</p>';
             }
         }
-        
+        // 2. 渲染畫面
         function renderGallery() {
             const gallery = document.getElementById('galleryWall');
             if (!gallery) return;
             gallery.innerHTML = '';
             
-            // 使用正確的變數名稱 artworksData
+            // 使用 artworksData 渲染
             artworksData.forEach((artwork, index) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
                 card.onclick = () => openModal(index);
+                
                 card.innerHTML = `
                     <div class="artwork-image-wrapper">
                         <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
@@ -804,14 +796,13 @@
                 `;
                 gallery.appendChild(card);
             });
-        
-            // 渲染完後，如果是手機版則啟動輪播
+            // 啟動手機版自動輪播
             if (window.innerWidth <= 768) {
                 startAutoScroll();
             }
         }
         
-        // 新增此函式來控制自動輪播
+       // 3. 啟動自動輪播 (手機版專用)
         function startAutoScroll() {
             const gallery = document.getElementById('galleryWall');
             let scrollIndex = 0;
@@ -834,49 +825,13 @@
             gallery.addEventListener('touchstart', () => clearInterval(autoScrollTimer), { passive: true });
         }
         }
-
-        let autoScrollTimer; // 定義計時器變數
-
-        function startAutoScroll() {
-            const gallery = document.getElementById('galleryWall');
-            let scrollIndex = 0;
-        
-            // 清除可能重複的計時器
-            if (autoScrollTimer) clearInterval(autoScrollTimer);
-        
-            autoScrollTimer = setInterval(() => {
-                scrollIndex++;
-                
-                // 如果滑到最後一張，就回到第一張
-                if (scrollIndex >= artworksData.length) {
-                    scrollIndex = 0;
-                }
-                
-                // 取得單張卡片的寬度進行捲動
-                const cardWidth = gallery.offsetWidth;
-                gallery.scrollTo({
-                    left: cardWidth * scrollIndex,
-                    behavior: 'smooth'
-                });
-            }, 4000); // 4000 毫秒 = 4 秒換一張
-        
-            // 當使用者動手觸碰螢幕滑動時，自動暫停計時器，避免干擾使用者閱讀
-            gallery.addEventListener('touchstart', () => {
-                clearInterval(autoScrollTimer);
-            }, { passive: true });
-        }
-        
         // Open modal
-        // 1. 在最上方先定義一個變數記錄目前索引
-        let currentIndex = 0;
-
         // 2. 修改原本的 openModal 函式
         function openModal(index) {
             currentIndex = index; // 記錄點開的是哪一張
             updateModalContent();
             document.getElementById('artworkModal').classList.add('active');
         }
-
         // 3. 新增更新內容的函式
         function updateModalContent() {
             const artwork = artworksData[currentIndex]; // 這裡要對應你從 data.json 讀取的變數名稱
@@ -908,8 +863,7 @@
             // 切換後自動回到 Modal 頂部，這對 iPhone SE 長文字很有幫助
             document.getElementById('artworkModal').scrollTop = 0;
         }
-        
-        // 4. 新增切換按鈕的邏輯
+         // 4. 新增切換按鈕的邏輯
         function changeArtwork(direction) {
             // 防止誤觸
             if (event) {
@@ -929,13 +883,17 @@
         function closeModal() {
             document.getElementById('artworkModal').classList.remove('active');
         }
-
+         // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
         // ESC key to close
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
             if (e.key === 'ArrowRight') changeArtwork(1);
             if (e.key === 'ArrowLeft') changeArtwork(-1);
-        });
+        });       
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
