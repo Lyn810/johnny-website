@@ -301,12 +301,6 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* 針對大螢幕增加欄數 */
-        @media (min-width: 1024px) {
-            .gallery-wall {
-                column-count: 3; /* 電腦版三欄 */
-            }
-        }
 
         .artwork-card {
             flex: 0 0 100% !important; /* 強制每張卡片佔滿畫面 */
@@ -581,8 +575,10 @@
             }
 
             .gallery-wall {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 2rem;
+                overflow: visible;
             }
 
             /* 解決圖片下方過長的問題 */
