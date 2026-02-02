@@ -1,3 +1,4 @@
+function renderGallery() {
 {
   "site": {
     "title": "Johnny Leo",
@@ -217,4 +218,5 @@
       "image": "images/news/new-series.jpg"
     }
   ]
+}
 }
