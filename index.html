@@ -108,7 +108,7 @@
             top: 50%;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.2) !important; /* 平時極度半透明 */
-            border: none;
+            border: none !important;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -125,7 +125,6 @@
         /* 2. 交互狀態：點擊完放開即恢復半透明 */
         .nav-btn:hover, 
         .nav-btn:focus {
-            background: rgba(255, 255, 255, 0.8) !important;
             color: #000 !important;
         }
         
@@ -138,6 +137,22 @@
         /* 4. 位置修正 */
         .prev-btn { left: 20px !important; right: auto !important; }
         .next-btn { right: 20px !important; left: auto !important; }
+
+
+        /* 只有滑鼠懸停時變亮 (網頁版) */
+        @media (hover: hover) {
+            .nav-btn:hover {
+                background: rgba(255, 255, 255, 0.8) !important;
+                color: #000 !important;
+            }
+        }
+        
+        /* 點擊瞬間變白 (Active)，放開即消失 */
+        .nav-btn:active {
+            background: rgba(255, 255, 255, 0.9) !important;
+            transform: translateY(-50%) scale(0.9);
+            transition: 0s; /* 點擊回饋要快 */
+        }
         
         /* 5. 手機版 (iPhone SE) 專屬修正 */
         @media (max-width: 768px) {
