@@ -1,3 +1,4 @@
+const artworksData = [
 {
   "site": {
     "title": "Johnny Leo",
@@ -218,3 +219,4 @@
     }
   ]
 }
+];
