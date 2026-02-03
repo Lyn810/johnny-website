@@ -1,4 +1,4 @@
-const artworksData = [
+export const data = {
 {
   "site": {
     "title": "Johnny Leo",
@@ -219,4 +219,4 @@ const artworksData = [
     }
   ]
 }
-];
+};
