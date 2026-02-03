@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Johnny Leo | Pieces</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <script src="data.js"></script>
+    <style>
+        :root {
+            --primary-white: #FFFFFF;
+            --soft-black: #1A1A1A;
+            --warm-gray: #F5F5F3;
+            --mid-gray: #D4D4D4;
+            --accent-gold: #C5A572;
+            --text-gray: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            color-scheme: light !important;
+            background-color: #FFFFFF !important;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #FFFFFF !important;
+            color: #1A1A1A !important;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+            forced-color-adjust: none;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #FFFFFF !important;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--mid-gray);
+        }
+
+        .nav-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 1.8rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--soft-black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--soft-black);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            max-width: 300px;
+            height: 100vh;
+            background: #FFFFFF !important;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-close svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--soft-black);
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            margin-top: 4rem;
+        }
+
+        .mobile-menu-links li {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-links a {
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 3rem 2rem 4rem;
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* Gallery Wall Layout */
+        .gallery-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        /* Mobile Carousel */
+        .mobile-carousel {
+            display: none;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            touch-action: pan-y;
+        }
+
+        .mobile-carousel-track {
+            display: flex;
+            transition: transform 0.3s ease;
+            cursor: grab;
+        }
+
+        .mobile-carousel-track.grabbing {
+            cursor: grabbing;
+            transition: none;
+        }
+
+        .mobile-carousel-slide {
+            min-width: 100%;
+            padding: 0 1rem;
+            user-select: none;
+        }
+
+        .mobile-carousel-image {
+            width: 100%;
+            padding-bottom: 125%;
+            position: relative;
+            overflow: hidden;
+            background: var(--warm-gray);
+            margin-bottom: 1rem;
+        }
+
+        .mobile-carousel-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--mid-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: var(--accent-gold);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .artwork-card {
+            cursor: pointer;
+            transition: all 0.4s ease;
+            break-inside: avoid;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .artwork-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            background: var(--warm-gray);
+            margin-bottom: 1rem;
+            padding-bottom: 125%;
+        }
+
+        .artwork-image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .artwork-card:hover .artwork-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .artwork-info {
+            padding: 0.3rem 0;
+        }
+
+        .artwork-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+            letter-spacing: 1px;
+        }
+
+        .artwork-meta {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            font-weight: 300;
+        }
+
+        /* Artwork Modal */
+        .artwork-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            display: none;
+            animation: fadeIn 0.3s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .artwork-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--primary-white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 3001;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            background: var(--accent-gold);
+        }
+
+        .modal-close svg {
+            stroke: var(--soft-black);
+        }
+
+        .modal-nav-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 3001;
+        }
+
+        .modal-nav-btn:hover {
+            background: var(--accent-gold);
+        }
+
+        .modal-nav-btn.prev {
+            left: 2rem;
+        }
+
+        .modal-nav-btn.next {
+            right: 2rem;
+        }
+
+        .modal-nav-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--soft-black);
+        }
+
+        .modal-image-container {
+            flex: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+        }
+
+        .modal-image-container img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .modal-info-container {
+            flex: 1;
+            background: var(--primary-white);
+            padding: 4rem;
+            overflow-y: auto;
+        }
+
+        .modal-info-container h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .modal-detail-item {
+            margin-bottom: 2rem;
+        }
+
+        .modal-detail-item label {
+            display: block;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .modal-detail-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .modal-concept {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--mid-gray);
+        }
+
+        .modal-concept h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .modal-concept p {
+            color: var(--text-gray);
+            line-height: 2;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--soft-black);
+            color: var(--primary-white);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(254, 254, 254, 0.1);
+        }
+
+        .footer-left p {
+            color: rgba(254, 254, 254, 0.7);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-left a {
+            color: rgba(254, 254, 254, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-left a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(254, 254, 254, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            color: rgba(254, 254, 254, 0.5);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery-wall {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 1.5rem 1.5rem;
+            }
+
+            .main-content {
+                margin-top: 85px;
+                padding: 2rem 1rem 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+                letter-spacing: 6px;
+            }
+
+            .page-header p {
+                font-size: 0.9rem;
+            }
+
+            .gallery-wall {
+                display: none;
+            }
+
+            .mobile-carousel {
+                display: block;
+            }
+
+            .artwork-image-wrapper {
+                padding-bottom: 140%;
+            }
+
+            .artwork-info h3 {
+                font-size: 1rem;
+            }
+
+            .artwork-meta {
+                font-size: 0.75rem;
+            }
+
+            .modal-close {
+                position: fixed;
+                top: 1rem;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 36px;
+                height: 36px;
+                z-index: 3002;
+            }
+
+            .modal-nav-btn {
+                display: none;
+            }
+
+            .modal-image-container {
+                padding: 0;
+                min-height: auto;
+                max-height: 60vh;
+                flex: none;
+                position: relative;
+                touch-action: none;
+            }
+
+            .modal-image-container img {
+                max-height: 60vh;
+                max-width: 100%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                cursor: zoom-in;
+                transition: transform 0.3s ease;
+            }
+
+            .modal-image-container img.zoomed {
+                cursor: zoom-out;
+            }
+
+            .modal-info-container {
+                padding: 2rem 1rem;
+                flex: none;
+            }
+
+            .modal-info-container h3 {
+                font-size: 1.6rem;
+            }
+
+            .modal-detail-item {
+                margin-bottom: 1.5rem;
+            }
+
+            .modal-concept {
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+            }
+
+            .artwork-modal.active {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Johnny Leo</a>
+            <ul class="nav-links">
+                <li><a href="journal.html">JOURNAL</a></li>
+                <li><a href="index.html" class="active">PIECES</a></li>
+                <li><a href="series.html">SERIES</a></li>
+                <li><a href="artist.html">ARTIST</a></li>
+                <li><a href="inquiry.html">INQUIRY</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <ul class="mobile-menu-links">
+            <li><a href="journal.html">JOURNAL</a></li>
+            <li><a href="index.html">PIECES</a></li>
+            <li><a href="series.html">SERIES</a></li>
+            <li><a href="artist.html">ARTIST</a></li>
+            <li><a href="inquiry.html">INQUIRY</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1>SELECTED PIECES</h1>
+            <p>A curated collection of contemporary art</p>
+        </div>
+
+        <!-- Desktop Gallery Wall -->
+        <div class="gallery-wall" id="galleryWall">
+            <!-- Artworks will be dynamically generated from data.json -->
+        </div>
+
+        <!-- Mobile Carousel -->
+        <div class="mobile-carousel" id="mobileCarousel">
+            <div class="mobile-carousel-track" id="carouselTrack">
+                <!-- Slides will be generated here -->
+            </div>
+            <div class="carousel-controls">
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <!-- Indicators will be generated here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Artwork Modal -->
+    <div class="artwork-modal" id="artworkModal">
+        <button class="modal-close" onclick="closeModal()">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <button class="modal-nav-btn prev" onclick="prevArtwork()">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <button class="modal-nav-btn next" onclick="nextArtwork()">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+        <div class="modal-image-container">
+            <img id="modalImage" src="" alt="">
+        </div>
+        <div class="modal-info-container" id="modalInfo">
+            <!-- Content will be dynamically filled -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p><a href="mailto:info@johnnyleo.com">info@johnnyleo.com</a></p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="journal.html">JOURNAL</a></li>
+                <li><a href="index.html">PIECES</a></li>
+                <li><a href="series.html">SERIES</a></li>
+                <li><a href="artist.html">ARTIST</a></li>
+                <li><a href="inquiry.html">INQUIRY</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Johnny Leo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 防盜圖保護措施
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+        document.addEventListener('selectstart', (e) => {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
+        document.addEventListener('dragstart', (e) => {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
+        // 防止長按保存圖片(iOS/Android)
+        document.addEventListener('touchstart', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.target.style.webkitTouchCallout = 'none';
+            }
+        });
+        // 添加CSS防止複製
+        const style = document.createElement('style');
+        style.textContent = `
+            img {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -webkit-user-drag: none;
+                -webkit-touch-callout: none;
+                pointer-events: auto;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Load data from JSON
+        let artworksData = [];
+        let currentSlide = 0;
+        let currentModalIndex = 0;
+        let autoplayInterval;
+        
+        // 觸控滑動變數
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isDragging = false;
+        
+        // 圖片縮放變數
+        let scale = 1;
+        let lastTapTime = 0;
+
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                artworksData = data.selectedWorks;
+                renderGallery();
+                renderCarousel();
+                initCarouselTouch();
+                startAutoplay();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                artworksData = generatePlaceholderData();
+                renderGallery();
+                renderCarousel();
+                initCarouselTouch();
+                startAutoplay();
+            }
+        }
+
+        function generatePlaceholderData() {
+            return [
+                {
+                    title: "Morning Light",
+                    titleCh: "晨曦之間",
+                    year: "2024",
+                    medium: "Oil on Canvas",
+                    size: "120 × 90 cm",
+                    concept: "This piece explores the quiet moments of dawn, when light first breaks through darkness.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F0E8D8'/%3E%3Cstop offset='100%25' style='stop-color:%23D8C8B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a1)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Urban Voice",
+                    titleCh: "城市之聲",
+                    year: "2024",
+                    medium: "Acrylic",
+                    size: "150 × 100 cm",
+                    concept: "An exploration of the rhythm and energy of metropolitan life.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D8E8F0'/%3E%3Cstop offset='100%25' style='stop-color:%23B0C8D8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a2)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Silent Forest",
+                    titleCh: "靜默森林",
+                    year: "2023",
+                    medium: "Mixed Media",
+                    size: "100 × 100 cm",
+                    concept: "A meditation on nature's quietude and the healing power of natural spaces.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D8C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B0A0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a3)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Traces of Time",
+                    titleCh: "時間的痕跡",
+                    year: "2023",
+                    medium: "Oil on Canvas",
+                    size: "130 × 95 cm",
+                    concept: "Time leaves its mark on everything it touches.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F8F0E8'/%3E%3Cstop offset='100%25' style='stop-color:%23E0D0C0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a4)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Metropolitan Rhythm",
+                    titleCh: "都會律動",
+                    year: "2024",
+                    medium: "Acrylic",
+                    size: "140 × 110 cm",
+                    concept: "The pulse of city life captured through bold gestures and vibrant color.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8D8E0'/%3E%3Cstop offset='100%25' style='stop-color:%23A0B8C8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a5)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Light and Shadow",
+                    titleCh: "光影交織",
+                    year: "2023",
+                    medium: "Mixed Media",
+                    size: "110 × 85 cm",
+                    concept: "An investigation into the eternal dance between illumination and darkness.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E0D0C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C0B0A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a6)'/%3E%3C/svg%3E"
+                }
+            ];
+        }
+
+        function renderGallery() {
+            const gallery = document.getElementById('galleryWall');
+            gallery.innerHTML = '';
+            artworksData.forEach((artwork, index) => {
+                const card = document.createElement('div');
+                card.className = 'artwork-card';
+                card.onclick = () => openModal(index);
+                card.innerHTML = `
+                    <div class="artwork-image-wrapper">
+                        <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>${artwork.title}</h3>
+                        <p class="artwork-meta">${artwork.year} | ${artwork.size}</p>
+                    </div>
+                `;
+                gallery.appendChild(card);
+            });
+        }
+
+        function renderCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const indicators = document.getElementById('carouselIndicators');
+            track.innerHTML = '';
+            indicators.innerHTML = '';
+            
+            artworksData.forEach((artwork, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'mobile-carousel-slide';
+                slide.onclick = () => openModal(index);
+                slide.innerHTML = `
+                    <div class="mobile-carousel-image">
+                        <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>${artwork.title}</h3>
+                        <p class="artwork-meta">${artwork.year} | ${artwork.size}</p>
+                    </div>
+                `;
+                track.appendChild(slide);
+                
+                const indicator = document.createElement('div');
+                indicator.className = 'carousel-indicator' + (index === 0 ? ' active' : '');
+                indicator.onclick = () => goToSlide(index);
+                indicators.appendChild(indicator);
+            });
+        }
+
+        // 初始化觸控滑動
+        function initCarouselTouch() {
+            const track = document.getElementById('carouselTrack');
+            
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                isDragging = true;
+                track.classList.add('grabbing');
+                stopAutoplay();
+            });
+            
+            track.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                touchEndX = e.touches[0].clientX;
+            });
+            
+            track.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                track.classList.remove('grabbing');
+                isDragging = false;
+                
+                const swipeDistance = touchStartX - touchEndX;
+                const threshold = 50;
+                
+                if (swipeDistance > threshold) {
+                    nextSlide();
+                } else if (swipeDistance < -threshold) {
+                    prevSlide();
+                }
+                
+                startAutoplay();
+            });
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % artworksData.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + artworksData.length) % artworksData.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(() => {
+                nextSlide();
+            }, 4000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+
+        // Modal functions
+        function openModal(index) {
+            currentModalIndex = index;
+            const artwork = artworksData[index];
+            const modal = document.getElementById('artworkModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalInfo = document.getElementById('modalInfo');
+
+            modalImage.src = artwork.image;
+            scale = 1;
+            modalImage.style.transform = 'scale(1)';
+            modalImage.classList.remove('zoomed');
+            
+            // 添加雙擊縮放
+            modalImage.onclick = handleImageZoom;
+            
+            // 添加modal觸控滑動
+            let modalTouchStartX = 0;
+            let modalTouchEndX = 0;
+            
+            const handleModalTouchStart = (e) => {
+                modalTouchStartX = e.touches[0].clientX;
+            };
+            
+            const handleModalTouchEnd = (e) => {
+                modalTouchEndX = e.changedTouches[0].clientX;
+                const swipeDistance = modalTouchStartX - modalTouchEndX;
+                const threshold = 50;
+                
+                if (Math.abs(swipeDistance) > threshold) {
+                    if (swipeDistance > 0) {
+                        nextArtwork();
+                    } else {
+                        prevArtwork();
+                    }
+                }
+            };
+            
+            modal.addEventListener('touchstart', handleModalTouchStart);
+            modal.addEventListener('touchend', handleModalTouchEnd);
+            
+            modalInfo.innerHTML = `
+                <h3>${artwork.title}</h3>
+                <div class="modal-detail-item">
+                    <label>Year</label>
+                    <p>${artwork.year}</p>
+                </div>
+                <div class="modal-detail-item">
+                    <label>Medium</label>
+                    <p>${artwork.medium}</p>
+                </div>
+                <div class="modal-detail-item">
+                    <label>Size</label>
+                    <p>${artwork.size}</p>
+                </div>
+                <div class="modal-concept">
+                    <h4>Artist's Statement</h4>
+                    <p>${artwork.concept}</p>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            stopAutoplay();
+        }
+
+        // 圖片縮放功能
+        function handleImageZoom(e) {
+            const img = e.target;
+            const currentTime = new Date().getTime();
+            const tapInterval = currentTime - lastTapTime;
+            
+            // 雙擊檢測
+            if (tapInterval < 300 && tapInterval > 0) {
+                if (scale === 1) {
+                    scale = 2;
+                    img.style.transform = 'scale(2)';
+                    img.classList.add('zoomed');
+                } else {
+                    scale = 1;
+                    img.style.transform = 'scale(1)';
+                    img.classList.remove('zoomed');
+                }
+            }
+            lastTapTime = currentTime;
+        }
+
+        function closeModal() {
+            document.getElementById('artworkModal').classList.remove('active');
+            scale = 1;
+            startAutoplay();
+        }
+
+        function nextArtwork() {
+            currentModalIndex = (currentModalIndex + 1) % artworksData.length;
+            openModal(currentModalIndex);
+        }
+
+        function prevArtwork() {
+            currentModalIndex = (currentModalIndex - 1 + artworksData.length) % artworksData.length;
+            openModal(currentModalIndex);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                const menu = document.getElementById('mobileMenu');
+                menu.classList.remove('active');
+            } else if (e.key === 'ArrowLeft') {
+                if (document.getElementById('artworkModal').classList.contains('active')) {
+                    prevArtwork();
+                }
+            } else if (e.key === 'ArrowRight') {
+                if (document.getElementById('artworkModal').classList.contains('active')) {
+                    nextArtwork();
+                }
+            }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoplay();
+            } else {
+                if (!document.getElementById('artworkModal').classList.contains('active')) {
+                    startAutoplay();
+                }
+            }
+        });
+
+        loadData();
+    </script>
+</body>
+</html>
