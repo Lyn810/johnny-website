@@ -784,137 +784,21 @@
     </footer>
 
     <script>
-        // 防盜圖保護措施
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
-        document.addEventListener('selectstart', (e) => {
-            if (e.target.tagName === 'IMG') e.preventDefault();
-        });
-        document.addEventListener('dragstart', (e) => {
-            if (e.target.tagName === 'IMG') e.preventDefault();
-        });
-        // 防止長按保存圖片(iOS/Android)
-        document.addEventListener('touchstart', (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.target.style.webkitTouchCallout = 'none';
-            }
-        });
-        // 添加CSS防止複製
-        const style = document.createElement('style');
-        style.textContent = `
-            img {
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                -webkit-user-drag: none;
-                -webkit-touch-callout: none;
-                pointer-events: auto;
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-        }
-
-        // Load data from JSON
-        let artworksData = [];
-        let currentSlide = 0;
-        let currentModalIndex = 0;
-        let autoplayInterval;
-        
-        // 觸控滑動變數
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let isDragging = false;
-        
-        // 圖片縮放變數
-        let scale = 1;
-        let lastTapTime = 0;
-
-        async function loadData() {
-            try {
-                const response = await fetch('data.json');
-                const data = await response.json();
-                artworksData = data.selectedWorks;
-                renderGallery();
-                renderCarousel();
-                initCarouselTouch();
-                startAutoplay();
-            } catch (error) {
-                console.error('Error loading data:', error);
-                artworksData = generatePlaceholderData();
-                renderGallery();
-                renderCarousel();
-                initCarouselTouch();
-                startAutoplay();
-            }
-        }
-
-        function generatePlaceholderData() {
-            return [
-                {
-                    title: "Morning Light",
-                    titleCh: "晨曦之間",
-                    year: "2024",
-                    medium: "Oil on Canvas",
-                    size: "120 × 90 cm",
-                    concept: "This piece explores the quiet moments of dawn, when light first breaks through darkness.",
-                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F0E8D8'/%3E%3Cstop offset='100%25' style='stop-color:%23D8C8B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a1)'/%3E%3C/svg%3E"
-                },
-                {
-                    title: "Urban Voice",
-                    titleCh: "城市之聲",
-                    year: "2024",
-                    medium: "Acrylic",
-                    size: "150 × 100 cm",
-                    concept: "An exploration of the rhythm and energy of metropolitan life.",
-                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D8E8F0'/%3E%3Cstop offset='100%25' style='stop-color:%23B0C8D8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a2)'/%3E%3C/svg%3E"
-                },
-                {
-                    title: "Silent Forest",
-                    titleCh: "靜默森林",
-                    year: "2023",
-                    medium: "Mixed Media",
-                    size: "100 × 100 cm",
-                    concept: "A meditation on nature's quietude and the healing power of natural spaces.",
-                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D8C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B0A0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a3)'/%3E%3C/svg%3E"
-                },
-                {
-                    title: "Traces of Time",
-                    titleCh: "時間的痕跡",
-                    year: "2023",
-                    medium: "Oil on Canvas",
-                    size: "130 × 95 cm",
-                    concept: "Time leaves its mark on everything it touches.",
-                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F8F0E8'/%3E%3Cstop offset='100%25' style='stop-color:%23E0D0C0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a4)'/%3E%3C/svg%3E"
-                },
-                {
-                    title: "Metropolitan Rhythm",
-                    titleCh: "都會律動",
-                    year: "2024",
-                    medium: "Acrylic",
-                    size: "140 × 110 cm",
-                    concept: "The pulse of city life captured through bold gestures and vibrant color.",
-                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8D8E0'/%3E%3Cstop offset='100%25' style='stop-color:%23A0B8C8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a5)'/%3E%3C/svg%3E"
-                },
-                {
-                    title: "Light and Shadow",
-                    titleCh: "光影交織",
-                    year: "2023",
-                    medium: "Mixed Media",
-                    size: "110 × 85 cm",
-                    concept: "An investigation into the eternal dance between illumination and darkness.",
-                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E0D0C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C0B0A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a6)'/%3E%3C/svg%3E"
-                }
-            ];
-        }
-
+        let currentIndex = 0;
+        let autoScrollTimer;
+    
+        // 1. 渲染畫廊 (直接讀取 data.js 裡的 artworksData)
         function renderGallery() {
             const gallery = document.getElementById('galleryWall');
+            if (!gallery) return;
             gallery.innerHTML = '';
+    
+            // 檢查資料是否成功載入
+            if (typeof artworksData === 'undefined') {
+                gallery.innerHTML = '<p style="padding:2rem;">Error: data.js not found or artworksData is undefined.</p>';
+                return;
+            }
+    
             artworksData.forEach((artwork, index) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
@@ -930,240 +814,80 @@
                 `;
                 gallery.appendChild(card);
             });
+    
+            if (window.innerWidth <= 768) startAutoScroll();
         }
-
-        function renderCarousel() {
-            const track = document.getElementById('carouselTrack');
-            const indicators = document.getElementById('carouselIndicators');
-            track.innerHTML = '';
-            indicators.innerHTML = '';
-            
-            artworksData.forEach((artwork, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'mobile-carousel-slide';
-                slide.onclick = () => openModal(index);
-                slide.innerHTML = `
-                    <div class="mobile-carousel-image">
-                        <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
-                    </div>
-                    <div class="artwork-info">
-                        <h3>${artwork.title}</h3>
-                        <p class="artwork-meta">${artwork.year} | ${artwork.size}</p>
-                    </div>
-                `;
-                track.appendChild(slide);
-                
-                const indicator = document.createElement('div');
-                indicator.className = 'carousel-indicator' + (index === 0 ? ' active' : '');
-                indicator.onclick = () => goToSlide(index);
-                indicators.appendChild(indicator);
-            });
-        }
-
-        // 初始化觸控滑動
-        function initCarouselTouch() {
-            const track = document.getElementById('carouselTrack');
-            
-            track.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
-                isDragging = true;
-                track.classList.add('grabbing');
-                stopAutoplay();
-            });
-            
-            track.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                touchEndX = e.touches[0].clientX;
-            });
-            
-            track.addEventListener('touchend', () => {
-                if (!isDragging) return;
-                track.classList.remove('grabbing');
-                isDragging = false;
-                
-                const swipeDistance = touchStartX - touchEndX;
-                const threshold = 50;
-                
-                if (swipeDistance > threshold) {
-                    nextSlide();
-                } else if (swipeDistance < -threshold) {
-                    prevSlide();
-                }
-                
-                startAutoplay();
-            });
-        }
-
-        function updateCarousel() {
-            const track = document.getElementById('carouselTrack');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlide);
-            });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % artworksData.length;
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + artworksData.length) % artworksData.length;
-            updateCarousel();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-            resetAutoplay();
-        }
-
-        function startAutoplay() {
-            autoplayInterval = setInterval(() => {
-                nextSlide();
+    
+        // 2. 手機自動輪播
+        function startAutoScroll() {
+            const gallery = document.getElementById('galleryWall');
+            let scrollIndex = 0;
+            if (autoScrollTimer) clearInterval(autoScrollTimer);
+    
+            autoScrollTimer = setInterval(() => {
+                scrollIndex = (scrollIndex + 1) % artworksData.length;
+                gallery.scrollTo({
+                    left: gallery.offsetWidth * scrollIndex,
+                    behavior: 'smooth'
+                });
             }, 4000);
+    
+            gallery.addEventListener('touchstart', () => clearInterval(autoScrollTimer), { passive: true });
         }
-
-        function resetAutoplay() {
-            clearInterval(autoplayInterval);
-            startAutoplay();
-        }
-
-        function stopAutoplay() {
-            clearInterval(autoplayInterval);
-        }
-
-        // Modal functions
+    
+        // 3. Modal 內容切換
         function openModal(index) {
-            currentModalIndex = index;
-            const artwork = artworksData[index];
-            const modal = document.getElementById('artworkModal');
+            currentIndex = index;
+            updateModalContent();
+            document.getElementById('artworkModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    
+        function updateModalContent() {
+            const artwork = artworksData[currentIndex];
             const modalImage = document.getElementById('modalImage');
             const modalInfo = document.getElementById('modalInfo');
-
+            
             modalImage.src = artwork.image;
-            scale = 1;
-            modalImage.style.transform = 'scale(1)';
-            modalImage.classList.remove('zoomed');
-            
-            // 添加雙擊縮放
-            modalImage.onclick = handleImageZoom;
-            
-            // 添加modal觸控滑動
-            let modalTouchStartX = 0;
-            let modalTouchEndX = 0;
-            
-            const handleModalTouchStart = (e) => {
-                modalTouchStartX = e.touches[0].clientX;
-            };
-            
-            const handleModalTouchEnd = (e) => {
-                modalTouchEndX = e.changedTouches[0].clientX;
-                const swipeDistance = modalTouchStartX - modalTouchEndX;
-                const threshold = 50;
-                
-                if (Math.abs(swipeDistance) > threshold) {
-                    if (swipeDistance > 0) {
-                        nextArtwork();
-                    } else {
-                        prevArtwork();
-                    }
-                }
-            };
-            
-            modal.addEventListener('touchstart', handleModalTouchStart);
-            modal.addEventListener('touchend', handleModalTouchEnd);
-            
             modalInfo.innerHTML = `
                 <h3>${artwork.title}</h3>
-                <div class="modal-detail-item">
-                    <label>Year</label>
-                    <p>${artwork.year}</p>
-                </div>
-                <div class="modal-detail-item">
-                    <label>Medium</label>
-                    <p>${artwork.medium}</p>
-                </div>
-                <div class="modal-detail-item">
-                    <label>Size</label>
-                    <p>${artwork.size}</p>
-                </div>
-                <div class="modal-concept">
-                    <h4>Artist's Statement</h4>
-                    <p>${artwork.concept}</p>
-                </div>
+                <div class="modal-detail-item"><label>Year</label><p>${artwork.year}</p></div>
+                <div class="modal-detail-item"><label>Medium</label><p>${artwork.medium}</p></div>
+                <div class="modal-detail-item"><label>Size</label><p>${artwork.size}</p></div>
+                <div class="modal-concept"><h4>Artist's Statement</h4><p>${artwork.concept}</p></div>
             `;
-
-            modal.classList.add('active');
-            stopAutoplay();
+            document.getElementById('artworkModal').scrollTop = 0;
         }
-
-        // 圖片縮放功能
-        function handleImageZoom(e) {
-            const img = e.target;
-            const currentTime = new Date().getTime();
-            const tapInterval = currentTime - lastTapTime;
-            
-            // 雙擊檢測
-            if (tapInterval < 300 && tapInterval > 0) {
-                if (scale === 1) {
-                    scale = 2;
-                    img.style.transform = 'scale(2)';
-                    img.classList.add('zoomed');
-                } else {
-                    scale = 1;
-                    img.style.transform = 'scale(1)';
-                    img.classList.remove('zoomed');
-                }
-            }
-            lastTapTime = currentTime;
+    
+        // 4. 左右切換按鈕
+        function changeArtwork(direction) {
+            if (window.event) window.event.stopPropagation();
+            currentIndex = (currentIndex + direction + artworksData.length) % artworksData.length;
+            updateModalContent();
         }
-
+    
         function closeModal() {
             document.getElementById('artworkModal').classList.remove('active');
-            scale = 1;
-            startAutoplay();
+            document.body.style.overflow = 'auto';
         }
-
-        function nextArtwork() {
-            currentModalIndex = (currentModalIndex + 1) % artworksData.length;
-            openModal(currentModalIndex);
+    
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
         }
-
-        function prevArtwork() {
-            currentModalIndex = (currentModalIndex - 1 + artworksData.length) % artworksData.length;
-            openModal(currentModalIndex);
-        }
-
+    
+        // 5. 初始化與監聽
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-                const menu = document.getElementById('mobileMenu');
-                menu.classList.remove('active');
-            } else if (e.key === 'ArrowLeft') {
-                if (document.getElementById('artworkModal').classList.contains('active')) {
-                    prevArtwork();
-                }
-            } else if (e.key === 'ArrowRight') {
-                if (document.getElementById('artworkModal').classList.contains('active')) {
-                    nextArtwork();
-                }
-            }
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowRight') changeArtwork(1);
+            if (e.key === 'ArrowLeft') changeArtwork(-1);
         });
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                stopAutoplay();
-            } else {
-                if (!document.getElementById('artworkModal').classList.contains('active')) {
-                    startAutoplay();
-                }
-            }
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGallery();
+            // 圖片保護
+            document.addEventListener('contextmenu', e => e.preventDefault());
+            document.addEventListener('dragstart', e => { if(e.target.tagName==='IMG') e.preventDefault(); });
         });
-
-        loadData();
     </script>
 </body>
 </html>
