@@ -1,4 +1,3 @@
-const artworksData = [
 {
   "site": {
     "title": "Johnny Leo",
@@ -11,7 +10,7 @@ const artworksData = [
     "artist": "ARTIST",
     "inquiry": "INQUIRY"
   },
-  "artworksData": [
+  "selectedWorks": [
     {
       "id": "morning-light",
       "title": "Morning Light",
@@ -219,4 +218,3 @@ const artworksData = [
     }
   ]
 }
-];
