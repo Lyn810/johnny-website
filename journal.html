@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Johnny Leo | Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-white: #FFFFFF;
+            --soft-black: #1A1A1A;
+            --warm-gray: #F5F5F3;
+            --mid-gray: #D4D4D4;
+            --accent-gold: #C5A572;
+            --text-gray: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            color-scheme: light !important;
+            background-color: #FFFFFF !important;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #FFFFFF !important;
+            color: #1A1A1A !important;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+            forced-color-adjust: none;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #FFFFFF !important;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--mid-gray);
+        }
+
+        .nav-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 1.8rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--soft-black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--soft-black);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            max-width: 300px;
+            height: 100vh;
+            background: #FFFFFF !important;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-close svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--soft-black);
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            margin-top: 4rem;
+        }
+
+        .mobile-menu-links li {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-links a {
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .main-content {
+            margin-top: 100px;
+            padding: 3rem 2rem 4rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .news-item {
+            background: var(--warm-gray);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background: var(--mid-gray);
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-item:hover .news-image img {
+            transform: scale(1.08);
+        }
+
+        .news-content {
+            padding: 2rem;
+            flex: 1;
+        }
+
+        .news-date {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .news-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        footer {
+            background: var(--soft-black);
+            color: var(--primary-white);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(254, 254, 254, 0.1);
+        }
+
+        .footer-left p {
+            color: rgba(254, 254, 254, 0.7);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-left a {
+            color: rgba(254, 254, 254, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-left a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(254, 254, 254, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            color: rgba(254, 254, 254, 0.5);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 1024px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 1.5rem 1.5rem;
+            }
+
+            .main-content {
+                margin-top: 85px;
+                padding: 2rem 1rem 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+                letter-spacing: 6px;
+            }
+
+            .news-grid {
+                gap: 2rem;
+            }
+
+            .news-image {
+                height: 220px;
+            }
+
+            .news-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Johnny Leo</a>
+            <ul class="nav-links">
+                <li><a href="journal.html" class="active">JOURNAL</a></li>
+                <li><a href="index.html">PIECES</a></li>
+                <li><a href="series.html">SERIES</a></li>
+                <li><a href="artist.html">ARTIST</a></li>
+                <li><a href="inquiry.html">INQUIRY</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <ul class="mobile-menu-links">
+            <li><a href="journal.html">JOURNAL</a></li>
+            <li><a href="index.html">PIECES</a></li>
+            <li><a href="series.html">SERIES</a></li>
+            <li><a href="artist.html">ARTIST</a></li>
+            <li><a href="inquiry.html">INQUIRY</a></li>
+        </ul>
+    </div>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>JOURNAL</h1>
+            <p>Press & Exhibitions</p>
+        </div>
+
+        <div class="news-grid" id="newsGrid">
+            <!-- News will be loaded from data.json -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p><a href="mailto:info@johnnyleo.com">info@johnnyleo.com</a></p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="journal.html">JOURNAL</a></li>
+                <li><a href="index.html">PIECES</a></li>
+                <li><a href="series.html">SERIES</a></li>
+                <li><a href="artist.html">ARTIST</a></li>
+                <li><a href="inquiry.html">INQUIRY</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Johnny Leo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        let newsData = [];
+
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                newsData = data.news;
+                renderNews();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                newsData = getPlaceholderData();
+                renderNews();
+            }
+        }
+
+        function getPlaceholderData() {
+            return [
+                {
+                    date: "2026.01.15",
+                    title: "Upcoming Exhibition at Paris International Art Fair",
+                    excerpt: "Johnny Leo will participate in the Paris International Art Fair in March, showcasing a new series exploring themes of time and memory through contemporary visual narratives.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='600' height='400' fill='%23E8E0D8'/%3E%3C/svg%3E"
+                },
+                {
+                    date: "2025.12.20",
+                    title: "Selected as Artist of the Year",
+                    excerpt: "Honored to be selected as one of the most influential contemporary artists of 2025 by Asian Art Magazine, recognizing outstanding contributions to the field of contemporary art.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='600' height='400' fill='%23D8E0E8'/%3E%3C/svg%3E"
+                },
+                {
+                    date: "2025.11.08",
+                    title: "Taipei Solo Exhibition Successfully Concluded",
+                    excerpt: "The one-month solo exhibition at Taipei Museum of Contemporary Art was a great success, attracting over 10,000 art enthusiasts and collectors from around the region.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='600' height='400' fill='%23E0D8D0'/%3E%3C/svg%3E"
+                },
+                {
+                    date: "2025.10.12",
+                    title: "New Series Coming Spring 2026",
+                    excerpt: "After a year of creation, a new series titled 'Urban Dialogues' will be unveiled in spring 2026, presenting the artist's profound observations of modern urban life.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='600' height='400' fill='%23D0D8E0'/%3E%3C/svg%3E"
+                }
+            ];
+        }
+
+        function renderNews() {
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = '';
+            
+            newsData.forEach(item => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'news-item';
+                
+                newsCard.innerHTML = `
+                    <div class="news-image">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                    </div>
+                    <div class="news-content">
+                        <p class="news-date">${item.date}</p>
+                        <h3>${item.title}</h3>
+                        <p class="news-excerpt">${item.excerpt}</p>
+                    </div>
+                `;
+                
+                grid.appendChild(newsCard);
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const menu = document.getElementById('mobileMenu');
+                menu.classList.remove('active');
+            }
+        });
+
+        loadData();
+    </script>
+</body>
+</html>
