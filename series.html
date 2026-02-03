@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Johnny Leo | Series</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-white: #FFFFFF;
+            --soft-black: #1A1A1A;
+            --warm-gray: #F5F5F3;
+            --mid-gray: #D4D4D4;
+            --accent-gold: #C5A572;
+            --text-gray: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            color-scheme: light !important;
+            background-color: #FFFFFF !important;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #FFFFFF !important;
+            color: #1A1A1A !important;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+            forced-color-adjust: none;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #FFFFFF !important;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--mid-gray);
+        }
+
+        .nav-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 1.8rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--soft-black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--soft-black);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            max-width: 300px;
+            height: 100vh;
+            background: #FFFFFF !important;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-close svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--soft-black);
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            margin-top: 4rem;
+        }
+
+        .mobile-menu-links li {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-links a {
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .main-content {
+            margin-top: 100px;
+            padding: 3rem 2rem 4rem;
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .collection-card {
+            background: var(--warm-gray);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .collection-image {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+            background: var(--mid-gray);
+        }
+
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .collection-card:hover .collection-image img {
+            transform: scale(1.1);
+        }
+
+        .collection-info {
+            padding: 2rem;
+        }
+
+        .collection-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-subtitle {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .collection-count {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        footer {
+            background: var(--soft-black);
+            color: var(--primary-white);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(254, 254, 254, 0.1);
+        }
+
+        .footer-left p {
+            color: rgba(254, 254, 254, 0.7);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-left a {
+            color: rgba(254, 254, 254, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-left a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(254, 254, 254, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            color: rgba(254, 254, 254, 0.5);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 1024px) {
+            .collections-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 1.5rem 1.5rem;
+            }
+
+            .main-content {
+                margin-top: 85px;
+                padding: 2rem 1rem 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+                letter-spacing: 6px;
+            }
+
+            .collections-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .collection-image {
+                height: 280px;
+            }
+
+            .collection-info h3 {
+                font-size: 1.3rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Johnny Leo</a>
+            <ul class="nav-links">
+                <li><a href="journal.html">JOURNAL</a></li>
+                <li><a href="index.html">PIECES</a></li>
+                <li><a href="series.html" class="active">SERIES</a></li>
+                <li><a href="artist.html">ARTIST</a></li>
+                <li><a href="inquiry.html">INQUIRY</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <ul class="mobile-menu-links">
+            <li><a href="journal.html">JOURNAL</a></li>
+            <li><a href="index.html">PIECES</a></li>
+            <li><a href="series.html">SERIES</a></li>
+            <li><a href="artist.html">ARTIST</a></li>
+            <li><a href="inquiry.html">INQUIRY</a></li>
+        </ul>
+    </div>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>SERIES</h1>
+            <p>Explore different collections and themes</p>
+        </div>
+
+        <div class="collections-grid" id="collectionsGrid">
+            <!-- Collections will be loaded from data.json -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p><a href="mailto:info@johnnyleo.com">info@johnnyleo.com</a></p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="journal.html">JOURNAL</a></li>
+                <li><a href="index.html">PIECES</a></li>
+                <li><a href="series.html">SERIES</a></li>
+                <li><a href="artist.html">ARTIST</a></li>
+                <li><a href="inquiry.html">INQUIRY</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Johnny Leo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        let collectionsData = [];
+
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                collectionsData = data.collections;
+                renderCollections();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                collectionsData = getPlaceholderData();
+                renderCollections();
+            }
+        }
+
+        function getPlaceholderData() {
+            return [
+                {
+                    id: "fairy-tales",
+                    title: "The Dreaming Fable",
+                    titleCh: "童話囈語",
+                    count: 7,
+                    coverImage: "data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F5E6D3'/%3E%3Cstop offset='100%25' style='stop-color:%23D4C5B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g1)'/%3E%3C/svg%3E"
+                },
+                {
+                    id: "animal",
+                    title: "Animals' Soliloquy",
+                    titleCh: "動物的獨白",
+                    count: 22,
+                    coverImage: "data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8D8E4'/%3E%3Cstop offset='100%25' style='stop-color:%23A8B8C4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g2)'/%3E%3C/svg%3E"
+                },
+                {
+                    id: "pets",
+                    title: "Pets vs Pets",
+                    titleCh: "寵物 vs 寵物",
+                    count: 14,
+                    coverImage: "data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D4C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B4A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g3)'/%3E%3C/svg%3E"
+                },
+                {
+                    id: "happy-town",
+                    title: "Joyful Town",
+                    titleCh: "快樂町",
+                    count: 9,
+                    coverImage: "data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F8E8D8'/%3E%3Cstop offset='100%25' style='stop-color:%23D8C8B8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g4)'/%3E%3C/svg%3E"
+                },
+                {
+                    id: "forgotten",
+                    title: "The Invisible Citizens",
+                    titleCh: "被城市遺忘的人",
+                    count: 10,
+                    coverImage: "data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D8D8D0'/%3E%3Cstop offset='100%25' style='stop-color:%23B8B8B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g5)'/%3E%3C/svg%3E"
+                },
+                {
+                    id: "weight-of-life",
+                    title: "The Weight of Existence",
+                    titleCh: "生命重量之承載",
+                    count: 5,
+                    coverImage: "data:image/svg+xml,%3Csvg width='500' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E0D0C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C0B0A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23g6)'/%3E%3C/svg%3E"
+                }
+            ];
+        }
+
+        function renderCollections() {
+            const grid = document.getElementById('collectionsGrid');
+            grid.innerHTML = '';
+            
+            collectionsData.forEach(collection => {
+                const card = document.createElement('div');
+                card.className = 'collection-card';
+                card.onclick = () => window.location.href = `collection-detail.html?id=${collection.id}`;
+                
+                card.innerHTML = `
+                    <div class="collection-image">
+                        <img src="${collection.coverImage}" alt="${collection.title}" loading="lazy">
+                    </div>
+                    <div class="collection-info">
+                        <h3>${collection.title}</h3>
+                        <p class="collection-subtitle">${collection.titleCh}</p>
+                        <p class="collection-count">${collection.count} Artworks</p>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const menu = document.getElementById('mobileMenu');
+                menu.classList.remove('active');
+            }
+        });
+
+        loadData();
+    </script>
+</body>
+</html>
