@@ -197,16 +197,6 @@
           "image": "images/series/the-dreaming-fable/F-SixDreams.jpg"
         },
         {
-          "title": "Great Leaps Forward",
-          "titleCh": "大躍進",
-          "size": "",
-          "medium": "Fiberglass",
-          "year": "2008",
-          "concept": "",
-          "status": "sold",      
-          "image": "images/series/the-dreaming-fable/F-Leaps-Figure.jpg"
-        },
-        {
           "title": "The Equilibrium of Inches",
           "titleCh": "方寸之間",
           "size": "15F",
@@ -215,6 +205,16 @@
           "concept": "",
           "status": "",      
           "image": "images/series/the-dreaming-fable/F-Square.jpg"
+        },
+        {
+          "title": "Great Leaps Forward",
+          "titleCh": "大躍進",
+          "size": "",
+          "medium": "Fiberglass",
+          "year": "2008",
+          "concept": "",
+          "status": "sold",      
+          "image": "images/series/the-dreaming-fable/F-Leaps-Figure.jpg"
         },
         {
           "title": "Great Leaps Forward",
