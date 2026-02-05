@@ -204,27 +204,27 @@
           "year": "2008",
           "concept": "",
           "status": "sold",      
-          "image": "images/series/the-dreaming-fable/F-SixDreams.jpg"
+          "image": "images/series/the-dreaming-fable/F-Leaps-Figure.jpg"
         },
         {
-          "title": "Juvenile Six Big Dreams",
-          "titleCh": "少年的六個大夢",
-          "size": "200F",
+          "title": "The Equilibrium of Inches",
+          "titleCh": "方寸之間",
+          "size": "15F",
           "medium": "Oil on Canvas",
           "year": "2008",
           "concept": "",
-          "status": "sold",      
-          "image": "images/series/the-dreaming-fable/F-SixDreams.jpg"
+          "status": "",      
+          "image": "images/series/the-dreaming-fable/F-Square.jpg"
         },
         {
-          "title": "Juvenile Six Big Dreams",
-          "titleCh": "少年的六個大夢",
-          "size": "200F",
+          "title": "Great Leaps Forward",
+          "titleCh": "大躍進",
+          "size": "100F",
           "medium": "Oil on Canvas",
-          "year": "2008",
+          "year": "2006",
           "concept": "",
           "status": "sold",      
-          "image": "images/series/the-dreaming-fable/F-SixDreams.jpg"
+          "image": "images/series/the-dreaming-fable/F-Leaps.jpg"
         }
       ]
     },
