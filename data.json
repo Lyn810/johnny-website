@@ -84,7 +84,7 @@
       "title": "The Dreaming Fable",
       "titleCh": "童話囈語",
       "count": 18,
-      "coverImage": "images/series/the-dreaming-fable/cover.jpg",
+      "coverImage": "images/series/the-dreaming-fable/F-cover.jpg",
       "artworks": [
         {
           "title": "Memories of the Weeping Willows",
@@ -233,16 +233,227 @@
       "title": "Animals' Soliloquy",
       "titleCh": "動物的獨白",
       "count": 22,
-      "coverImage": "images/series/animals-soliloquy/cover.jpg",
+      "coverImage": "images/series/animals-soliloquy/S-cover.jpg",
       "artworks": [
         {
-          "title": "Silent Gaze",
-          "titleCh": "沉默的凝視",
-          "size": "150 × 120 cm",
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
           "medium": "Oil on Canvas",
-          "year": "2024",
-          "concept": "Through the eyes of animals, this work conveys their observations and reflections on the human world, challenging anthropocentric perspectives.",
-          "image": "images/series/animals-soliloquy/silent-gaze.jpg"
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Tiger & Butterfly Effect",
+          "titleCh": "虎蝶效應",
+          "size": "80F",
+          "medium": "Oil on Canvas",
+          "year": "2010",
+          "concept": "",
+          "status": "sold",
+          "image": "images/series/animals-soliloquy/S-Butterfly.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
+        },
+        {
+          "title": "Forgotten Epoch",
+          "titleCh": "遺忘時光",
+          "size": "50P",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "",
+          "image": "images/series/animals-soliloquy/S-Epoch.jpg"
         }
       ]
     },
