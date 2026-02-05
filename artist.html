@@ -300,8 +300,28 @@
                 <li><a href="artist.html" class="active">ARTIST</a></li>
                 <li><a href="inquiry.html">INQUIRY</a></li>
             </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
         </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <ul class="mobile-menu-links">
+            <li><a href="journal.html">JOURNAL</a></li>
+            <li><a href="index.html">PIECES</a></li>
+            <li><a href="series.html">SERIES</a></li>
+            <li><a href="artist.html">ARTIST</a></li>
+            <li><a href="inquiry.html">INQUIRY</a></li>
+        </ul>
+    </div>
 
     <main class="main-content">
         <div class="page-header">
@@ -650,5 +670,11 @@
             <p>© 2026 Johnny Leo. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+    </script>    
 </body>
 </html>
