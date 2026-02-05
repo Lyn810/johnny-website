@@ -19,6 +19,7 @@
       "medium": "Oil on Canvas",
       "size": "120 × 90 cm",
       "concept": "This piece explores the quiet moments of dawn, when light first breaks through darkness. The interplay of warm and cool tones represents the delicate balance between night and day, capturing the essence of transformation and renewal.",
+      "status": ""      // 沒賣掉的可以留空或不寫
       "image": "images/pieces/morning-light.jpg"
     },
     {
@@ -29,6 +30,7 @@
       "medium": "Acrylic",
       "size": "150 × 100 cm",
       "concept": "An exploration of the rhythm and energy of metropolitan life. The dynamic composition reflects the constant movement, noise, and vitality that defines modern urban existence.",
+      "status": ""      // 沒賣掉的可以留空或不寫
       "image": "images/pieces/urban-voice.jpg"
     },
     {
@@ -39,6 +41,7 @@
       "medium": "Mixed Media",
       "size": "100 × 100 cm",
       "concept": "A meditation on nature's quietude and the healing power of natural spaces. The layered textures evoke the depth and mystery of ancient woodlands.",
+      "status": ""      // 沒賣掉的可以留空或不寫
       "image": "images/pieces/silent-forest.jpg"
     },
     {
@@ -49,6 +52,7 @@
       "medium": "Oil on Canvas",
       "size": "130 × 95 cm",
       "concept": "Time leaves its mark on everything it touches. This work examines the visible and invisible ways that temporal passage shapes our world and ourselves.",
+      "status": ""      // 沒賣掉的可以留空或不寫
       "image": "images/pieces/traces-of-time.jpg"
     },
     {
@@ -59,6 +63,7 @@
       "medium": "Acrylic",
       "size": "140 × 110 cm",
       "concept": "The pulse of city life captured through bold gestures and vibrant color. Each stroke represents the collective heartbeat of millions moving through shared spaces.",
+      "status": ""      // 沒賣掉的可以留空或不寫
       "image": "images/pieces/metropolitan-rhythm.jpg"
     },
     {
@@ -69,6 +74,7 @@
       "medium": "Mixed Media",
       "size": "110 × 85 cm",
       "concept": "An investigation into the eternal dance between illumination and darkness. The composition plays with contrast to reveal how each defines and enhances the other.",
+      "status": ""      // 沒賣掉的可以留空或不寫
       "image": "images/pieces/light-and-shadow.jpg"
     }
   ],
@@ -87,6 +93,7 @@
           "medium": "Acrylic on Canvas",
           "year": "2022",
           "concept": "",
+          "status": ""      // 沒賣掉的可以留空或不寫
           "image": "images/series/the-dreaming-fable/F-Willow.jpg"
         },
         {
@@ -96,6 +103,7 @@
           "medium": "Acrylic on Canvas",
           "year": "2022",
           "concept": "",
+          "status": ""      // 沒賣掉的可以留空或不寫
           "image": "images/series/the-dreaming-fable/F-Don.jpg"
         },
         {
@@ -105,6 +113,7 @@
           "medium": "Acrylic on Canvas",
           "year": "2022",
           "concept": "",
+          "status": ""      // 沒賣掉的可以留空或不寫
           "image": "images/series/the-dreaming-fable/F-Lies.jpg"
         },
         {
@@ -114,6 +123,7 @@
           "medium": "Acrylic on Canvas",
           "year": "2022",
           "concept": "",
+          "status": ""      // 沒賣掉的可以留空或不寫
           "image": "images/series/the-dreaming-fable/F-Invincible.jpg"
         },
         {
@@ -123,6 +133,7 @@
           "medium": "Acrylic on Canvas",
           "year": "2022",
           "concept": "",
+          "status": ""      // 沒賣掉的可以留空或不寫
           "image": "images/series/the-dreaming-fable/F-Joy.jpg"
         },
         {
@@ -132,7 +143,58 @@
           "medium": "Acrylic on Canvas",
           "year": "2022",
           "concept": "",
+          "status": ""      // 沒賣掉的可以留空或不寫
           "image": "images/series/the-dreaming-fable/F-Melancholy.jpg"
+        },
+        {
+          "title": "Sweet Narcotic",
+          "titleCh": "甜蜜的迷藥",
+          "size": "100F",
+          "medium": "Oil on Canvas",
+          "year": "2008",
+          "concept": "",
+          "status": ""      // 沒賣掉的可以留空或不寫
+          "image": "images/series/the-dreaming-fable/F-Sweet.jpg"
+        },
+        {
+          "title": "Gazing into Fable",
+          "titleCh": "遠眺",
+          "size": "100F",
+          "medium": "Oil on Canvas",
+          "year": "2008",
+          "concept": "",
+          "status": ""      // 沒賣掉的可以留空或不寫
+          "image": "images/series/the-dreaming-fable/F-Gazing.jpg"
+        },
+        {
+          "title": "Off-track Reveries",
+          "titleCh": "軌道",
+          "size": "100F",
+          "medium": "Oil on Canvas",
+          "year": "2008",
+          "concept": "",
+          "status": ""      // 沒賣掉的可以留空或不寫
+          "image": "images/series/the-dreaming-fable/F-Track.jpg"
+        },
+        {
+          "title": "The Unbearable Lightness of Being",
+          "titleCh": "生命中不能承受之輕",
+          "size": "100F",
+          "medium": "Oil on Canvas",
+          "year": "2008",
+          "concept": "",
+          "status": ""      // 沒賣掉的可以留空或不寫
+          "image": "images/series/the-dreaming-fable/F-Unbearable.jpg"
+        },
+        {
+          "title": "Juvenile Six Big Dreams",
+          "titleCh": "少年的六個大夢",
+          "size": "200F",
+          "medium": "Oil on Canvas",
+          "year": "2008",
+          "concept": "",
+          "status": "sold"      // 沒賣掉的可以留空或不寫
+          "image": "images/series/the-dreaming-fable/F-SixDreams.jpg"
         }
       ]
     },
