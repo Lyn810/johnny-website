@@ -817,6 +817,12 @@
             modal.addEventListener('touchstart', handleModalTouchStart);
             modal.addEventListener('touchend', handleModalTouchEnd);
             
+            // 生成 Status HTML
+            const statusHTML = artwork.status === 'sold' 
+                ? '<div class="modal-status"><span class="status-sold">SOLD</span></div>'
+                : '<div class="modal-status"><a href="inquiry.html" class="status-inquiry">INQUIRY →</a></div>';
+
+
             modalInfo.innerHTML = `
                 <h3>${artwork.title}</h3>
                 <div class="modal-detail-item">
