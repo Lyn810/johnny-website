@@ -66,22 +66,12 @@
       "concept": "",
       "image": "images/pieces/S-Queen-W.jpg"
     },
-            {
-          "title": "Defeated Queen-E",
-          "titleCh": "東方敗犬女王",
-          "size": "100F",
-          "medium": "Oil on Canvas",
-          "year": "2008",
-          "concept": "",
-          "status": "available",
-          "image": "images/series/animals-soliloquy/S-Queen-E.jpg"
-        },
     {
       "id": "light-and-shadow",
       "title": "Defeated Queen-E",
       "titleCh": "東方敗犬女王",
       "year": "2008",
-      "medium": "Mixed Media",
+      "medium": "Oil on Canvas",
       "size": "110 × 85 cm (100F)",
       "status": "available",
       "concept": "",
