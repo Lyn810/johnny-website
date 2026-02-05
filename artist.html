@@ -656,7 +656,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-left">
-                <p><a href="mailto:info@johnnyleo.com">info@johnnyleo.com</a></p>
+                <p><a href="mailto:johnny_bcool@hotmail.com">johnny_bcool@hotmail.com</a></p>
             </div>
             <ul class="footer-links">
                 <li><a href="journal.html">JOURNAL</a></li>
@@ -675,6 +675,12 @@
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
         }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const menu = document.getElementById('mobileMenu');
+                menu.classList.remove('active');
+            }
+        });
     </script>    
 </body>
 </html>
