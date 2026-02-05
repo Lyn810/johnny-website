@@ -464,21 +464,80 @@
             font-size: 1rem;
         }
 
+        /* Status */
+        .modal-status {
+            margin-top: 1.5rem;
+        }
+
+        .status-sold {
+            color: #DC2626;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .status-inquiry {
+            color: var(--accent-gold);
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .status-inquiry:hover {
+            color: var(--soft-black);
+        }
+
+        /* Concept Toggle */
         .modal-concept {
             margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid var(--mid-gray);
         }
 
-        .modal-concept h4 {
+        .concept-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            padding: 0.5rem 0;
+        }
+
+        .concept-toggle h4 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
             font-weight: 400;
-            margin-bottom: 1.5rem;
             letter-spacing: 1px;
+            margin: 0;
         }
 
-        .modal-concept p {
+        .toggle-icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .concept-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .concept-content.open {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+
+        .concept-content p {
             color: var(--text-gray);
             line-height: 2;
             font-size: 1rem;
@@ -605,11 +664,17 @@
             .modal-close {
                 position: fixed;
                 top: 1rem;
-                left: 50%;
-                transform: translateX(-50%);
+                right: 1rem;
                 width: 36px;
                 height: 36px;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 50%;
                 z-index: 3002;
+                backdrop-filter: blur(10px);
+            }
+
+            .modal-close svg {
+                stroke: white;
             }
 
             .modal-nav-btn {
@@ -1074,6 +1139,11 @@
             modal.addEventListener('touchstart', handleModalTouchStart);
             modal.addEventListener('touchend', handleModalTouchEnd);
             
+            // 生成 Status HTML
+            const statusHTML = artwork.status === 'sold' 
+                ? '<div class="modal-status"><span class="status-sold">SOLD</span></div>'
+                : '<div class="modal-status"><a href="inquiry.html" class="status-inquiry">INQUIRY →</a></div>';
+            
             modalInfo.innerHTML = `
                 <h3>${artwork.title}</h3>
                 <div class="modal-detail-item">
@@ -1088,10 +1158,7 @@
                     <label>Size</label>
                     <p>${artwork.size}</p>
                 </div>
-                <div class="modal-concept">
-                    <h4>Artist's Statement</h4>
-                    <p>${artwork.concept}</p>
-                </div>
+                ${statusHTML}
             `;
 
             modal.classList.add('active');
@@ -1117,6 +1184,16 @@
                 }
             }
             lastTapTime = currentTime;
+        }
+
+        function toggleConcept() {
+            const content = document.querySelector('.concept-content');
+            const icon = document.querySelector('.toggle-icon');
+            
+            if (content && icon) {
+                content.classList.toggle('open');
+                icon.classList.toggle('open');
+            }
         }
 
         function closeModal() {
