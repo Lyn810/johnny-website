@@ -13,69 +13,79 @@
   "pieces": [
     {
       "id": "morning-light",
-      "title": "Morning Light",
-      "titleCh": "晨曦之間",
-      "year": "2024",
+      "title": "The Unbearable Lightness of Being",
+      "titleCh": "生命中不能承受之輕",
+      "year": "2008",
       "medium": "Oil on Canvas",
-      "size": "120 × 90 cm",
+      "size": "120 × 90 cm (100F)",
       "status": "available",
-      "concept": "This piece explores the quiet moments of dawn, when light first breaks through darkness. The interplay of warm and cool tones represents the delicate balance between night and day, capturing the essence of transformation and renewal.",
-      "image": "images/pieces/morning-light.jpg"
+      "concept": "",
+      "image": "images/pieces/F-Unbearable.jpg"
     },
     {
       "id": "urban-voice",
-      "title": "Urban Voice",
-      "titleCh": "城市之聲",
-      "year": "2024",
-      "medium": "Acrylic",
-      "size": "150 × 100 cm",
+      "title": "Electronic Bear",
+      "titleCh": "電子熊",
+      "year": "2007",
+      "medium": "Oil on Canvas",
+      "size": "150 × 100 cm (50F)",
       "status": "sold",
-      "concept": "An exploration of the rhythm and energy of metropolitan life. The dynamic composition reflects the constant movement, noise, and vitality that defines modern urban existence.",
-      "image": "images/pieces/urban-voice.jpg"
+      "concept": "",
+      "image": "images/pieces/S-Bear.jpg"
     },
     {
       "id": "silent-forest",
-      "title": "Silent Forest",
-      "titleCh": "靜默森林",
-      "year": "2023",
-      "medium": "Mixed Media",
-      "size": "100 × 100 cm",
-      "status": "available",
-      "concept": "A meditation on nature's quietude and the healing power of natural spaces. The layered textures evoke the depth and mystery of ancient woodlands.",
-      "image": "images/pieces/silent-forest.jpg"
+      "title": "I think therefore I am",
+      "titleCh": "我思故我在",
+      "year": "2006",
+      "medium": "Oil on Canvas",
+      "size": "100 × 100 cm (100F)",
+      "status": "sold",
+      "concept": "",
+      "image": "images/pieces/S-Therefore.jpg"
     },
     {
       "id": "traces-of-time",
-      "title": "Traces of Time",
-      "titleCh": "時間的痕跡",
-      "year": "2023",
+      "title": "Hegemony",
+      "titleCh": "王道",
+      "year": "2006",
       "medium": "Oil on Canvas",
-      "size": "130 × 95 cm",
-      "status": "available",
-      "concept": "Time leaves its mark on everything it touches. This work examines the visible and invisible ways that temporal passage shapes our world and ourselves.",
-      "image": "images/pieces/traces-of-time.jpg"
+      "size": "130 × 95 cm (100F)",
+      "status": "sold",
+      "concept": "",
+      "image": "images/pieces/S-Hegemony.jpg"
     },
     {
       "id": "metropolitan-rhythm",
-      "title": "Metropolitan Rhythm",
-      "titleCh": "都會律動",
-      "year": "2024",
-      "medium": "Acrylic",
-      "size": "140 × 110 cm",
+      "title": "Defeated Queen-W",
+      "titleCh": "西方敗犬女王",
+      "year": "2008",
+      "medium": "Oil on Canvas",
+      "size": "140 × 110 cm (100F)",
       "status": "sold",
-      "concept": "The pulse of city life captured through bold gestures and vibrant color. Each stroke represents the collective heartbeat of millions moving through shared spaces.",
-      "image": "images/pieces/metropolitan-rhythm.jpg"
+      "concept": "",
+      "image": "images/pieces/S-Queen-W.jpg"
     },
+            {
+          "title": "Defeated Queen-E",
+          "titleCh": "東方敗犬女王",
+          "size": "100F",
+          "medium": "Oil on Canvas",
+          "year": "2008",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/animals-soliloquy/S-Queen-E.jpg"
+        },
     {
       "id": "light-and-shadow",
-      "title": "Light and Shadow",
-      "titleCh": "光影交織",
-      "year": "2023",
+      "title": "Defeated Queen-E",
+      "titleCh": "東方敗犬女王",
+      "year": "2008",
       "medium": "Mixed Media",
-      "size": "110 × 85 cm",
+      "size": "110 × 85 cm (100F)",
       "status": "available",
-      "concept": "An investigation into the eternal dance between illumination and darkness. The composition plays with contrast to reveal how each defines and enhances the other.",
-      "image": "images/pieces/light-and-shadow.jpg"
+      "concept": "",
+      "image": "images/pieces/S-Queen-E.jpg"
     }
   ],
   "series": [
