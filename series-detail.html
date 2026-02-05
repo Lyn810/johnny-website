@@ -831,18 +831,7 @@
                     <label>Size</label>
                     <p>${artwork.size}</p>
                 </div>
-                
-                <div class="modal-concept">
-                    <div class="concept-toggle" onclick="toggleConcept()">
-                        <h4>Artist's Statement</h4>
-                        <svg class="toggle-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </div>
-                    <div class="concept-content">
-                        <p>${artwork.concept}</p>
-                    </div>
-                </div>
+                ${statusHTML}
             `;
 
             modal.classList.add('active');
