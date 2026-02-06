@@ -671,17 +671,107 @@
       "title": "The Invisible Citizens",
       "titleCh": "被城市遺忘的人",
       "count": 10,
-      "coverImage": "images/series/the-invisible-citizens/cover.jpg",
+      "coverImage": "images/series/the-invisible-citizens/C-cover.jpg",
       "artworks": [
         {
-          "title": "Corner Silhouette",
-          "titleCh": "角落的身影",
-          "size": "160 × 120 cm",
+          "title": "The Long Way Home",
+          "titleCh": "歸途",
+          "size": "60.5 × 72.5 cm (20F)",
           "medium": "Oil on Canvas",
-          "year": "2024",
+          "year": "2013",
           "concept": "",
           "status": "available",
-          "image": "images/series/the-invisible-citizens/corner-silhouette.jpg"
+          "image": "images/series/the-invisible-citizens/C-Home.jpg"
+        },
+        {
+          "title": "Traces of Time",
+          "titleCh": "歲月痕跡",
+          "size": "116.5 × 80 cm (50P)",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-invisible-citizens/C-Traces.jpg"
+        },
+        {
+          "title": "Escorts of Civilization-A",
+          "titleCh": "文明送行者-A",
+          "size": "80 × 116.5 cm (50P)",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-invisible-citizens/C-Escorts-A.jpg"
+        },
+        {
+          "title": "Escorts of Civilization-B",
+          "titleCh": "文明送行者-B",
+          "size": "80 × 116.5 cm (50P)",
+          "medium": "Oil on Canvas",
+          "year": "2012",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-invisible-citizens/C-Escorts-B.jpg"
+        },
+        {
+          "title": "Intermission",
+          "titleCh": "休憩",
+          "size": "72.5 × 91 cm (30F)",
+          "medium": "Oil on Canvas",
+          "year": "2011",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-invisible-citizens/C-Intermission.jpg"
+        },
+        {
+          "title": "The Steed of Steel",
+          "titleCh": "三輪車",
+          "size": "72.5 × 91 cm (30F)",
+          "medium": "Oil on Canvas",
+          "year": "2011",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-invisible-citizens/C-Steel.jpg"
+        },
+        {
+          "title": "A Momentary Reprieve",
+          "titleCh": "無憂的日子",
+          "size": "72.5 × 91 cm (30F)",
+          "medium": "Oil on Canvas",
+          "year": "2011",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-invisible-citizens/C-Reprieve.jpg"
+        },
+        {
+          "title": "Echoes in the Midnight",
+          "titleCh": "午夜夢迴",
+          "size": "91 × 72.5 cm (30F)",
+          "medium": "Oil on Canvas",
+          "year": "2011",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-invisible-citizens/C-Echoes.jpg"
+        },
+        {
+          "title": "The Silent Confidant",
+          "titleCh": "忠實的聽者",
+          "size": "91 × 72.5 cm (30F)",
+          "medium": "Oil on Canvas",
+          "year": "2011",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-invisible-citizens/C-Silent.jpg"
+        },
+        {
+          "title": "The Weight Behind",
+          "titleCh": "背影",
+          "size": "91 × 72.5 cm (30F)",
+          "medium": "Oil on Canvas",
+          "year": "2011",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-invisible-citizens/C-Behind.jpg"
         }
       ]
     },
@@ -689,18 +779,68 @@
       "id": "the-weight-of-existence",
       "title": "The Weight of Existence",
       "titleCh": "生命重量之承載",
-      "count": 5,
-      "coverImage": "images/series/the-weight-of-existence/cover.jpg",
+      "count": 6,
+      "coverImage": "images/series/the-weight-of-existence/E-cover.jpg",
       "artworks": [
         {
-          "title": "Carrying Forward",
-          "titleCh": "負重前行",
-          "size": "180 × 140 cm",
+          "title": "The Weight of Existence - 001",
+          "titleCh": "生命重量之承載 - 001",
+          "size": "72.5 × 91 cm (30F)",
           "medium": "Oil on Canvas",
-          "year": "2023",
+          "year": "2011",
           "concept": "",
           "status": "available",
-          "image": "images/series/the-weight-of-existence/carrying-forward.jpg"
+          "image": "images/series/the-weight-of-existence/E-Weight001.jpg"
+        },
+        {
+          "title": "The Weight of Existence - 002",
+          "titleCh": "生命重量之承載 - 002",
+          "size": "72.5 × 91 cm (30F)",
+          "medium": "Oil on Canvas",
+          "year": "2011",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-weight-of-existence/E-Weight002.jpg"
+        },
+        {
+          "title": "A Bird's Nest",
+          "titleCh": "鳥巢",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2011",
+          "concept": "",
+          "status": "sold",
+          "image": "images/series/the-weight-of-existence/E-Nest.jpg"
+        },
+        {
+          "title": "Trigger",
+          "titleCh": "槍",
+          "size": "69 × 80 cm (Hexagon)",
+          "medium": "Oil on Canvas",
+          "year": "2011",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-weight-of-existence/E-Trigger.jpg"
+        },
+        {
+          "title": "Civilization Sacrifice",
+          "titleCh": "文明的獻祭",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2011",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-weight-of-existence/E-Civilization.jpg"
+        },
+        {
+          "title": "Fish",
+          "titleCh": "魚",
+          "size": "41 × 30 cm (Oval)",
+          "medium": "Oil on Canvas",
+          "year": "2009",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/the-weight-of-existence/E-Fish.jpg"
         }
       ]
     },
