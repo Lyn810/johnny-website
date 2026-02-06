@@ -465,14 +465,115 @@
       "coverImage": "images/series/pets-vs-pets/P-cover.jpg",
       "artworks": [
         {
-          "title": "Encounter",
-          "titleCh": "相遇",
-          "size": "130 × 100 cm",
-          "medium": "Mixed Media",
-          "year": "2024",
-          "concept": "Exploring the interactions and relationships between different pets, revealing their unique personalities and the subtle social dynamics between them.",
-          "image": "images/series/pets-vs-pets/encounter.jpg"
-        }
+          "title": "Cravings",
+          "titleCh": "慾望",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/pets-vs-pets/P-Cravings.jpg"
+        },
+        {
+          "title": "The Other Me",
+          "titleCh": "我非我",
+          "size": "53 × 45.5 cm (10F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/pets-vs-pets/P-Other.jpg"
+        },
+        {
+          "title": "Wild at Heart",
+          "titleCh": "我心狂野",
+          "size": "53 × 45.5 cm (10F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/pets-vs-pets/P-Wild.jpg"
+        },
+        {
+          "title": "Transfixed",
+          "titleCh": "凝視",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/pets-vs-pets/P-Transfixed.jpg"
+        },
+        {
+          "title": "Pugilist at Rest",
+          "titleCh": "鬥犬",
+          "size": "45.5 × 53 cm (10F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/pets-vs-pets/P-Pugilist.jpg"
+        },
+        {
+          "title": "The Offering",
+          "titleCh": "禮物",
+          "size": "45.5 × 53 cm (10F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/pets-vs-pets/P-Offering.jpg"
+        },
+        {
+          "title": "Innocence",
+          "titleCh": "無辜",
+          "size": "45.5 × 53 cm (10F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "sold",
+          "image": "images/series/pets-vs-pets/P-Innocence.jpg"
+        },
+        {
+          "title": "Cravings",
+          "titleCh": "慾望",
+          "size": "45.5 × 53 cm (10F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/pets-vs-pets/P-Cravings.jpg"
+        },
+        {
+          "title": "Cravings",
+          "titleCh": "慾望",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/pets-vs-pets/P-Cravings.jpg"
+        },
+        {
+          "title": "Cravings",
+          "titleCh": "慾望",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/pets-vs-pets/P-Cravings.jpg"
+        },
+        {
+          "title": "Cravings",
+          "titleCh": "慾望",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2013",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/pets-vs-pets/P-Cravings.jpg"
+        },
       ]
     },
     {
@@ -488,7 +589,8 @@
           "size": "140 × 110 cm",
           "medium": "Acrylic",
           "year": "2023",
-          "concept": "Depicting an idealized community where people live in harmony, filled with joy and warmth. The work uses bright colors and light brushstrokes to create a utopian atmosphere.",
+          "concept": "",
+          "status": "available",
           "image": "images/series/joyful-town/street-corner.jpg"
         }
       ]
@@ -506,7 +608,8 @@
           "size": "160 × 120 cm",
           "medium": "Oil on Canvas",
           "year": "2024",
-          "concept": "Focusing on marginalized groups in urban settings. Through somber tones and blurred outlines, the work expresses their loneliness and helplessness in the bustling city, evoking empathy and social awareness.",
+          "concept": "",
+          "status": "available",
           "image": "images/series/the-invisible-citizens/corner-silhouette.jpg"
         }
       ]
@@ -524,7 +627,8 @@
           "size": "180 × 140 cm",
           "medium": "Oil on Canvas",
           "year": "2023",
-          "concept": "Exploring the unbearable weight of life. Through heavy brushstrokes and layered colors, the work depicts people's resilience and struggle when facing life's pressures, while also conveying hope and strength.",
+          "concept": "",
+          "status": "available",
           "image": "images/series/the-weight-of-existence/carrying-forward.jpg"
         }
       ]
