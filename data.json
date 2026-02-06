@@ -845,21 +845,13 @@
       ]
     },
     {
-      "id": "mediated-breath",
-      "title": "Mediated Breath",
-      "titleCh": "呼吸",
+      "id": "me",
+      "title": "me2",
+      "titleCh": "米",
       "count": 10,
-      "coverImage": "images/series/mediated-breath/cover.jpg",
+      "coverImage": "images/series/me/cover.jpg",
       "artworks": [
-        {
-          "title": "Breath No.1",
-          "titleCh": "呼吸 No.1",
-          "size": "120 × 90 cm",
-          "medium": "Mixed Media",
-          "year": "2024",
-          "concept": "This series explores the rhythm of breathing as a metaphor for life's ebb and flow, capturing moments of pause and motion in contemporary existence.",
-          "image": "images/series/mediated-breath/breath-01.jpg"
-        },
+        
         {
           "title": "Breath No.2",
           "titleCh": "呼吸 No.2",
@@ -867,37 +859,11 @@
           "medium": "Mixed Media",
           "year": "2024",
           "concept": "Continuing the meditation on breathing, this work examines the delicate balance between tension and release in our daily lives.",
-          "image": "images/series/mediated-breath/breath-02.jpg"
-        }
-      ]
-    },
-    {
-      "id": "small-realities",
-      "title": "Small Realities",
-      "titleCh": "靜物",
-      "count": 8,
-      "coverImage": "images/series/small-realities/cover.jpg",
-      "artworks": [
-        {
-          "title": "Still Life No.1",
-          "titleCh": "靜物 No.1",
-          "size": "100 × 80 cm",
-          "medium": "Oil on Canvas",
-          "year": "2023",
-          "concept": "Finding profound meaning in everyday objects, this series transforms the mundane into subjects of contemplation and beauty.",
-          "image": "images/series/small-realities/still-life-01.jpg"
-        },
-        {
-          "title": "Still Life No.2",
-          "titleCh": "靜物 No.2",
-          "size": "100 × 80 cm",
-          "medium": "Oil on Canvas",
-          "year": "2023",
-          "concept": "Each object tells a story of human presence and absence, inviting viewers to discover the extraordinary within the ordinary.",
-          "image": "images/series/small-realities/still-life-02.jpg"
+          "image": "images/series/me/breath-02.jpg"
         }
       ]
     }
+    
   ],
   "journal": [
     {
