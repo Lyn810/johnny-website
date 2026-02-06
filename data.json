@@ -535,45 +535,45 @@
           "image": "images/series/pets-vs-pets/P-Innocence.jpg"
         },
         {
-          "title": "Cravings",
-          "titleCh": "慾望",
+          "title": "Vulnerable Affection",
+          "titleCh": "愛，又怕受傷害",
           "size": "45.5 × 53 cm (10F)",
           "medium": "Oil on Canvas",
           "year": "2013",
           "concept": "",
           "status": "available",
-          "image": "images/series/pets-vs-pets/P-Cravings.jpg"
+          "image": "images/series/pets-vs-pets/P-Vulnerable.jpg"
         },
         {
-          "title": "Cravings",
-          "titleCh": "慾望",
-          "size": "65 × 53 cm (15F)",
+          "title": "Sweetheart",
+          "titleCh": "甜心",
+          "size": "45.5 × 53 cm (10F)",
           "medium": "Oil on Canvas",
           "year": "2013",
           "concept": "",
-          "status": "available",
-          "image": "images/series/pets-vs-pets/P-Cravings.jpg"
+          "status": "sold",
+          "image": "images/series/pets-vs-pets/P-Sweetheart.jpg"
         },
         {
-          "title": "Cravings",
-          "titleCh": "慾望",
-          "size": "65 × 53 cm (15F)",
+          "title": "New Year's Eve: The Lamb",
+          "titleCh": "新年夜羔羊",
+          "size": "116.5 × 91 cm (50F)",
           "medium": "Oil on Canvas",
-          "year": "2013",
+          "year": "2011",
           "concept": "",
           "status": "available",
-          "image": "images/series/pets-vs-pets/P-Cravings.jpg"
+          "image": "images/series/pets-vs-pets/P-NewYear.jpg"
         },
         {
-          "title": "Cravings",
-          "titleCh": "慾望",
-          "size": "65 × 53 cm (15F)",
+          "title": "Christmas Eve: The Lamb",
+          "titleCh": "聖誕夜羔羊",
+          "size": "116.5 × 91 cm (50F)",
           "medium": "Oil on Canvas",
-          "year": "2013",
+          "year": "2011",
           "concept": "",
           "status": "available",
-          "image": "images/series/pets-vs-pets/P-Cravings.jpg"
-        },
+          "image": "images/series/pets-vs-pets/P-Christmas.jpg"
+        }
       ]
     },
     {
@@ -581,18 +581,89 @@
       "title": "Joyful Town",
       "titleCh": "快樂町",
       "count": 9,
-      "coverImage": "images/series/joyful-town/cover.jpg",
+      "coverImage": "images/series/joyful-town/J-cover.jpg",
       "artworks": [
         {
-          "title": "Street Corner Laughter",
-          "titleCh": "街角的笑聲",
-          "size": "140 × 110 cm",
-          "medium": "Acrylic",
-          "year": "2023",
+          "title": "The Treasure",
+          "titleCh": "我的寶貝",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2010",
           "concept": "",
           "status": "available",
-          "image": "images/series/joyful-town/street-corner.jpg"
+          "image": "images/series/joyful-town/T-Treasure.jpg"
+        },
+        {
+          "title": "Material Girl",
+          "titleCh": "拜金女",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2008",
+          "concept": "",
+          "status": "sold",
+          "image": "images/series/joyful-town/T-Material.jpg"
+        },
+        {
+          "title": "Debra",
+          "titleCh": "馬戲團",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2008",
+          "concept": "",
+          "status": "sold",
+          "image": "images/series/joyful-town/T-Debra.jpg"
+        },
+        {
+          "title": "Mi Mi",
+          "titleCh": "米米",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2008",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/joyful-town/T-Mi.jpg"
+        },
+        {
+          "title": "Aubrey",
+          "titleCh": "奧布",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2007",
+          "concept": "",
+          "status": "sold",
+          "image": "images/series/joyful-town/T-Aubrey.jpg"
+        },
+        {
+          "title": "Dolores",
+          "titleCh": "朵莉絲",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2007",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/joyful-town/T-Dolores.jpg"
+        },
+        {
+          "title": "Eva",
+          "titleCh": "依娃",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2007",
+          "concept": "",
+          "status": "sold",
+          "image": "images/series/joyful-town/T-Eva.jpg"
+        },
+        {
+          "title": "Lana",
+          "titleCh": "拉娜",
+          "size": "65 × 53 cm (15F)",
+          "medium": "Oil on Canvas",
+          "year": "2007",
+          "concept": "",
+          "status": "available",
+          "image": "images/series/joyful-town/T-Lana.jpg"
         }
+        
       ]
     },
     {
