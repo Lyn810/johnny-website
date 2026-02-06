@@ -843,27 +843,7 @@
           "image": "images/series/the-weight-of-existence/E-Fish.jpg"
         }
       ]
-    },
-    {
-      "id": "me",
-      "title": "me2",
-      "titleCh": "米",
-      "count": 10,
-      "coverImage": "images/series/me/cover.jpg",
-      "artworks": [
-        
-        {
-          "title": "Breath No.2",
-          "titleCh": "呼吸 No.2",
-          "size": "120 × 90 cm",
-          "medium": "Mixed Media",
-          "year": "2024",
-          "concept": "Continuing the meditation on breathing, this work examines the delicate balance between tension and release in our daily lives.",
-          "image": "images/series/me/breath-02.jpg"
-        }
-      ]
     }
-    
   ],
   "journal": [
     {
