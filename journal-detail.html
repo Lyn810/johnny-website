@@ -110,6 +110,76 @@
             color: var(--accent-gold);
         }
 
+        /* Series Dropdown */
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item.has-dropdown > a::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            border-top: 4px solid currentColor;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #FFFFFF;
+            min-width: 220px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--mid-gray);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            padding: 0.5rem 0;
+            margin-top: 1rem;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--soft-black);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--warm-gray);
+            color: var(--accent-gold);
+            padding-left: 2rem;
+        }
+
+        .dropdown-menu .dropdown-divider {
+            height: 1px;
+            background: var(--mid-gray);
+            margin: 0.5rem 0;
+        }
+
+        .dropdown-menu .view-all {
+            color: var(--accent-gold);
+            font-weight: 400;
+        }
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -174,6 +244,61 @@
             font-size: 1.2rem;
             font-weight: 300;
             letter-spacing: 2px;
+        }
+
+        /* Mobile Series Dropdown */
+        .mobile-nav-item.has-dropdown {
+            position: relative;
+        }
+
+        .mobile-dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .mobile-dropdown-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-dropdown-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .mobile-dropdown-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 1.5rem;
+        }
+
+        .mobile-dropdown-menu.open {
+            max-height: 500px;
+            margin-top: 0.5rem;
+        }
+
+        .mobile-dropdown-menu a {
+            display: block;
+            padding: 0.75rem 0;
+            font-size: 1rem;
+            color: var(--text-gray);
+            border-left: 2px solid transparent;
+            padding-left: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-dropdown-menu a:hover {
+            color: var(--accent-gold);
+            border-left-color: var(--accent-gold);
+        }
+
+        .mobile-dropdown-menu .view-all {
+            color: var(--accent-gold);
+            font-weight: 400;
+            margin-top: 0.5rem;
         }
 
         .main-content {
@@ -398,9 +523,23 @@
         <div class="nav-container">
             <a href="index.html" class="logo">Johnny Leo</a>
             <ul class="nav-links">
-                <li><a href="journal.html" class="active">JOURNAL</a></li>
+                <li><a href="journal.html">JOURNAL</a></li>
                 <li><a href="index.html">PIECES</a></li>
-                <li><a href="series.html">SERIES</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="series.html">SERIES</a>
+                    <div class="dropdown-menu">
+                        <a href="series-detail.html?id=the-dreaming-fable">The Dreaming Fable</a>
+                        <a href="series-detail.html?id=animals-soliloquy">Animals' Soliloquy</a>
+                        <a href="series-detail.html?id=pets-vs-pets">Pets vs Pets</a>
+                        <a href="series-detail.html?id=joyful-town">Joyful Town</a>
+                        <a href="series-detail.html?id=the-invisible-citizens">The Invisible Citizens</a>
+                        <a href="series-detail.html?id=the-weight-of-existence">The Weight of Existence</a>
+                        <a href="series-detail.html?id=mediated-breath">Mediated Breath</a>
+                        <a href="series-detail.html?id=small-realities">Small Realities</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="series.html" class="view-all">View All Series →</a>
+                    </div>
+                </li>
                 <li><a href="artist.html">ARTIST</a></li>
                 <li><a href="inquiry.html">INQUIRY</a></li>
             </ul>
@@ -421,7 +560,25 @@
         <ul class="mobile-menu-links">
             <li><a href="journal.html">JOURNAL</a></li>
             <li><a href="index.html">PIECES</a></li>
-            <li><a href="series.html">SERIES</a></li>
+            <li class="mobile-nav-item has-dropdown">
+                <div class="mobile-dropdown-toggle" onclick="toggleMobileDropdown()">
+                    <a href="series.html" onclick="event.stopPropagation()">SERIES</a>
+                    <svg class="mobile-dropdown-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="mobile-dropdown-menu">
+                    <a href="series-detail.html?id=the-dreaming-fable">The Dreaming Fable</a>
+                    <a href="series-detail.html?id=animals-soliloquy">Animals' Soliloquy</a>
+                    <a href="series-detail.html?id=pets-vs-pets">Pets vs Pets</a>
+                    <a href="series-detail.html?id=joyful-town">Joyful Town</a>
+                    <a href="series-detail.html?id=the-invisible-citizens">The Invisible Citizens</a>
+                    <a href="series-detail.html?id=the-weight-of-existence">The Weight of Existence</a>
+                    <a href="series-detail.html?id=mediated-breath">Mediated Breath</a>
+                    <a href="series-detail.html?id=small-realities">Small Realities</a>
+                    <a href="series.html" class="view-all">View All Series →</a>
+                </div>
+            </li>
             <li><a href="artist.html">ARTIST</a></li>
             <li><a href="inquiry.html">INQUIRY</a></li>
         </ul>
@@ -458,7 +615,21 @@
             <ul class="footer-links">
                 <li><a href="journal.html">JOURNAL</a></li>
                 <li><a href="index.html">PIECES</a></li>
-                <li><a href="series.html">SERIES</a></li>
+                <li class="nav-item has-dropdown">
+                    <a href="series.html">SERIES</a>
+                    <div class="dropdown-menu">
+                        <a href="series-detail.html?id=the-dreaming-fable">The Dreaming Fable</a>
+                        <a href="series-detail.html?id=animals-soliloquy">Animals' Soliloquy</a>
+                        <a href="series-detail.html?id=pets-vs-pets">Pets vs Pets</a>
+                        <a href="series-detail.html?id=joyful-town">Joyful Town</a>
+                        <a href="series-detail.html?id=the-invisible-citizens">The Invisible Citizens</a>
+                        <a href="series-detail.html?id=the-weight-of-existence">The Weight of Existence</a>
+                        <a href="series-detail.html?id=mediated-breath">Mediated Breath</a>
+                        <a href="series-detail.html?id=small-realities">Small Realities</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="series.html" class="view-all">View All Series →</a>
+                    </div>
+                </li>
                 <li><a href="artist.html">ARTIST</a></li>
                 <li><a href="inquiry.html">INQUIRY</a></li>
             </ul>
@@ -480,6 +651,16 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
+        }
+
+        function toggleMobileDropdown() {
+            const dropdownMenu = document.querySelector('.mobile-dropdown-menu');
+            const dropdownIcon = document.querySelector('.mobile-dropdown-icon');
+            
+            if (dropdownMenu && dropdownIcon) {
+                dropdownMenu.classList.toggle('open');
+                dropdownIcon.classList.toggle('open');
+            }
         }
 
         const urlParams = new URLSearchParams(window.location.search);
