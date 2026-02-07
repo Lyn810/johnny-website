@@ -107,16 +107,21 @@
             position: relative;
         }
 
-        .nav-item.has-dropdown > a::after {
-            content: '';
-            display: inline-block;
-            width: 0;
-            height: 0;
-            margin-left: 0.5rem;
-            vertical-align: middle;
-            border-top: 4px solid currentColor;
-            border-right: 4px solid transparent;
-            border-left: 4px solid transparent;
+        .nav-item.has-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-item.has-dropdown .dropdown-icon {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item.has-dropdown:hover .dropdown-icon {
+            transform: rotate(180deg);
         }
 
         .dropdown-menu {
@@ -199,6 +204,8 @@
             transition: right 0.3s ease;
             z-index: 2000;
             padding: 2rem;
+            overflow-y: auto;           
+            overflow-x: hidden;
         }
 
         .mobile-menu.active {
@@ -224,6 +231,7 @@
         .mobile-menu-links {
             list-style: none;
             margin-top: 4rem;
+            padding-bottom: 2rem;
         }
 
         .mobile-menu-links li {
@@ -515,6 +523,9 @@
                 <li><a href="index.html">PIECES</a></li>
                 <li class="nav-item has-dropdown">
                     <a href="series.html">SERIES</a>
+                    <svg class="dropdown-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
                     <div class="dropdown-menu">
                         <a href="series-detail.html?id=the-dreaming-fable">The Dreaming Fable</a>
                         <a href="series-detail.html?id=animals-soliloquy">Animals' Soliloquy</a>
@@ -591,6 +602,9 @@
                 <li><a href="index.html">PIECES</a></li>
                 <li class="nav-item has-dropdown">
                     <a href="series.html">SERIES</a>
+                    <svg class="dropdown-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
                     <div class="dropdown-menu">
                         <a href="series-detail.html?id=the-dreaming-fable">The Dreaming Fable</a>
                         <a href="series-detail.html?id=animals-soliloquy">Animals' Soliloquy</a>
