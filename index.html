@@ -513,7 +513,7 @@
         }
 
         .modal-close svg {
-            stroke: var(--soft-black);
+            stroke: var(white);
         }
 
         .modal-nav-btn {
@@ -821,18 +821,24 @@
 
             .modal-close {
                 position: fixed;
-                top: 1rem;
-                right: 1rem;
-                width: 36px;
-                height: 36px;
-                background: rgba(0, 0, 0, 0.5);
+                top: 1rem;              
+                right: 1rem;            
+                left: auto;             
+                transform: none;        
+                width: 40px;            
+                height: 40px;
+                background: rgba(0, 0, 0, 0.6);  
                 border-radius: 50%;
                 z-index: 3002;
                 backdrop-filter: blur(10px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .modal-close svg {
                 stroke: white;
+                stroke-width: 2.5;
             }
 
             .modal-nav-btn {
