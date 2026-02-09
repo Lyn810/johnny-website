@@ -215,7 +215,7 @@
             transition: right 0.3s ease;
             z-index: 2000;
             padding: 2rem;
-            overflow-y: auto;           
+            overflow-y: hidden;           
             overflow-x: hidden;
         }
 
@@ -438,7 +438,8 @@
             z-index: 3000;
             display: none;
             animation: fadeIn 0.3s ease;
-            overflow-y: auto;
+            overflow-x: hidden;
+            overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
         }
 
@@ -475,7 +476,10 @@
 
         .modal-close svg {
             stroke: var(white);
-            stroke-width: 2.5;
+            stroke: white;                      
+            stroke-width: 2.5;                  
+            width: 20px;
+            height: 20px;
         }
 
         .modal-nav-btn {
@@ -531,7 +535,7 @@
             flex: 1;
             background: var(--primary-white);
             padding: 4rem;
-            overflow-y: auto;
+            overflow-y: hidden;
         }
 
         .modal-info-container h3 {
@@ -653,14 +657,20 @@
 
         .footer-links li {
             position: relative;
+            white-space: nowrap;
         }
 
         .footer-links .dropdown-menu {
             bottom: 100%;
             top: auto;
             margin-bottom: 1rem;
-            margin-top: 0;
             background: #FFFFFF !important;
+            border: 1px solid var(--mid-gray);
+            min-width: 200px;                      
+            max-width: 90px;                      
+            left: 50%;  
+            right: auto;                           
+            transform: translateX(-50%);
         }
 
         .footer-links .dropdown-menu .view-all {
@@ -669,7 +679,12 @@
         }
 
         .footer-links .dropdown-menu a {
-            color: var(--soft-black) ;    
+            color: var(--soft-black) ;
+            padding: 0.75rem 1rem;                 
+            font-size: 0.85rem;                    
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;    
         }
 
         .footer-links .dropdown-menu a:hover {
@@ -680,10 +695,10 @@
         .footer-links a {
             color: rgba(254, 254, 254, 0.7);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: color 0.3s ease;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
         }
 
         .footer-links a:hover {
@@ -742,19 +757,18 @@
 
             .modal-close {
                 position: fixed;
-                top: 1rem;              
-                right: 1rem;            
-                left: auto;             
-                transform: none;        
-                width: 40px;            
+                top: 1rem;
+                right: 1rem;
+                width: 40px;
                 height: 40px;
-                background: rgba(0, 0, 0, 0.6);  
+                background: rgba(0, 0, 0, 0.3);    
                 border-radius: 50%;
                 z-index: 3002;
-                backdrop-filter: blur(10px);
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                border: none;
+                cursor: pointer;
             }
 
             .modal-nav-btn {
@@ -763,17 +777,22 @@
 
             .modal-image-container {
                 padding: 0;
+                margin: 0;
+                max-width: 100vw;
                 min-height: auto;
                 max-height: 60vh;
+                width: 100vw;
+                height: 100vh;
                 flex: none;
                 position: relative;
                 touch-action: none;
+                overflow: hidden;
             }
 
             .modal-image-container img {
                 max-height: 60vh;
                 max-width: 100%;
-                width: auto;
+                width: 100%;
                 height: auto;
                 object-fit: contain;
                 cursor: zoom-in;
@@ -785,7 +804,9 @@
             }
 
             .modal-info-container {
-                padding: 2rem 1rem;
+                padding: 2rem 1.5rem;
+                width: 100%;
+                box-sizing: border-box;
                 flex: none;
             }
 
@@ -802,12 +823,16 @@
                 flex-direction: column;
                 gap: 1.5rem;
                 text-align: center;
+                padding: 0 1rem;
             }
 
             .footer-links {
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 1rem;
+                padding: 0 1rem;
+                width: 100%;
+                box-sizing: border-box;
             }
         }
     </style>

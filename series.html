@@ -204,7 +204,7 @@
             transition: right 0.3s ease;
             z-index: 2000;
             padding: 2rem;
-            overflow-y: auto;           
+            overflow-y: hidden;           
             overflow-x: hidden;
         }
 
@@ -433,14 +433,20 @@
 
         .footer-links li {
             position: relative;
+            white-space: nowrap;
         }
 
         .footer-links .dropdown-menu {
             bottom: 100%;
             top: auto;
             margin-bottom: 1rem;
-            margin-top: 0;
             background: #FFFFFF !important;
+            border: 1px solid var(--mid-gray);
+            min-width: 200px;                      
+            max-width: 90px;                      
+            left: 50%;  
+            right: auto;                           
+            transform: translateX(-50%);
         }
 
         .footer-links .dropdown-menu .view-all {
@@ -449,7 +455,12 @@
         }
 
         .footer-links .dropdown-menu a {
-            color: var(--soft-black) ;    
+            color: var(--soft-black) ;
+            padding: 0.75rem 1rem;                 
+            font-size: 0.85rem;                    
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;    
         }
 
         .footer-links .dropdown-menu a:hover {
@@ -460,10 +471,10 @@
         .footer-links a {
             color: rgba(254, 254, 254, 0.7);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: color 0.3s ease;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
         }
 
         .footer-links a:hover {
@@ -528,12 +539,16 @@
                 flex-direction: column;
                 gap: 1.5rem;
                 text-align: center;
+                padding: 0 1rem;
             }
 
             .footer-links {
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 1rem;
+                padding: 0 1rem;
+                width: 100%;
+                box-sizing: border-box;
             }
         }
     </style>
