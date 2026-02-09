@@ -178,6 +178,56 @@
             font-weight: 400;
         }
 
+        /* 輪播切換按鈕 */
+        .carousel-nav-btn {
+            position: absolute;
+            top: 45%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid var(--mid-gray);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: none;                      /* 預設隱藏 */
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .carousel-nav-btn:hover {
+            background: white;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .carousel-nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .carousel-nav-btn.prev {
+            left: 1rem;
+        }
+
+        .carousel-nav-btn.next {
+            right: 1rem;
+        }
+
+        .carousel-nav-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--soft-black);
+        }
+
+        /* 桌面版顯示按鈕 */
+        @media (min-width: 769px) {
+            .carousel-nav-btn {
+                display: flex;
+            }
+        }
+
         /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
@@ -357,7 +407,7 @@
 
         /* Gallery Wall Layout */
         .gallery-wall {
-            display: grid;
+            display: none;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
             padding: 1rem 0;
@@ -365,7 +415,7 @@
 
         /* Mobile Carousel */
         .mobile-carousel {
-            display: none;
+            display: block;
             position: relative;
             width: 100%;
             overflow: hidden;
@@ -385,13 +435,15 @@
 
         .mobile-carousel-slide {
             min-width: 100%;
-            padding: 0 1rem;
+            padding: 0 3rem;
             user-select: none;
         }
 
         .mobile-carousel-image {
             width: 100%;
-            padding-bottom: 125%;
+            padding-bottom: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
             background: var(--warm-gray);
@@ -418,11 +470,13 @@
         .carousel-indicators {
             display: flex;
             gap: 0.5rem;
+            margin-top: 2.5rem;
         }
 
         .carousel-indicator {
-            width: 8px;
-            height: 8px;
+            width: 12px;
+            height: 12px;
+            margin: 0 8px;
             border-radius: 50%;
             background: var(--mid-gray);
             cursor: pointer;
@@ -431,7 +485,8 @@
 
         .carousel-indicator.active {
             background: var(--accent-gold);
-            width: 24px;
+            width: 16px;
+            height: 16px;
             border-radius: 4px;
         }
 
@@ -858,6 +913,9 @@
             }
 
             .mobile-carousel {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 2rem 0;
                 display: block;
             }
 
@@ -1059,8 +1117,20 @@
             <!-- Artworks will be dynamically generated from data.json -->
         </div>
 
-        <!-- Mobile Carousel -->
+        <!-- Carousel -->
         <div class="mobile-carousel" id="mobileCarousel">
+            <!-- 左右切換按鈕 (只在桌面版顯示) -->
+            <button class="carousel-nav-btn prev" onclick="prevSlide()" aria-label="Previous">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button class="carousel-nav-btn next" onclick="nextSlide()" aria-label="Next">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+            
             <div class="mobile-carousel-track" id="carouselTrack">
                 <!-- Slides will be generated here -->
             </div>
