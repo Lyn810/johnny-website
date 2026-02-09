@@ -469,29 +469,16 @@
             position: fixed;
             top: 1rem;
             right: 1rem;
-            left: auto; 
-            transform: none;
-            background: rgba(0, 0, 0, 0.3);
-            border: none;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
             z-index: 3002;
-        }
-
-        .modal-close:hover {
-            transform: rotate(90deg);
-            background: var(--accent-gold);
+            backdrop-filter: blur(10px);
         }
 
         .modal-close svg {
-            stroke: white;          
-            stroke-width: 2.5;
+            stroke: white;
         }
 
         .modal-nav-btn {
