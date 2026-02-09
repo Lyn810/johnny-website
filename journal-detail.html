@@ -784,7 +784,7 @@
             `;
 
             document.getElementById('featuredImage').innerHTML = `
-                <img src="${article.image}" alt="${article.title}">
+                <img src="${article.image}" alt="${article.title}" loading="lazy">
             `;
 
             document.getElementById('articleContent').innerHTML = article.content || `
