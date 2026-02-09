@@ -465,9 +465,11 @@
 
         .modal-close {
             position: fixed;
-            top: 2rem;
-            right: 2rem;
-            background: var(--primary-white);
+            top: 1rem;
+            right: 1rem;
+            left: auto; 
+            transform: none;
+            background: rgba(0, 0, 0, 0.3);
             border: none;
             width: 40px;
             height: 40px;
@@ -477,7 +479,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            z-index: 3001;
+            z-index: 3002;
         }
 
         .modal-close:hover {
@@ -486,7 +488,8 @@
         }
 
         .modal-close svg {
-            stroke: var(--soft-black);
+            stroke: white;          
+            stroke-width: 2.5;
         }
 
         .modal-nav-btn {
