@@ -379,6 +379,16 @@
             text-transform: uppercase;
         }
 
+        .series-subtitle-en {
+            font-family: 'Cormorant Garamond', serif;  
+            font-size: 1.3rem;
+            font-weight: 300;
+            font-style: italic;                         
+            letter-spacing: 1px;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+
         .series-header .subtitle {
             font-size: 1.3rem;
             color: var(--text-gray);
@@ -780,6 +790,13 @@
                 letter-spacing: 4px;
             }
 
+            .series-subtitle-en {
+                font-size: 1rem;
+                letter-spacing: 0.5px;
+                margin-top: 0.5rem;
+                margin-bottom: 0.3rem;
+            }
+
             .series-header .subtitle {
                 font-size: 1.1rem;
             }
@@ -1086,6 +1103,7 @@
             const header = document.getElementById('seriesHeader');
             header.innerHTML = `
                 <h1>${currentSeries.title}</h1>
+                <p class="subtitle-en">${currentSeries.subtitle || ''}</p>
                 <p class="subtitle">${currentSeries.titleCh}</p>
                 <p class="count">${currentSeries.count} Artworks</p>
             `;

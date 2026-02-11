@@ -83,6 +83,7 @@
       "id": "the-dreaming-fable",
       "title": "The Dreaming Fable",
       "titleCh": "童話囈語",
+      "subtitle": "",
       "count": 18,
       "coverImage": "images/series/the-dreaming-fable/F-cover.jpg",
       "artworks": [
@@ -232,6 +233,7 @@
       "id": "animals-soliloquy",
       "title": "Animals' Soliloquy",
       "titleCh": "動物的獨白",
+      "subtitle": "",
       "count": 22,
       "coverImage": "images/series/animals-soliloquy/S-cover.jpg",
       "artworks": [
@@ -461,6 +463,7 @@
       "id": "pets-vs-pets",
       "title": "Pets vs Pets",
       "titleCh": "寵物 vs 寵物",
+      "subtitle": "",
       "count": 11,
       "coverImage": "images/series/pets-vs-pets/P-cover.jpg",
       "artworks": [
@@ -580,6 +583,7 @@
       "id": "joyful-town",
       "title": "Joyful Town",
       "titleCh": "快樂町",
+      "subtitle": "",
       "count": 9,
       "coverImage": "images/series/joyful-town/J-cover.jpg",
       "artworks": [
@@ -670,6 +674,7 @@
       "id": "the-invisible-citizens",
       "title": "The Invisible Citizens",
       "titleCh": "被城市遺忘的人",
+      "subtitle": "",
       "count": 10,
       "coverImage": "images/series/the-invisible-citizens/C-cover.jpg",
       "artworks": [
@@ -779,6 +784,7 @@
       "id": "the-weight-of-existence",
       "title": "The Weight of Existence",
       "titleCh": "生命重量之承載",
+      "subtitle": "",
       "count": 6,
       "coverImage": "images/series/the-weight-of-existence/E-cover.jpg",
       "artworks": [
