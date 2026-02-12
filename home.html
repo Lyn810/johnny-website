@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
-    <title>Johnny Leo | Journal</title>
+    <title>Johnny Leo | Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -38,14 +38,7 @@
             forced-color-adjust: none;
         }
 
-        img {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-            -webkit-user-drag: none;
-            -webkit-touch-callout: none;
-        }
-
+        /* Navigation (與其他頁一致) */
         nav {
             position: fixed;
             top: 0;
@@ -185,6 +178,7 @@
             font-weight: 400;
         }
 
+        /* Mobile menu */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -254,7 +248,6 @@
             letter-spacing: 2px;
         }
 
-        /* Mobile Series Dropdown */
         .mobile-nav-item.has-dropdown {
             position: relative;
         }
@@ -269,10 +262,6 @@
             border: none;
             width: 100%;
             text-align: left;
-        }
-
-        .mobile-dropdown-toggle a {
-            flex: 1;
         }
 
         .mobile-dropdown-toggle span {
@@ -331,107 +320,204 @@
             margin-top: 0.5rem;
         }
 
+        /* Main layout */
         .main-content {
             margin-top: 100px;
-            padding: 3rem 2rem 4rem;
-            max-width: 1200px;
+            padding: 4rem 3rem 5rem;
+            max-width: 1600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .back-button:hover {
-            color: var(--accent-gold);
-        }
-
-        .back-button svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .article-header {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
+        /* Hero section inspired by MUSIENKO */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+            gap: 3rem;
+            padding: 3rem 3rem 3.5rem;
+            background: #F7F7F5;
+            border-left: 1px solid var(--mid-gray);
+            border-right: 1px solid var(--mid-gray);
             border-bottom: 1px solid var(--mid-gray);
         }
 
-        .article-date {
-            color: var(--accent-gold);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .article-header h1 {
+        .hero-title-large {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            line-height: 1.3;
+            font-size: 3.2rem;
+            letter-spacing: 0.35em;
+            font-weight: 300;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            align-self: center;
         }
 
-        .article-featured-image {
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
-            margin-bottom: 3rem;
+        .hero-caption {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-heading h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            font-weight: 300;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-heading p {
+            color: var(--text-gray);
+            font-size: 0.98rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .hero-media {
+            position: relative;
             background: var(--warm-gray);
+            min-height: 360px;
+            overflow: hidden;
         }
 
-        .article-featured-image img {
+        .hero-media img,
+        .hero-media video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
-        .article-content {
-            font-size: 1.1rem;
-            line-height: 2;
-            color: var(--soft-black);
+        .hero-media-overlay {
+            position: absolute;
+            bottom: 1.8rem;
+            left: 2rem;
+            color: #FFFFFF;
+            text-shadow: 0 4px 16px rgba(0,0,0,0.4);
         }
 
-        .article-content p {
-            margin-bottom: 1.5rem;
+        .hero-media-overlay span {
+            font-size: 0.8rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
         }
 
-        .article-content h2 {
+        .hero-media-overlay h2 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2rem;
             font-weight: 400;
-            margin: 3rem 0 1.5rem;
-            letter-spacing: 1px;
+            margin-top: 0.4rem;
         }
 
-        .article-gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .hero-actions {
+            display: flex;
             gap: 1.5rem;
-            margin: 3rem 0;
+            margin-top: 0.5rem;
         }
 
-        .article-gallery img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--soft-black);
+            background: transparent;
+            color: var(--soft-black);
+            font-size: 0.9rem;
+            letter-spacing: 0.18em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
 
+        .hero-button.primary {
+            background: var(--soft-black);
+            color: #FFFFFF;
+            border-color: var(--soft-black);
+        }
+
+        .hero-button span {
+            font-size: 1rem;
+        }
+
+        .hero-button:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: #FFFFFF;
+        }
+
+        /* Highlight grid */
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 2rem;
+            padding: 3rem 3rem 0;
+            border-left: 1px solid var(--mid-gray);
+            border-right: 1px solid var(--mid-gray);
+        }
+
+        .highlight-card {
+            border-top: 1px solid var(--mid-gray);
+            padding-top: 1.6rem;
+        }
+
+        .highlight-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            margin-bottom: 0.3rem;
+        }
+
+        .highlight-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .highlight-text {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 0.9rem;
+        }
+
+        .highlight-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--accent-gold);
+        }
+
+        .highlight-link:hover {
+            color: var(--soft-black);
+        }
+
+        /* Footer (與其他頁一致) */
         footer {
             background: var(--soft-black);
             color: var(--primary-white);
             padding: 3rem 2rem 1.5rem;
-            margin-top: 4rem;
         }
 
         .footer-content {
@@ -479,62 +565,24 @@
             color: var(--accent-gold);
         }
 
-        /* Footer 下拉選單 */
-        .footer-links li {
-            position: relative;
-        }
-
-        .footer-links .nav-item.has-dropdown {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .footer-links .dropdown-icon {
-            width: 16px;
-            height: 16px;
-            stroke: rgba(254, 254, 254, 0.7);    
-            transition: transform 0.3s ease;
-        }
-
-        .footer-links .nav-item.has-dropdown:hover .dropdown-icon {
-            transform: rotate(180deg);
-            stroke: var(--accent-gold);
-        }
-
-        .footer-links .dropdown-menu {
-            bottom: 100%;                        
-            top: auto;
-            margin-bottom: 1rem;
-            margin-top: 0;
-            background: #FFFFFF !important;      
-            border: 1px solid var(--mid-gray);
-        }
-
-        .footer-links .dropdown-menu a {
-            color: var(--soft-black) !important; 
-            padding: 0.75rem 1.5rem;
-        }
-
-        .footer-links .dropdown-menu a:hover {
-            background: var(--warm-gray);
-            color: var(--accent-gold) !important;
-        }
-
-        .footer-links .dropdown-menu .dropdown-divider {
-            background: var(--mid-gray);
-        }
-
-        .footer-links .dropdown-menu .view-all {
-            color: var(--accent-gold) !important;
-        }
-
         .footer-bottom {
             text-align: center;
             padding-top: 1.5rem;
             color: rgba(254, 254, 254, 0.5);
             font-size: 0.85rem;
             letter-spacing: 1px;
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+                padding: 2.5rem 2.5rem 3rem;
+            }
+
+            .highlight-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                padding: 2.5rem 2.5rem 0;
+            }
         }
 
         @media (max-width: 768px) {
@@ -555,33 +603,38 @@
             }
 
             .main-content {
-                margin-top: 85px;
-                padding: 2rem 1rem 3rem;
+                padding: 3rem 1.5rem 4rem;
             }
 
-            .article-header h1 {
-                font-size: 2rem;
-                letter-spacing: 1px;
-            }
-
-            .article-featured-image {
-                height: 300px;
-            }
-
-            .article-content {
-                font-size: 1rem;
-            }
-
-            .article-content h2 {
-                font-size: 1.5rem;
-            }
-
-            .article-gallery {
+            .hero {
                 grid-template-columns: 1fr;
+                padding: 2.2rem 1.8rem 2.6rem;
             }
 
-            .article-gallery img {
-                height: 250px;
+            .hero-title-large {
+                writing-mode: horizontal-tb;
+                transform: none;
+                text-align: left;
+                font-size: 2.2rem;
+                letter-spacing: 0.25em;
+            }
+
+            .hero-caption {
+                margin-top: 1.2rem;
+            }
+
+            .hero-heading h1 {
+                font-size: 2.1rem;
+                letter-spacing: 0.18em;
+            }
+
+            .hero-media {
+                min-height: 260px;
+            }
+
+            .highlight-grid {
+                grid-template-columns: 1fr;
+                padding: 2.5rem 1.8rem 0;
             }
 
             .footer-content {
@@ -594,20 +647,6 @@
 
             .footer-links {
                 display: none !important;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-                padding: 0 1rem; 
-                width: 100%;
-                box-sizing: border-box;     
-            }
-            .footer-links li {
-                white-space: nowrap;     
-            }
-            
-            .footer-links a {
-                font-size: 0.85rem;      
-                letter-spacing: 1.5px;   
             }
         }
     </style>
@@ -678,26 +717,62 @@
     </div>
 
     <main class="main-content">
-        <a href="journal.html" class="back-button">
-            <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Journal
-        </a>
-
-        <article>
-            <div class="article-header" id="articleHeader">
-                <!-- Will be filled by JavaScript -->
+        <section class="hero">
+            <div class="hero-left">
+                <div class="hero-title-large">Johnny Leo</div>
+                <div class="hero-caption">Contemporary Art &amp; Animamix</div>
             </div>
-
-            <div class="article-featured-image" id="featuredImage">
-                <!-- Will be filled by JavaScript -->
+            <div class="hero-right">
+                <div class="hero-heading">
+                    <h1>Visual stories between dream and reality</h1>
+                    <p>Paintings, series and characters across two decades of practice</p>
+                </div>
+                <div class="hero-media">
+                    <img src="images/series/the-dreaming-fable/F-Unbearable.jpg" alt="The Unbearable Lightness of Being">
+                    <div class="hero-media-overlay">
+                        <span>Featured series</span>
+                        <h2>The Dreaming Fable</h2>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="index.html" class="hero-button primary">
+                        <span>PIECES</span>
+                    </a>
+                    <a href="series.html" class="hero-button">
+                        <span>SERIES</span>
+                    </a>
+                </div>
             </div>
+        </section>
 
-            <div class="article-content" id="articleContent">
-                <!-- Will be filled by JavaScript -->
-            </div>
-        </article>
+        <section class="highlight-grid">
+            <article class="highlight-card">
+                <div class="highlight-label">COLLECTIONS</div>
+                <div class="highlight-title">Series &amp; narratives</div>
+                <p class="highlight-text">
+                    Explore long-form bodies of work such as <em>The Dreaming Fable</em>, <em>Animals' Soliloquy</em> and more, each unfolding its own visual world.
+                </p>
+                <a href="series.html" class="highlight-link">View all series →</a>
+            </article>
+
+            <article class="highlight-card">
+                <div class="highlight-label">PAINTINGS</div>
+                <div class="highlight-title">Selected pieces</div>
+                <p class="highlight-text">
+                    A curated wall of individual works across different periods – oil on canvas, acrylic and mixed media.
+                </p>
+                <a href="index.html" class="highlight-link">Browse pieces →</a>
+            </article>
+
+            <article class="highlight-card">
+                <div class="highlight-label">INSIGHT</div>
+                <div class="highlight-title">Journal &amp; news</div>
+                <p class="highlight-text">
+                    Exhibitions, honors and new series in progress, collected in one place for curators and collectors.
+                </p>
+                <a href="journal.html" class="highlight-link">Read journal →</a>
+            </article>
+        </section>
     </main>
 
     <footer>
@@ -734,14 +809,6 @@
     </footer>
 
     <script>
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
-        document.addEventListener('selectstart', (e) => {
-            if (e.target.tagName === 'IMG') e.preventDefault();
-        });
-        document.addEventListener('dragstart', (e) => {
-            if (e.target.tagName === 'IMG') e.preventDefault();
-        });
-
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
@@ -757,49 +824,13 @@
             }
         }
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const articleId = urlParams.get('id');
-
-        async function loadArticle() {
-            try {
-                const response = await fetch('data.json');
-                const data = await response.json();
-                const article = data.journal.find(item => item.id === articleId);
-                
-                if (article) {
-                    renderArticle(article);
-                } else {
-                    document.getElementById('articleHeader').innerHTML = '<p>Article not found</p>';
-                }
-            } catch (error) {
-                console.error('Error loading article:', error);
-                document.getElementById('articleHeader').innerHTML = '<p>Error loading article</p>';
-            }
-        }
-
-        function renderArticle(article) {
-            document.getElementById('articleHeader').innerHTML = `
-                <p class="article-date">${article.date}</p>
-                <h1>${article.title}</h1>
-            `;
-
-            document.getElementById('featuredImage').innerHTML = `
-                <img src="${article.image}" alt="${article.title}" loading="lazy">
-            `;
-
-            document.getElementById('articleContent').innerHTML = article.content || `
-                <p>${article.excerpt}</p>
-            `;
-        }
-
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 const menu = document.getElementById('mobileMenu');
                 menu.classList.remove('active');
             }
         });
-
-        loadArticle();
     </script>
 </body>
 </html>
+
