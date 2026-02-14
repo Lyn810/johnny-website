@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
-    <title>Johnny Leo | Collection</title>
+    <title>Johnny Leo | Pieces</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -38,17 +38,7 @@
             forced-color-adjust: none;
         }
 
-        /* 防盜圖保護 */
-        img {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-user-drag: none;
-            -webkit-touch-callout: none;
-            pointer-events: auto;
-        }
-
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -188,6 +178,7 @@
             font-weight: 400;
         }
 
+        /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -334,6 +325,7 @@
             margin-top: 0.5rem;
         }
 
+        /* Main Content */
         .main-content {
             margin-top: 100px;
             padding: 3rem 2rem 4rem;
@@ -342,66 +334,111 @@
             margin-right: auto;
         }
 
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .back-button:hover {
-            color: var(--accent-gold);
-        }
-
-        .back-button svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .series-header {
+        .page-header {
             text-align: center;
             margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--mid-gray);
         }
 
-        .series-header h1 {
+        .page-header h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 3rem;
             font-weight: 300;
-            letter-spacing: 6px;
-            margin-bottom: 0.4rem;   /* 主標與副標間距略小 */
+            letter-spacing: 8px;
+            margin-bottom: 0.8rem;
             text-transform: uppercase;
         }
 
-        .series-header .subtitle {
-            font-size: 1rem;           /* 與 PIECES 副標字級一致 */
-            color: var(--text-gray);   /* 與 PIECES 副標相同顏色 */
-            letter-spacing: 2px;       /* 與 PIECES 副標字距一致 */
-            margin-bottom: 1.1rem;     /* 副標與 artworks 數量的間距更大 */
-            font-weight: 300;          /* 與 PIECES 副標粗細一致 */
-        }
-
-        .series-header .count {
-            color: var(--accent-gold);
-            font-size: 0.9rem;
+        .page-header p {
+            color: var(--text-gray);
+            font-size: 1rem;
             letter-spacing: 2px;
+            font-weight: 300;
         }
 
-        .artworks-grid {
+        /* Gallery Wall Layout */
+        .gallery-wall {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        /* Mobile Carousel */
+        .mobile-carousel {
+            display: none;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            touch-action: pan-y;
+        }
+
+        .mobile-carousel-track {
+            display: flex;
+            transition: transform 0.3s ease;
+            cursor: grab;
+        }
+
+        .mobile-carousel-track.grabbing {
+            cursor: grabbing;
+            transition: none;
+        }
+
+        .mobile-carousel-slide {
+            min-width: 100%;
+            padding: 0 1rem;
+            user-select: none;
+        }
+
+        .mobile-carousel-image {
+            width: 100%;
+            padding-bottom: 125%;
+            position: relative;
+            overflow: hidden;
+            background: var(--warm-gray);
+            margin-bottom: 1rem;
+        }
+
+        .mobile-carousel-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--mid-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: var(--accent-gold);
+            width: 24px;
+            border-radius: 4px;
         }
 
         .artwork-card {
             cursor: pointer;
             transition: all 0.4s ease;
+            break-inside: avoid;
         }
 
         .artwork-card:hover {
@@ -477,11 +514,9 @@
 
         .modal-close {
             position: fixed;
-            top: 1rem;
-            right: 1rem;
-            left: auto; 
-            transform: none;
-            background: rgba(0, 0, 0, 0.3);
+            top: 2rem;
+            right: 2rem;
+            background: var(--primary-white);
             border: none;
             width: 40px;
             height: 40px;
@@ -491,7 +526,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            z-index: 3002;
+            z-index: 3001;
         }
 
         .modal-close:hover {
@@ -500,8 +535,7 @@
         }
 
         .modal-close svg {
-            stroke: white;          
-            stroke-width: 2.5;
+            stroke: var(--soft-black);
         }
 
         .modal-nav-btn {
@@ -588,7 +622,6 @@
             font-size: 1rem;
         }
 
-
         /* Status */
         .modal-status {
             margin-top: 1.5rem;
@@ -617,29 +650,58 @@
             color: var(--soft-black);
         }
 
-
-
-
+        /* Concept Toggle */
         .modal-concept {
             margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid var(--mid-gray);
         }
 
-        .modal-concept h4 {
+        .concept-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            padding: 0.5rem 0;
+        }
+
+        .concept-toggle h4 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
             font-weight: 400;
-            margin-bottom: 1.5rem;
             letter-spacing: 1px;
+            margin: 0;
         }
 
-        .modal-concept p {
+        .toggle-icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .concept-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .concept-content.open {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+
+        .concept-content p {
             color: var(--text-gray);
             line-height: 2;
             font-size: 1rem;
         }
 
+        /* Footer */
         footer {
             background: var(--soft-black);
             color: var(--primary-white);
@@ -717,6 +779,11 @@
         .footer-links .dropdown-menu {
             bottom: 100%;                        
             top: auto;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            max-width: 90vw;                   
+            min-width: 200px;
             margin-bottom: 1rem;
             margin-top: 0;
             background: #FFFFFF !important;      
@@ -749,9 +816,10 @@
             letter-spacing: 1px;
         }
 
+        /* Responsive */
         @media (max-width: 1024px) {
-            .artworks-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            .gallery-wall {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             }
         }
 
@@ -777,18 +845,33 @@
                 padding: 2rem 1rem 3rem;
             }
 
-            .series-header h1 {
+            .page-header h1 {
                 font-size: 2rem;
-                letter-spacing: 4px;
+                letter-spacing: 6px;
             }
 
-            .series-header .subtitle {
-                font-size: 1.1rem;
+            .page-header p {
+                font-size: 0.9rem;
             }
 
-            .artworks-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+            .gallery-wall {
+                display: none;
+            }
+
+            .mobile-carousel {
+                display: block;
+            }
+
+            .artwork-image-wrapper {
+                padding-bottom: 140%;
+            }
+
+            .artwork-info h3 {
+                font-size: 1rem;
+            }
+
+            .artwork-meta {
+                font-size: 0.75rem;
             }
 
             .modal-close {
@@ -856,6 +939,15 @@
                 font-size: 1.6rem;
             }
 
+            .modal-detail-item {
+                margin-bottom: 1.5rem;
+            }
+
+            .modal-concept {
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+            }
+
             .artwork-modal.active {
                 flex-direction: column;
                 align-items: stretch;
@@ -890,6 +982,7 @@
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">Johnny Leo</a>
@@ -923,6 +1016,7 @@
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" onclick="toggleMobileMenu()">
             <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
@@ -954,23 +1048,32 @@
         </ul>
     </div>
 
+    <!-- Main Content -->
     <main class="main-content">
-        <a href="series.html" class="back-button">
-            <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Series
-        </a>
-
-        <div class="series-header" id="seriesHeader">
-            <!-- Will be filled by JavaScript -->
+        <div class="page-header">
+            <h1>PIECES</h1>
+            <p>A curated collection of contemporary art</p>
         </div>
 
-        <div class="artworks-grid" id="artworksGrid">
-            <!-- Artworks will be dynamically generated -->
+        <!-- Desktop Gallery Wall -->
+        <div class="gallery-wall" id="galleryWall">
+            <!-- Artworks will be dynamically generated from data.json -->
+        </div>
+
+        <!-- Mobile Carousel -->
+        <div class="mobile-carousel" id="mobileCarousel">
+            <div class="mobile-carousel-track" id="carouselTrack">
+                <!-- Slides will be generated here -->
+            </div>
+            <div class="carousel-controls">
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <!-- Indicators will be generated here -->
+                </div>
+            </div>
         </div>
     </main>
 
+    <!-- Artwork Modal -->
     <div class="artwork-modal" id="artworkModal">
         <button class="modal-close" onclick="closeModal()">
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -995,6 +1098,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-left">
@@ -1029,7 +1133,7 @@
     </footer>
 
     <script>
-        // 防盜圖保護
+        // 防盜圖保護措施
         document.addEventListener('contextmenu', (e) => e.preventDefault());
         document.addEventListener('selectstart', (e) => {
             if (e.target.tagName === 'IMG') e.preventDefault();
@@ -1037,12 +1141,28 @@
         document.addEventListener('dragstart', (e) => {
             if (e.target.tagName === 'IMG') e.preventDefault();
         });
+        // 防止長按保存圖片(iOS/Android)
         document.addEventListener('touchstart', (e) => {
             if (e.target.tagName === 'IMG') {
                 e.target.style.webkitTouchCallout = 'none';
             }
         });
+        // 添加CSS防止複製
+        const style = document.createElement('style');
+        style.textContent = `
+            img {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -webkit-user-drag: none;
+                -webkit-touch-callout: none;
+                pointer-events: auto;
+            }
+        `;
+        document.head.appendChild(style);
 
+        // Mobile menu toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
@@ -1058,14 +1178,24 @@
             }
         }
 
-        let currentSeries = null;
+        // Load data from JSON
+        let artworksData = [];
+        let currentSlide = 0;
         let currentModalIndex = 0;
-        let scale = 1;
-        let lastTapTime = 0;
-
+        let autoplayInterval;
+        
+        // 觸控滑動變數（手機輪播）
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isDragging = false;
+        
         // Modal 觸控滑動變數（大圖檢視）
         let modalTouchStartX = 0;
         let modalTouchEndX = 0;
+        
+        // 圖片縮放變數
+        let scale = 1;
+        let lastTapTime = 0;
 
         // Modal 觸控事件（只綁一次，避免重複觸發多次 next/prev）
         function handleModalTouchStart(e) {
@@ -1086,39 +1216,88 @@
             }
         }
 
-        // Get collection ID from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const seriesId = urlParams.get('id');
-
         async function loadData() {
             try {
                 const response = await fetch('data.json');
                 const data = await response.json();
-                currentSeries = data.series.find(c => c.id === seriesId);
-                
-                if (currentSeries) {
-                    renderCollection();
-                } else {
-                    document.getElementById('seriesHeader').innerHTML = '<p>Series not found</p>';
-                }
+                artworksData = data.pieces;
+                renderGallery();
+                renderCarousel();
+                initCarouselTouch();
+                startAutoplay();
             } catch (error) {
                 console.error('Error loading data:', error);
-                document.getElementById('seriesHeader').innerHTML = '<p>Error loading series</p>';
+                artworksData = generatePlaceholderData();
+                renderGallery();
+                renderCarousel();
+                initCarouselTouch();
+                startAutoplay();
             }
         }
 
-        function renderCollection() {
-            const header = document.getElementById('seriesHeader');
-            header.innerHTML = `
-                <h1>${currentSeries.title}</h1>
-                <p class="subtitle">${currentSeries.subtitle || ''}</p>
-                <p class="count">${currentSeries.count} Artworks</p>
-            `;
+        function generatePlaceholderData() {
+            return [
+                {
+                    title: "Morning Light",
+                    titleCh: "晨曦之間",
+                    year: "2024",
+                    medium: "Oil on Canvas",
+                    size: "120 × 90 cm",
+                    concept: "This piece explores the quiet moments of dawn, when light first breaks through darkness.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F0E8D8'/%3E%3Cstop offset='100%25' style='stop-color:%23D8C8B0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a1)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Urban Voice",
+                    titleCh: "城市之聲",
+                    year: "2024",
+                    medium: "Acrylic",
+                    size: "150 × 100 cm",
+                    concept: "An exploration of the rhythm and energy of metropolitan life.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D8E8F0'/%3E%3Cstop offset='100%25' style='stop-color:%23B0C8D8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a2)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Silent Forest",
+                    titleCh: "靜默森林",
+                    year: "2023",
+                    medium: "Mixed Media",
+                    size: "100 × 100 cm",
+                    concept: "A meditation on nature's quietude and the healing power of natural spaces.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D8C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C8B0A0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a3)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Traces of Time",
+                    titleCh: "時間的痕跡",
+                    year: "2023",
+                    medium: "Oil on Canvas",
+                    size: "130 × 95 cm",
+                    concept: "Time leaves its mark on everything it touches.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F8F0E8'/%3E%3Cstop offset='100%25' style='stop-color:%23E0D0C0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a4)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Metropolitan Rhythm",
+                    titleCh: "都會律動",
+                    year: "2024",
+                    medium: "Acrylic",
+                    size: "140 × 110 cm",
+                    concept: "The pulse of city life captured through bold gestures and vibrant color.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8D8E0'/%3E%3Cstop offset='100%25' style='stop-color:%23A0B8C8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a5)'/%3E%3C/svg%3E"
+                },
+                {
+                    title: "Light and Shadow",
+                    titleCh: "光影交織",
+                    year: "2023",
+                    medium: "Mixed Media",
+                    size: "110 × 85 cm",
+                    concept: "An investigation into the eternal dance between illumination and darkness.",
+                    image: "data:image/svg+xml,%3Csvg width='600' height='800' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E0D0C8'/%3E%3Cstop offset='100%25' style='stop-color:%23C0B0A8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23a6)'/%3E%3C/svg%3E"
+                }
+            ];
+        }
 
-            const grid = document.getElementById('artworksGrid');
-            grid.innerHTML = '';
-
-            currentSeries.artworks.forEach((artwork, index) => {
+        function renderGallery() {
+            const gallery = document.getElementById('galleryWall');
+            gallery.innerHTML = '';
+            artworksData.forEach((artwork, index) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
                 card.onclick = () => openModal(index);
@@ -1131,13 +1310,117 @@
                         <p class="artwork-meta">${artwork.year} | ${artwork.size}</p>
                     </div>
                 `;
-                grid.appendChild(card);
+                gallery.appendChild(card);
             });
         }
 
+        function renderCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const indicators = document.getElementById('carouselIndicators');
+            track.innerHTML = '';
+            indicators.innerHTML = '';
+            
+            artworksData.forEach((artwork, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'mobile-carousel-slide';
+                slide.onclick = () => openModal(index);
+                slide.innerHTML = `
+                    <div class="mobile-carousel-image">
+                        <img src="${artwork.image}" alt="${artwork.title}" loading="lazy">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>${artwork.title}</h3>
+                        <p class="artwork-meta">${artwork.year} | ${artwork.size}</p>
+                    </div>
+                `;
+                track.appendChild(slide);
+                
+                const indicator = document.createElement('div');
+                indicator.className = 'carousel-indicator' + (index === 0 ? ' active' : '');
+                indicator.onclick = () => goToSlide(index);
+                indicators.appendChild(indicator);
+            });
+        }
+
+        // 初始化觸控滑動
+        function initCarouselTouch() {
+            const track = document.getElementById('carouselTrack');
+            
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                isDragging = true;
+                track.classList.add('grabbing');
+                stopAutoplay();
+            });
+            
+            track.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                touchEndX = e.touches[0].clientX;
+            });
+            
+            track.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                track.classList.remove('grabbing');
+                isDragging = false;
+                
+                const swipeDistance = touchStartX - touchEndX;
+                const threshold = 50;
+                
+                if (swipeDistance > threshold) {
+                    nextSlide();
+                } else if (swipeDistance < -threshold) {
+                    prevSlide();
+                }
+                
+                startAutoplay();
+            });
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % artworksData.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + artworksData.length) % artworksData.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(() => {
+                nextSlide();
+            }, 4000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+
+        // Modal functions
         function openModal(index) {
             currentModalIndex = index;
-            const artwork = currentSeries.artworks[index];
+            const artwork = artworksData[index];
             const modal = document.getElementById('artworkModal');
             const modalImage = document.getElementById('modalImage');
             const modalInfo = document.getElementById('modalInfo');
@@ -1147,9 +1430,10 @@
             modalImage.style.transform = 'scale(1)';
             modalImage.classList.remove('zoomed');
             
+            // 添加雙擊縮放
             modalImage.onclick = handleImageZoom;
             
-            // Modal swipe support（僅第一次開啟時綁定一次）
+            // 綁定 modal 觸控滑動（僅第一次開啟時綁定一次）
             if (!modal._touchBound) {
                 modal.addEventListener('touchstart', handleModalTouchStart);
                 modal.addEventListener('touchend', handleModalTouchEnd);
@@ -1160,8 +1444,7 @@
             const statusHTML = artwork.status === 'sold' 
                 ? '<div class="modal-status"><span class="status-sold">SOLD</span></div>'
                 : '<div class="modal-status"><a href="inquiry.html" class="status-inquiry">INQUIRY →</a></div>';
-
-
+            
             modalInfo.innerHTML = `
                 <h3>${artwork.title}</h3>
                 <div class="modal-detail-item">
@@ -1180,13 +1463,16 @@
             `;
 
             modal.classList.add('active');
+            stopAutoplay();
         }
 
+        // 圖片縮放功能
         function handleImageZoom(e) {
             const img = e.target;
             const currentTime = new Date().getTime();
             const tapInterval = currentTime - lastTapTime;
             
+            // 雙擊檢測
             if (tapInterval < 300 && tapInterval > 0) {
                 if (scale === 1) {
                     scale = 2;
@@ -1201,18 +1487,29 @@
             lastTapTime = currentTime;
         }
 
+        function toggleConcept() {
+            const content = document.querySelector('.concept-content');
+            const icon = document.querySelector('.toggle-icon');
+            
+            if (content && icon) {
+                content.classList.toggle('open');
+                icon.classList.toggle('open');
+            }
+        }
+
         function closeModal() {
             document.getElementById('artworkModal').classList.remove('active');
             scale = 1;
+            startAutoplay();
         }
 
         function nextArtwork() {
-            currentModalIndex = (currentModalIndex + 1) % currentSeries.artworks.length;
+            currentModalIndex = (currentModalIndex + 1) % artworksData.length;
             openModal(currentModalIndex);
         }
 
         function prevArtwork() {
-            currentModalIndex = (currentModalIndex - 1 + currentSeries.artworks.length) % currentSeries.artworks.length;
+            currentModalIndex = (currentModalIndex - 1 + artworksData.length) % artworksData.length;
             openModal(currentModalIndex);
         }
 
@@ -1228,6 +1525,16 @@
             } else if (e.key === 'ArrowRight') {
                 if (document.getElementById('artworkModal').classList.contains('active')) {
                     nextArtwork();
+                }
+            }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoplay();
+            } else {
+                if (!document.getElementById('artworkModal').classList.contains('active')) {
+                    startAutoplay();
                 }
             }
         });
