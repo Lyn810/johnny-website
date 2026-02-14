@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="color-scheme" content="light">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
     <title>Johnny Leo | Artist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-white: #FEFEFE;
+            --primary-white: #FFFFFF;
             --soft-black: #1A1A1A;
             --warm-gray: #F5F5F3;
             --mid-gray: #D4D4D4;
@@ -24,25 +24,27 @@
             box-sizing: border-box;
         }
 
-        /* Force light mode - prevent dark mode override */
         html {
             color-scheme: light !important;
             background-color: #FFFFFF !important;
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Jost', sans-serif;
-            background-color: var(--primary-white);
-            color: var(--soft-black);
+            background-color: #FFFFFF;
+            color: #1A1A1A;
             line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
             forced-color-adjust: none;
         }
 
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(254, 254, 254, 0.98);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid var(--mid-gray);
@@ -98,25 +100,17 @@
             width: 100%;
         }
 
-        .nav-links a.active {
-            color: var(--accent-gold);
-        }
-
-        /* Series Dropdown */
-        .nav-item {
-            position: relative;
-        }
-
         .nav-item.has-dropdown {
+            position: relative;
             display: flex;
             align-items: center;
             gap: 0.3rem;
         }
 
-        .nav-item.has-dropdown .dropdown-icon {
+        .dropdown-icon {
             width: 16px;
             height: 16px;
-            stroke: currentColor;
+            stroke: var(--soft-black);
             transition: transform 0.3s ease;
         }
 
@@ -128,20 +122,17 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background: #FFFFFF;
+            margin-top: 1rem;
+            background: white;
             min-width: 220px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--mid-gray);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
             transition: all 0.3s ease;
-            z-index: 1001;
-            padding: 0.5rem 0;
-            margin-top: 1rem;
         }
 
-        .nav-item:hover .dropdown-menu {
+        .nav-item.has-dropdown:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
@@ -155,18 +146,18 @@
             font-size: 0.9rem;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
         }
 
         .dropdown-menu a:hover {
             background: var(--warm-gray);
             color: var(--accent-gold);
-            padding-left: 2rem;
         }
 
-        .dropdown-menu .dropdown-divider {
+        .dropdown-divider {
             height: 1px;
             background: var(--mid-gray);
             margin: 0.5rem 0;
@@ -186,8 +177,8 @@
         }
 
         .mobile-menu-btn svg {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             stroke: var(--soft-black);
         }
 
@@ -199,13 +190,12 @@
             width: 70%;
             max-width: 300px;
             height: 100vh;
-            background: #FFFFFF !important;
+            background: #FFFFFF;
             box-shadow: -2px 0 10px rgba(0,0,0,0.1);
             transition: right 0.3s ease;
             z-index: 2000;
             padding: 2rem;
-            overflow-y: auto;           
-            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         .mobile-menu.active {
@@ -246,7 +236,6 @@
             letter-spacing: 2px;
         }
 
-        /* Mobile Series Dropdown */
         .mobile-nav-item.has-dropdown {
             position: relative;
         }
@@ -263,14 +252,9 @@
             text-align: left;
         }
 
-        .mobile-dropdown-toggle a {
-            flex: 1;
-        }
-
         .mobile-dropdown-toggle span {
             flex: 1;
             color: var(--soft-black);
-            text-decoration: none;
             font-size: 1.2rem;
             font-weight: 300;
             letter-spacing: 2px;
@@ -281,7 +265,6 @@
             height: 20px;
             stroke: var(--soft-black);
             transition: transform 0.3s ease;
-            flex-shrink: 0;
         }
 
         .mobile-dropdown-icon.open {
@@ -305,11 +288,9 @@
             padding: 0.75rem 0;
             font-size: 1rem;
             color: var(--text-gray);
-            text-decoration: none;
             border-left: 2px solid transparent;
             padding-left: 1rem;
             transition: all 0.3s ease;
-            letter-spacing: 1px;
         }
 
         .mobile-dropdown-menu a:hover {
@@ -320,163 +301,286 @@
         .mobile-dropdown-menu .view-all {
             color: var(--accent-gold);
             font-weight: 400;
-            margin-top: 0.5rem;
         }
 
+        /* Main Content */
         .main-content {
-            margin-top: 100px;
-            padding: 4rem 3rem 6rem;
-            max-width: 1200px;
+            margin-top: 80px;
+            padding: 4rem 3rem;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* 新版 Artist 履歷版型 */
-        .artist-layout {
-            display: flex;
-            gap: 3rem;
-            border-left: 1px solid var(--mid-gray);
-            border-right: 1px solid var(--mid-gray);
-            background: #F7F7F5;
-            padding: 3rem 3rem 3.5rem;
+        /* Hero Section */
+        .artist-hero {
+            text-align: center;
+            padding: 4rem 0 5rem;
+            background: var(--warm-gray);
+            margin: 0 -3rem 5rem;
+            padding-left: 3rem;
+            padding-right: 3rem;
         }
 
-        .artist-left {
-            width: 22%;
-            border-right: 1px solid var(--mid-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-right: 1.5rem;
-        }
-
-        .vertical-name {
+        .artist-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.2rem;
-            letter-spacing: 0.35em;
+            font-size: 5rem;
             font-weight: 300;
-            text-transform: uppercase;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg); /* 由下往上閱讀 */
-        }
-
-        .artist-right {
-            flex: 1;
-            padding-left: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
-        
-        .page-header {
-            text-align: left;
-        }
-        
-        .page-header h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.2rem;
-            font-weight: 300;
-            letter-spacing: 6px;
-            margin-bottom: 0.3rem;
-            text-transform: uppercase;
-        }
-        
-        .page-header .subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: var(--text-gray);
             letter-spacing: 0.3em;
-            font-weight: 300;
             text-transform: uppercase;
+            margin-bottom: 1rem;
         }
 
-        .artist-top {
-            display: flex;
-            gap: 2.5rem;
-            align-items: flex-start;
-        }
-
-        /* Artist Photo */
-        .artist-photo {
-            width: 210px;
-            height: 260px;
-            object-fit: cover;
-            display: block;
-            border: 2px solid var(--mid-gray);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            background: #EEE;
-        }
-        
-        .bio-section {
-            flex: 1;
-            padding-top: 0.3rem;
-        }
-        
-        .bio-section p {
+        .artist-name-ch {
+            font-size: 1.2rem;
+            letter-spacing: 0.5em;
             color: var(--text-gray);
-            line-height: 1.9;
-            font-size: 0.98rem;
-            margin-bottom: 0.9rem;
+            margin-bottom: 3rem;
+        }
+
+        .divider {
+            width: 80px;
+            height: 1px;
+            background: var(--accent-gold);
+            margin: 0 auto 4rem;
+        }
+
+        .artist-photo {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            margin: 0 auto 3rem;
+            display: block;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .artist-bio {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .artist-bio p {
+            margin-bottom: 1rem;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .info-card {
+            background: white;
+            border: 1px solid var(--mid-gray);
+            padding: 3rem 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: var(--accent-gold);
+        }
+
+        .info-card-label {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card-content {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .info-card-year {
+            font-weight: 500;
+            color: var(--soft-black);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 5rem;
         }
 
         .section-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 300;
             letter-spacing: 4px;
-            margin-bottom: 2.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--mid-gray);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
         }
 
-        .timeline-section {
-            margin-bottom: 4rem;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: var(--accent-gold);
+            margin: 1.5rem auto 0;
+        }
+
+        /* Works Grid */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .work-category {
+            background: var(--warm-gray);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .work-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .work-category-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--soft-black);
+        }
+
+        .work-category-list {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .timeline-item {
             display: flex;
             gap: 3rem;
-            margin-bottom: 1.5rem;
-            align-items: baseline;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--mid-gray);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
         }
 
         .timeline-year {
-            min-width: 120px;
-            font-weight: 400;
+            min-width: 100px;
+            font-size: 1.1rem;
+            font-weight: 500;
             color: var(--accent-gold);
             letter-spacing: 1px;
         }
 
-        .timeline-content p {
+        .timeline-content {
+            flex: 1;
             color: var(--text-gray);
             line-height: 1.8;
         }
 
-        .exhibition-item {
+        /* Experience - Collapsible */
+        .experience-group {
+            margin-bottom: 2rem;
+            border: 1px solid var(--mid-gray);
+        }
+
+        .experience-header {
             display: flex;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--warm-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .exhibition-year {
-            min-width: 80px;
-            font-weight: 400;
+        .experience-header:hover {
+            background: #EEEEEE;
+        }
+
+        .experience-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .experience-year-label {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--soft-black);
+        }
+
+        .experience-count {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .experience-toggle {
+            font-size: 1.5rem;
             color: var(--accent-gold);
-            letter-spacing: 1px;
+            transition: transform 0.3s ease;
         }
 
-        .exhibition-content h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
+        .experience-group.open .experience-toggle {
+            transform: rotate(180deg);
         }
 
-        .exhibition-content p {
+        .experience-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .experience-group.open .experience-content {
+            max-height: 8000px;
+        }
+
+        .experience-list {
+            padding: 2rem;
+        }
+
+        .experience-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .experience-item-date {
+            color: var(--accent-gold);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-item-content {
             color: var(--text-gray);
             font-size: 0.95rem;
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         /* Footer */
@@ -531,54 +635,15 @@
             color: var(--accent-gold);
         }
 
-        /* Footer 下拉選單 */
-        .footer-links li {
-            position: relative;
-        }
-
-        .footer-links .nav-item.has-dropdown {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
         .footer-links .dropdown-icon {
-            width: 16px;
-            height: 16px;
-            stroke: rgba(254, 254, 254, 0.7);    
-            transition: transform 0.3s ease;
-        }
-
-        .footer-links .nav-item.has-dropdown:hover .dropdown-icon {
-            transform: rotate(180deg);
-            stroke: var(--accent-gold);
+            stroke: rgba(254, 254, 254, 0.7);
         }
 
         .footer-links .dropdown-menu {
-            bottom: 100%;                        
+            bottom: 100%;
             top: auto;
             margin-bottom: 1rem;
             margin-top: 0;
-            background: #FFFFFF !important;      
-            border: 1px solid var(--mid-gray);
-        }
-
-        .footer-links .dropdown-menu a {
-            color: var(--soft-black) !important; 
-            padding: 0.75rem 1.5rem;
-        }
-
-        .footer-links .dropdown-menu a:hover {
-            background: var(--warm-gray);
-            color: var(--accent-gold) !important;
-        }
-
-        .footer-links .dropdown-menu .dropdown-divider {
-            background: var(--mid-gray);
-        }
-
-        .footer-links .dropdown-menu .view-all {
-            color: var(--accent-gold) !important;
         }
 
         .footer-bottom {
@@ -586,14 +651,13 @@
             padding-top: 1.5rem;
             color: rgba(254, 254, 254, 0.5);
             font-size: 0.85rem;
-            letter-spacing: 1px;
         }
 
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-
 
             .mobile-menu-btn {
                 display: block;
@@ -602,87 +666,85 @@
             .mobile-menu {
                 display: block;
             }
-            .nav-container {
-                padding: 0.8rem 1.5rem;
-            }
 
-            .logo {
-                font-size: 1.3rem;
+            .nav-container {
+                padding: 1.5rem 1.5rem;
             }
 
             .main-content {
-                padding: 3rem 1.5rem 4rem;
+                padding: 2rem 1.5rem;
             }
 
-            .artist-layout {
-                flex-direction: column;
-                padding: 2.5rem 1.5rem 3rem;
-                border-left: none;
-                border-right: none;
+            .artist-hero {
+                padding: 3rem 1.5rem;
+                margin: 0 -1.5rem 3rem;
             }
 
-            .artist-left {
-                width: 100%;
-                border-right: none;
-                border-bottom: 1px solid var(--mid-gray);
-                padding-right: 0;
-                padding-bottom: 1.5rem;
-                margin-bottom: 1.5rem;
-                justify-content: flex-start;
-            }
-
-            .vertical-name {
-                writing-mode: horizontal-tb;
-                transform: none;
-                font-size: 2.2rem;
+            .artist-name {
+                font-size: 2rem;
                 letter-spacing: 0.2em;
             }
 
-            .artist-right {
-                padding-left: 0;
+            .artist-name-ch {
+                font-size: 1rem;
+                margin-bottom: 2rem;
             }
 
-            .artist-top {
-                flex-direction: column;
-                gap: 1.5rem;
+            .divider {
+                width: 50px;
+                margin-bottom: 3rem;
             }
 
             .artist-photo {
-                width: 100%;
-                max-width: 260px;
+                width: 80vw;
+                max-width: 300px;
                 height: auto;
+                aspect-ratio: 3/4;
             }
 
-            .timeline-item,
-            .exhibition-item {
+            .artist-bio {
+                font-size: 1rem;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section {
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .timeline-item {
                 flex-direction: column;
                 gap: 0.5rem;
             }
 
+            .experience-header {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .experience-list {
+                padding: 1.5rem;
+            }
+
             .footer-content {
                 flex-direction: column;
-                gap: 0rem;
                 text-align: center;
-                padding-bottom: 1.5rem;
-                border-bottom: none; 
+                border-bottom: none;
             }
 
             .footer-links {
                 display: none !important;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-                padding: 0 1rem; 
-                width: 100%;
-                box-sizing: border-box;     
-            }
-            .footer-links li {
-                white-space: nowrap;     
-            }
-            
-            .footer-links a {
-                font-size: 0.85rem;      
-                letter-spacing: 1.5px;   
             }
         }
     </style>
@@ -690,12 +752,12 @@
 <body>
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="logo">Johnny Leo</a>
+            <a href="home.html" class="logo">Johnny Leo</a>
             <ul class="nav-links">
                 <li><a href="journal.html">JOURNAL</a></li>
                 <li><a href="pieces.html">PIECES</a></li>
                 <li class="nav-item has-dropdown">
-                    <a href="series.html">SERIES</a>
+                    <a href="#" onclick="return false;">SERIES</a>
                     <svg class="dropdown-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -706,11 +768,12 @@
                         <a href="series-detail.html?id=joyful-town">Joyful Town</a>
                         <a href="series-detail.html?id=the-invisible-citizens">The Invisible Citizens</a>
                         <a href="series-detail.html?id=the-weight-of-existence">The Weight of Existence</a>
+                        
                         <div class="dropdown-divider"></div>
                         <a href="series.html" class="view-all">View All Series →</a>
                     </div>
                 </li>
-                <li><a href="artist.html">ARTIST</a></li>
+                <li><a href="artist.html" class="active">ARTIST</a></li>
                 <li><a href="inquiry.html">INQUIRY</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
@@ -753,341 +816,545 @@
     </div>
 
     <main class="main-content">
-        <div class="artist-layout">
-            <aside class="artist-left">
-                <div class="vertical-name">Johnny Leo</div>
-            </aside>
-            <section class="artist-right">
-                <header class="page-header">
-                    <h1>Johnny Leo</h1>
-                    <p class="subtitle">Wen-ping Liao</p>
-                </header>
+        <!-- Hero Section -->
+        <section class="artist-hero">
+            <h1 class="artist-name">Johnny Leo</h1>
+            <p class="artist-name-ch">廖文平 Wen-ping Liao</p>
+            <div class="divider"></div>
+            <img src="images/artist/profile.jpg" alt="Johnny Leo" class="artist-photo">
+            <div class="artist-bio">
+                <p>Over 20 years of experience in graphic art, comics, illustration, animation, film and multimedia production.</p>
+                <p>Well-known cartoonist and artist with media recognition from national TV, broadcast, newspapers and magazines across the Asian Pacific region.</p>
+            </div>
+        </section>
 
-                <div class="artist-top">
-                    <img src="images/artist/profile.jpg" alt="Johnny Leo" class="artist-photo" loading="lazy">
-                    <section class="bio-section">
-                        <p>Over 20 years of graphic art experience in comics, illustration, magazine, newspaper, cartoon, script writing and filmmaking.</p>
-                        <p>Well-known cartoonist with media recognition from national TV, broadcast, newspapers and magazines in the Asian Pacific region.</p>
-                    </section>
-                </div>
-
-                <section class="timeline-section">
-                    <h2 class="section-title">Education</h2>
-                    <div class="timeline-item">
-                        <span class="timeline-year">1990 - 1993</span>
-                        <div class="timeline-content">
-                            <p>Television, Film & Video, UCLA</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="timeline-section">
-                    <h2 class="section-title">Award</h2>
-                    <div class="timeline-item">
-                        <span class="timeline-year"></span>
-                        <div class="timeline-content">
-                            <p>National Army Art Award winner for sculpture item</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="timeline-section">
-                    <h2 class="section-title">Career Highlights</h2>
-                    <div class="timeline-item">
-                        <span class="timeline-year">2000</span>
-                        <div class="timeline-content">
-                            <p>Coca Cola's assigned artist in the Asian Pacific region</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="timeline-year">1999</span>
-                        <div class="timeline-content">
-                            <p>Walt Disney's exclusive and authorized artist representative in Asia</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="timeline-year">1998</span>
-                        <div class="timeline-content">
-                            <p>Published well-known comic series, "Young Master" (exclusive copyright) that appeared in film, cartoon, books and VCD/DVD in China, Singapore, Thailand and Korean markets</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="timeline-section">
-                    <h2 class="section-title">Exhibitions</h2>
-            
-            <div class="exhibition-item">
-                <span class="exhibition-year">2016</span>
-                <div class="exhibition-content">
-                    <h4>University Lecture Tour in Mainland China</h4>
-                    <p>Invited to travel to Taiyuan (Shanxi Media Institute), Kunming, Yunnan University of Finance and Economics, Guilin University of Electronic Science and Technology (Dec 08-17)</p>
+        <!-- Info Cards -->
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="info-card-label">Education</div>
+                <div class="info-card-content">
+                    <p class="info-card-year">1990 - 1993</p>
+                    <p>Television, Film & Video<br>UCLA</p>
                 </div>
             </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2016</span>
-                <div class="exhibition-content">
-                    <h4>First Film Toy Exhibition</h4>
-                    <p>Comic artworks participation (invited guest and improvisation) (Nov 25-27)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2016</span>
-                <div class="exhibition-content">
-                    <h4>First Cross-Strait Animation Festival</h4>
-                    <p>Wuhan, China (representative of Taiwan guests) (Nov 10)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2016</span>
-                <div class="exhibition-content">
-                    <h4>Fourth Greater China Illustrations Awards</h4>
-                    <p>Invited guest (Oct 22)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2016</span>
-                <div class="exhibition-content">
-                    <h4>Good Idea Festival</h4>
-                    <p>Cross-border art festival, Taipei Songshan Wensheng Park 2+3 Warehouse (Jun 18-27)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2015</span>
-                <div class="exhibition-content">
-                    <h4>New North City Animation Contest</h4>
-                    <p>Invited to serve as review judge (Dec)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2015</span>
-                <div class="exhibition-content">
-                    <h4>New North City Animation Exhibition</h4>
-                    <p>Attendance & Interview (Nov 20)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2015</span>
-                <div class="exhibition-content">
-                    <h4>Keynote Speech at Taibei High School</h4>
-                    <p>Taipei City (Nov 19)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2015</span>
-                <div class="exhibition-content">
-                    <h4>Taipei World Trade Center</h4>
-                    <p>Invited Guest Cartoonist (Aug 06-11)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2015</span>
-                <div class="exhibition-content">
-                    <h4>Flora Expo Charitable Event</h4>
-                    <p>Taipei Yuanshan (Jul 11)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2015</span>
-                <div class="exhibition-content">
-                    <h4>"Hoping & Jones" Comic Book Part2</h4>
-                    <p>New Issue Announcement Campaign at MRT Taipei City Mall (Jul 04)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2015</span>
-                <div class="exhibition-content">
-                    <h4>Taipei International Comics & Animation Festival</h4>
-                    <p>Invited Guest (Feb 10)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2014</span>
-                <div class="exhibition-content">
-                    <h4>Kaohsiung International Comic Artist Conference</h4>
-                    <p>Invited Guest (Nov 13)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2014</span>
-                <div class="exhibition-content">
-                    <h4>Taoyuan International ACGT Fair</h4>
-                    <p>Invited Guest (Jul 04)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2014-2015</span>
-                <div class="exhibition-content">
-                    <h4>Hoping & Jones Comic Books</h4>
-                    <p>Join the Related Plan</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2014</span>
-                <div class="exhibition-content">
-                    <h4>Summer Comic Camp</h4>
-                    <p>National Taiwan University of Science & Technology</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2013</span>
-                <div class="exhibition-content">
-                    <h4>Solo Exhibition "Modern Manga"</h4>
-                    <p>by Johnny Leo</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2013</span>
-                <div class="exhibition-content">
-                    <h4>Young Art Exhibition</h4>
-                    <p>Taipei ~ Taichung</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2011</span>
-                <div class="exhibition-content">
-                    <h4>Solo Exhibition "The Animals' Soliloquy"</h4>
-                    <p>Butch Art Center, Taipei (Apr 20 - May 20)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2010</span>
-                <div class="exhibition-content">
-                    <h4>National Oil Painting Contest</h4>
-                    <p>Artwork "A New Century Revelation" (200F) was selected</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2009-2010</span>
-                <div class="exhibition-content">
-                    <h4>Animamix Biennial – Visual Attract & Attack</h4>
-                    <p>MOCA Taipei, Kaohsiung Museum of Fine Arts, MOCA Shanghai, Today Art Museum-Beijing</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2008</span>
-                <div class="exhibition-content">
-                    <h4>"100 Tales in Animamix"</h4>
-                    <p>Linda Gallery in Beijing, Singapore & Indonesia (Dec 19, 2008 - May 15, 2009)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2008</span>
-                <div class="exhibition-content">
-                    <h4>"Surfing Animamix"</h4>
-                    <p>Linda Gallery in Shanghai; Art Singapore (Nov); Beijing 798 Art Zone (Dec) (Sep 10 - Oct 29)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2008</span>
-                <div class="exhibition-content">
-                    <h4>Art Taipei 2008</h4>
-                    <p>Art Touch Collection, U.S.A., World Trade Center, Taipei (Aug 29 - Sep 02)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2008</span>
-                <div class="exhibition-content">
-                    <h4>Two Sides of Taiwan Straits Artists</h4>
-                    <p>Animamix New Generation, Capital Art Center, Taipei (Jun 07-29)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2008</span>
-                <div class="exhibition-content">
-                    <h4>Animamix / Super Animamix</h4>
-                    <p>Metaphysical Art Gallery, Taipei (Jan 05-27)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2007</span>
-                <div class="exhibition-content">
-                    <h4>3L4D / 3rd Life 4th Dimension</h4>
-                    <p>National Dr Sun Yat-sen Memorial Hall, Taipei (Oct 20 - Nov 08)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2007</span>
-                <div class="exhibition-content">
-                    <h4>Shanghai Animamix Biennial</h4>
-                    <p>From Modernity To Eternity, Museum of Contemporary Art Shanghai, China (Oct 17 - Nov 04)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2007</span>
-                <div class="exhibition-content">
-                    <h4>Modern Art Revolution</h4>
-                    <p>Taiwan Mitsukoshi Dept. Store (Jul 19 - Aug 26)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2007</span>
-                <div class="exhibition-content">
-                    <h4>Guest Artist / Residence</h4>
-                    <p>London Royal Holloway University, UK (Jun 01 - Jul 30)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2007</span>
-                <div class="exhibition-content">
-                    <h4>Japan & China Group Exhibition</h4>
-                    <p>The Moon River Museum of Contemporary Art, Beijing (May 01-30)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2007</span>
-                <div class="exhibition-content">
-                    <h4>International Contemporary Art Festival</h4>
-                    <p>EXIT Festival and VIA Festival, Maison des Arts et de la Culture (MAC), the Manege of Maubeuge, France (Mar 08 - Apr 01)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2006</span>
-                <div class="exhibition-content">
-                    <h4>The Original Animamix</h4>
-                    <p>Museum of Contemporary Art, Shanghai, China (Jul 01-30)</p>
-                </div>
-            </div>
-
-            <div class="exhibition-item">
-                <span class="exhibition-year">2006</span>
-                <div class="exhibition-content">
-                    <h4>The 2nd China International Cartoon and Animation Festival</h4>
-                    <p>Hangzhou, China (Jun 01-30)</p>
+            <div class="info-card">
+                <div class="info-card-label">Recognition</div>
+                <div class="info-card-content">
+                    <p>National Army Art Award<br>Winner (Sculpture)</p>
                 </div>
             </div>
         </div>
+
+        <!-- Works & Publications -->
+        <section class="section">
+            <h2 class="section-title">Works & Publications</h2>
+            <div class="works-grid">
+                <div class="work-category">
+                    <h3 class="work-category-title">Literary Short Comics</h3>
+                    <div class="work-category-list">
+                        The Monologue of a Fly<br>
+                        Two House Painters<br>
+                        Fish<br>
+                        I Love Black Eyes<br>
+                        Abin's Story
+                    </div>
+                </div>
+                <div class="work-category">
+                    <h3 class="work-category-title">Long Series</h3>
+                    <div class="work-category-list">
+                        Young Master Wong Fei Hung<br>
+                        Game Boy<br>
+                        Young Master<br>
+                        Adventure Boy Hao Ping<br>
+                        Apostle<br>
+                        Battle Soul
+                    </div>
+                </div>
+                <div class="work-category">
+                    <h3 class="work-category-title">Standalone Collections</h3>
+                    <div class="work-category-list">
+                        Two House Painters (1 vol)<br>
+                        Young Master (1 vol)<br>
+                        Touchstone (1 vol)<br>
+                        The Boy with a Sword (3 vols)<br>
+                        Around the World in 100 Days (1 vol)
+                    </div>
+                </div>
+                <div class="work-category">
+                    <h3 class="work-category-title">Complete Series</h3>
+                    <div class="work-category-list">
+                        Young Master Wong Fei Hung (4 vols)<br>
+                        Game Boy (2 vols)<br>
+                        Wong Fei Hung Returns (3 vols)<br>
+                        Adventure Boy Hao Ping (3 vols)<br>
+                        Apostle (3 vols)<br>
+                        Battle Soul (3 vols)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Highlights -->
+        <section class="section">
+            <h2 class="section-title">Career Highlights</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2000</div>
+                    <div class="timeline-content">
+                        <p>Coca Cola's assigned artist in the Asian Pacific region</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1999</div>
+                    <div class="timeline-content">
+                        <p>Walt Disney's exclusive and authorized artist representative in Asia</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1998</div>
+                    <div class="timeline-content">
+                        <p>Published well-known comic series "Young Master" (exclusive copyright) that appeared in film, cartoon, books and VCD/DVD in China, Singapore, Thailand and Korean markets</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section class="section">
+            <h2 class="section-title">Professional Experience</h2>
+
+            <!-- 2021-2020 -->
+            <div class="experience-group open">
+                <div class="experience-header" onclick="toggleExperience(this)">
+                    <div class="experience-header-left">
+                        <span class="experience-year-label">2021 - 2020</span>
+                        <span class="experience-count">(12 events)</span>
+                    </div>
+                    <span class="experience-toggle">▼</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div class="experience-item-date">February 5-7, 2021</div>
+                            <div class="experience-item-content">3rd ART FUTURE Art Fair, Taipei Grand Hyatt Hotel, featuring 50 galleries</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">November 22, 2020</div>
+                            <div class="experience-item-content">Attended Taipei Bangka Temple Cute Deity Art Competition award ceremony as presenter</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">October 31, 2020</div>
+                            <div class="experience-item-content">Participated in Taipei Huayin Street manhole cover painting activity</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">October 27 - November 8, 2020</div>
+                            <div class="experience-item-content">Tumbler Public Art World Tour Exhibition (Shih Chien University & Taiwan Craft Center)</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">October 21, 2020</div>
+                            <div class="experience-item-content">Guest lecture at Hsuan Chuang University, Visual Communication Department</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">September 27, 2020</div>
+                            <div class="experience-item-content">Published "Apostle" comic and book signing event</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">July 4, 2020</div>
+                            <div class="experience-item-content">Works exhibited at World Religions Museum</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">June 16, 2020</div>
+                            <div class="experience-item-content">Judge for Guangxi Normal University micro-film competition</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2019 -->
+            <div class="experience-group">
+                <div class="experience-header" onclick="toggleExperience(this)">
+                    <div class="experience-header-left">
+                        <span class="experience-year-label">2019</span>
+                        <span class="experience-count">(11 events)</span>
+                    </div>
+                    <span class="experience-toggle">▼</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div class="experience-item-date">December 9, 2019</div>
+                            <div class="experience-item-content">Judge for Jilin Animation Institute 48-hour International Comic Marathon</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">October 25-27, 2019</div>
+                            <div class="experience-item-content">Host for Comic Base "Hero Comic IP" & participated in 3rd Taiwan Comic Festival</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">July 19-28, 2019</div>
+                            <div class="experience-item-content">Attended San Diego Comic-Con & served as guest judge at Taoyuan International Animation Festival</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">June 11, 2019</div>
+                            <div class="experience-item-content">Attended China-France International Comic Forum in Changchun, Jilin</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">April 27, 2019</div>
+                            <div class="experience-item-content">Flora Expo Cultural & Creative Fair lecture: Cross-border Cooperation between Animation IP and Film</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">March 6, 2019</div>
+                            <div class="experience-item-content">Island Literature TV Production seminar: Cross-domain Cooperation between Literature & Comics</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">February 16, 2019</div>
+                            <div class="experience-item-content">Main speaker at New Image Comic Forum</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">January 21-29, 2019</div>
+                            <div class="experience-item-content">Attended Angoulême International Comics Festival in Netherlands & France</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">January 5-10, 2019</div>
+                            <div class="experience-item-content">Cross-Strait Artists Joint Exhibition, Macau Cultural Center</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2018 -->
+            <div class="experience-group">
+                <div class="experience-header" onclick="toggleExperience(this)">
+                    <div class="experience-header-left">
+                        <span class="experience-year-label">2018</span>
+                        <span class="experience-count">(8 events)</span>
+                    </div>
+                    <span class="experience-toggle">▼</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div class="experience-item-date">November 2018</div>
+                            <div class="experience-item-content">Chiayi Distillery Cultural & Creative "Animation Art" Exhibition & Chiayi Hotel Art Fair</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">October 2018</div>
+                            <div class="experience-item-content">Judge for Cross-Strait Star Children Art Exhibition & guest at 2nd Comic Festival with International Forum host role</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">June 13, 2018</div>
+                            <div class="experience-item-content">17th ICC (International Comic Artist Conference) guest</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">May 30, 2018</div>
+                            <div class="experience-item-content">Guest at 1st Chinese Comic Contest, National Taiwan Museum</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">January 23 - February 6, 2018</div>
+                            <div class="experience-item-content">Attended Angoulême International Comics Festival & Paris Art Exhibition</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2017-2016 -->
+            <div class="experience-group">
+                <div class="experience-header" onclick="toggleExperience(this)">
+                    <div class="experience-header-left">
+                        <span class="experience-year-label">2017 - 2016</span>
+                        <span class="experience-count">(10 events)</span>
+                    </div>
+                    <span class="experience-toggle">▼</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div class="experience-item-date">November 6 - December 29, 2017</div>
+                            <div class="experience-item-content">Cultural & Creative Art Solo Exhibition & Lecture at Hwa Hsia University of Technology</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">October 24 - November 4, 2017</div>
+                            <div class="experience-item-content">Special guest at 1st Comic Festival</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">December 8-17, 2016</div>
+                            <div class="experience-item-content">University Lecture Tour in Mainland China as animation director (Shanxi Media Institute, Yunnan University of Finance, Guilin University of Electronic Science)</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">November 25-27, 2016</div>
+                            <div class="experience-item-content">1st Film Toy Exhibition - comic artworks participation & live improvisation</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">November 10, 2016</div>
+                            <div class="experience-item-content">1st Cross-Strait Animation Festival, Wuhan, China (Taiwan representative guest)</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">October 22, 2016</div>
+                            <div class="experience-item-content">4th Greater China Illustration Awards - guest presenter</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">June 18-27, 2016</div>
+                            <div class="experience-item-content">Good Idea Festival - Cross-border Art Festival, Songshan Cultural Park</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">February 5, 2016</div>
+                            <div class="experience-item-content">Guest lecture at Taiwan Comic Information Network</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2015-2014 -->
+            <div class="experience-group">
+                <div class="experience-header" onclick="toggleExperience(this)">
+                    <div class="experience-header-left">
+                        <span class="experience-year-label">2015 - 2014</span>
+                        <span class="experience-count">(12 events)</span>
+                    </div>
+                    <span class="experience-toggle">▼</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div class="experience-item-date">December 2015</div>
+                            <div class="experience-item-content">Judge for New Taipei City Animation Contest</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">November 20, 2015</div>
+                            <div class="experience-item-content">New Taipei City Animation Exhibition attendance & interview</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">November 19, 2015</div>
+                            <div class="experience-item-content">Keynote speech at Taipei Taibei High School</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">August 6-11, 2015</div>
+                            <div class="experience-item-content">Taipei World Trade Center Comic Fair - invited cartoonist guest</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">July 11, 2015</div>
+                            <div class="experience-item-content">Flora Expo Charitable Event, Taipei Yuanshan</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">July 4, 2015</div>
+                            <div class="experience-item-content">"Adventure Boy Hao Ping" Vol.2 book launch at Taipei MRT Mall</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">February 10-15, 2015</div>
+                            <div class="experience-item-content">Taipei Nangang International Animation Festival - invited cartoonist guest</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">November 13, 2014</div>
+                            <div class="experience-item-content">15th International Cartoonist Conference (Kaohsiung) - invited guest</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">July 4, 2014</div>
+                            <div class="experience-item-content">Taoyuan International ACGT Fair - invited cartoonist guest</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">2014-2015</div>
+                            <div class="experience-item-content">Chief cartoonist for "Adventure Boy Hao Ping" comic series</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">February 2014</div>
+                            <div class="experience-item-content">Host for Taiwan Tech University Summer Comic Workshop</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2013-2010 -->
+            <div class="experience-group">
+                <div class="experience-header" onclick="toggleExperience(this)">
+                    <div class="experience-header-left">
+                        <span class="experience-year-label">2013 - 2010</span>
+                        <span class="experience-count">(8 events)</span>
+                    </div>
+                    <span class="experience-toggle">▼</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div class="experience-item-date">September 7-22, 2013</div>
+                            <div class="experience-item-content">Liao Wen-Ping Taipei Solo Exhibition at Lipin Gallery - "Comic Trends"</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">July 10-15, 2013</div>
+                            <div class="experience-item-content">Taichung Splendor Hotel International Contemporary Art Fair - Lipin Gallery</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">May 2013</div>
+                            <div class="experience-item-content">Taipei Sheraton Hotel International Contemporary Art Fair - Lipin Gallery (YOUNG ART TAIPEI 2013)</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">April 20 - May 20, 2011</div>
+                            <div class="experience-item-content">"Animals' Soliloquy" Solo Exhibition at Taipei Bluerider Contemporary Art Space</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">2010</div>
+                            <div class="experience-item-content">Oil painting "A New Century Revelation" - Merit Award at National Oil Painting Exhibition</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2009-2007 -->
+            <div class="experience-group">
+                <div class="experience-header" onclick="toggleExperience(this)">
+                    <div class="experience-header-left">
+                        <span class="experience-year-label">2009 - 2007</span>
+                        <span class="experience-count">(15 events)</span>
+                    </div>
+                    <span class="experience-toggle">▼</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div class="experience-item-date">2009</div>
+                            <div class="experience-item-content">New York Bridge Art Fair, USA</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">December 28, 2009 - January 11, 2010</div>
+                            <div class="experience-item-content">Animation Aesthetics Biennial Exhibition - Visual Strike (Taipei MOCA, Kaohsiung Museum of Fine Arts, Shanghai MOCA, Beijing Today Art Museum tour)</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">October 18-20, 2009</div>
+                            <div class="experience-item-content">Guest speaker at APEC Asia Economic Conference, Taipei Grand Hotel</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">December 19, 2008 - May 15, 2009</div>
+                            <div class="experience-item-content">Animation Aesthetics 100 Faces - Beijing, Singapore, Indonesia Lim Tart Art Center tour</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">November 2008</div>
+                            <div class="experience-item-content">Judge for China Times "Xin Guang Gang - National 4-Panel Comic Contest" finals</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">September 10 - October 29, 2008</div>
+                            <div class="experience-item-content">"Comics & Animation Sky & Sea" Shanghai Lim Tart Art Center, Singapore Art Fair, Beijing 798 Art Exhibition</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">August 29 - September 2, 2008</div>
+                            <div class="experience-item-content">Taipei World Trade Art Fair - American Art Touch Collection</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">July 2008</div>
+                            <div class="experience-item-content">Shanghai Art Center International Contemporary Art Fair - Taipei Capital Art Center</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">June 7-29, 2008</div>
+                            <div class="experience-item-content">"Cross-Strait Artists - New Generation of Comic Animation" Taipei Capital Art Center</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">January 5-27, 2008</div>
+                            <div class="experience-item-content">"ANIMAMIX - Super Animation" Taipei Metaphysics Gallery</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">October 20 - November 3, 2007</div>
+                            <div class="experience-item-content">"3L4D Animation Aesthetics New Century" Special Exhibition - Dr. Sun Yat-sen Memorial Hall</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">October 17 - November 4, 2007</div>
+                            <div class="experience-item-content">"From Modernity to Eternity" Shanghai Animation Aesthetics Biennial</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">July-August 2007</div>
+                            <div class="experience-item-content">"Animation Revolution Art Exhibition" Taiwan Shin Kong Mitsukoshi Department Store</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">June-July 2007</div>
+                            <div class="experience-item-content">Artist residency at Royal Holloway University, London, UK</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">May 2007</div>
+                            <div class="experience-item-content">"China-Japan Artist Exchange Exhibition" Beijing Moon River Group - Happy Commune</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">March-April 2007</div>
+                            <div class="experience-item-content">EXIT Festival & VIA Festival International Contemporary Art Exhibition - Creteil Museum & Manege Museum, France</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2006-Earlier -->
+            <div class="experience-group">
+                <div class="experience-header" onclick="toggleExperience(this)">
+                    <div class="experience-header-left">
+                        <span class="experience-year-label">2006 - Earlier</span>
+                        <span class="experience-count">(20+ events)</span>
+                    </div>
+                    <span class="experience-toggle">▼</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div class="experience-item-date">July 2006</div>
+                            <div class="experience-item-content">International "Original Animation Exhibition" Shanghai Museum of Contemporary Art</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">June 2006</div>
+                            <div class="experience-item-content">Hangzhou "2nd International Animation Expo" - invited cartoonist judge</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">May 2006</div>
+                            <div class="experience-item-content">Shenzhen "International Animation Expo" - invited cartoonist guest</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">2005-2006</div>
+                            <div class="experience-item-content">"Lightning & Fire" Digital Technology Co. - returned to Taiwan and produced animation films</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">2002-2004</div>
+                            <div class="experience-item-content">Lightning & Fire Digital Technology established Shanghai animation base. Director leading 2D/3D animation production team; concurrent role as 3D Animation Director at Yingli Animation</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">2001</div>
+                            <div class="experience-item-content">Founded "Lightning & Fire" Digital Imaging Company - produced web animations, Flash animations, short films</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">2000</div>
+                            <div class="experience-item-content">Art Director at 927 Internet Company for website and WAP site design</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">2000</div>
+                            <div class="experience-item-content">Created Alien cartoon character for Taiwan Coca-Cola and UDN; Designed for Las Vegas entertainment company's Pyramid virtual playground</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">1999</div>
+                            <div class="experience-item-content">Featured artist for Coca-Cola Atlanta's Red Girl Project; Exclusive artist for Walt Disney Asia; Spokesperson for Intellectual Property Office's copyright public service announcement</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">1998</div>
+                            <div class="experience-item-content">Art Director at Century Zongheng Game Company; Guest at China-Japan Cartoonist Exchange (Tianmu Daye Takashimaya)</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">1993-1998</div>
+                            <div class="experience-item-content">Returned to Taiwan and created/published 12 comic volumes: Young Master, Young Master Wong Fei Hung, Game Boy. Worked as freelance commercial film art director and director</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">1990</div>
+                            <div class="experience-item-content">Went to USA to study film</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">1988-1990</div>
+                            <div class="experience-item-content">Production Director for commercial films at Huawei Grey, Tayi, Hakuhodo, and Jingzhan advertising agencies. Director at cooperative film studio "Huige Films"</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">1987</div>
+                            <div class="experience-item-content">Executive Producer for "Happy Holiday" at Best Communication</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">1986</div>
+                            <div class="experience-item-content">Began freelance creative work - illustrations, comics, and storyboards for major newspapers and advertising companies</div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-item-date">1984-1985</div>
+                            <div class="experience-item-content">First publication "The Monologue of a Fly" in Oolong Academy; Official debut with "Two House Painters" in Happy Comics magazine</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -1099,7 +1366,7 @@
                 <li><a href="journal.html">JOURNAL</a></li>
                 <li><a href="pieces.html">PIECES</a></li>
                 <li class="nav-item has-dropdown">
-                    <a href="series.html">SERIES</a>
+                    <a href="#" onclick="return false;">SERIES</a>
                     <svg class="dropdown-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -1110,6 +1377,7 @@
                         <a href="series-detail.html?id=joyful-town">Joyful Town</a>
                         <a href="series-detail.html?id=the-invisible-citizens">The Invisible Citizens</a>
                         <a href="series-detail.html?id=the-weight-of-existence">The Weight of Existence</a>
+                        
                         <div class="dropdown-divider"></div>
                         <a href="series.html" class="view-all">View All Series →</a>
                     </div>
@@ -1122,6 +1390,7 @@
             <p>© 2026 Johnny Leo. All rights reserved.</p>
         </div>
     </footer>
+
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -1138,12 +1407,10 @@
             }
         }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const menu = document.getElementById('mobileMenu');
-                menu.classList.remove('active');
-            }
-        });
-    </script>    
+        function toggleExperience(header) {
+            const group = header.parentElement;
+            group.classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
