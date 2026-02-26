@@ -853,18 +853,21 @@
   ],
   "journal": [
     {
-      "id": "art-future-2021",
-      "title": "ART FUTURE Art Fair 2021",
-      "date": "February 5-7, 2021",
-      "image": "images/journal/art-future-hero.jpg",
+      "id": "Original-Animation-Exhibition-2006",
+      "title": "International 'Original Animation Exhibition' Shanghai Museum of Contemporary Art",
+      "date": "July, 2006",
+      "image": "images/journal/OAE2006/OAE2006-hero.jpg",
       "excerpt": "Participated in the 3rd ART FUTURE...",
       "content": "<p>The event brought together...</p>",
       "images": [
-        "images/journal/art-future-1.jpg",
-        "images/journal/art-future-2.jpg",
-        "images/journal/art-future-3.jpg",
-        "images/journal/art-future-4.jpg",
-        "images/journal/art-future-5.jpg"
+        "images/journal/OAE2006 (1).jpg",
+        "images/journal/OAE2006 (2).jpg",
+        "images/journal/OAE2006 (3).jpg",
+        "images/journal/OAE2006 (4).jpg",
+        "images/journal/OAE2006 (5).jpg",
+        "images/journal/OAE2006 (6).jpg",
+        "images/journal/OAE2006 (7).jpg",
+        "images/journal/OAE2006 ().jpg"
       ]
     },
     {
