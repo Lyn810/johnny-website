@@ -853,12 +853,19 @@
   ],
   "journal": [
     {
-      "id": "paris-art-fair-2026",
-      "date": "2026.01.15",
-      "title": "Upcoming Exhibition at Paris International Art Fair",
-      "excerpt": "Johnny Leo will participate in the Paris International Art Fair in March, showcasing a new series exploring themes of time and memory through contemporary visual narratives.",
-      "image": "images/journal/paris-fair.jpg",
-      "content": "<p>We are thrilled to announce that Johnny Leo will be participating in the prestigious Paris International Art Fair this March. This marks a significant milestone in the artist's international career, bringing his unique contemporary vision to one of Europe's most renowned art events.</p><p>The exhibition will feature a brand new series that explores the intricate relationship between time and memory. Through a carefully curated selection of works, visitors will experience how Leo's distinctive visual language captures the ephemeral nature of human experience and the persistence of memory in contemporary society.</p><h2>Exhibition Details</h2><p>The fair will take place at the Grand Palais Éphémère from March 15-19, 2026. Johnny Leo's works will be showcased in Hall 3, Stand A42, presented in collaboration with Gallery X.</p><p>This new series represents a significant evolution in Leo's artistic practice, incorporating mixed media techniques and innovative approaches to traditional painting. Each piece in the series invites viewers to contemplate their own relationship with time and the ways in which memories shape our present reality.</p>"
+      "id": "art-future-2021",
+      "title": "ART FUTURE Art Fair 2021",
+      "date": "February 5-7, 2021",
+      "image": "images/journal/art-future-hero.jpg",
+      "excerpt": "Participated in the 3rd ART FUTURE...",
+      "content": "<p>The event brought together...</p>",
+      "images": [
+        "images/journal/art-future-1.jpg",
+        "images/journal/art-future-2.jpg",
+        "images/journal/art-future-3.jpg",
+        "images/journal/art-future-4.jpg",
+        "images/journal/art-future-5.jpg"
+      ]
     },
     {
       "id": "artist-of-the-year-2025",
