@@ -929,6 +929,28 @@
         "images/journal/OAE2008B/OAE2008B (9).jpg",
         "images/journal/OAE2008B/OAE2008B (10).jpg"
       ]
+    },
+    {
+      "id": "OAE2009",
+      "title": "Art Exhibition",
+      "date": "2009",
+      "image": "images/journal/OAE2009/OAE2009-hero.jpg",
+      "excerpt": "VENUE: Linda Gallery, Shanghai",
+      "content": "<p></p>",
+      "images": [
+        "images/journal/OAE2009/OAE2009 (1).jpg",
+        "images/journal/OAE2009/OAE2009 (2).jpg",
+        "images/journal/OAE2009/OAE2009 (3).jpg",
+        "images/journal/OAE2009/OAE2009 (4).jpg",
+        "images/journal/OAE2009/OAE2009 (5).jpg",
+        "images/journal/OAE2009/OAE2009 (6).jpg",
+        "images/journal/OAE2009/OAE2009 (7).jpg",
+        "images/journal/OAE2009/OAE2009 (8).jpg",
+        "images/journal/OAE2009/OAE2009 (9).jpg",
+        "images/journal/OAE2009/OAE2009 (10).jpg",
+        "images/journal/OAE2009/OAE2009 (11).jpg",
+        "images/journal/OAE2009/OAE2009 (12).jpg"
+      ]
     }
     
   ]
