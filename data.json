@@ -853,29 +853,11 @@
   ],
   "journal": [
     {
-      "id": "Original-Animation-Exhibition-2006",
-      "title": "International 'Original Animation Exhibition'",
-      "date": "July, 2006",
-      "image": "images/journal/OAE2006/OAE2006-hero.jpg",
-      "excerpt": "Shanghai Museum of Contemporary Art",
-      "content": "<p></p>",
-      "images": [
-        "images/journal/OAE2006/OAE2006 (1).jpg",
-        "images/journal/OAE2006/OAE2006 (2).jpg",
-        "images/journal/OAE2006/OAE2006 (3).jpg",
-        "images/journal/OAE2006/OAE2006 (4).jpg",
-        "images/journal/OAE2006/OAE2006 (5).jpg",
-        "images/journal/OAE2006/OAE2006 (6).jpg",
-        "images/journal/OAE2006/OAE2006 (7).jpg",
-        "images/journal/OAE2006/OAE2006 (8).jpg"
-      ]
-    },
-    {
       "id": "OAE2006",
       "title": "Original Animation and Comic Exhibition",
       "date": "2006",
       "image": "images/journal/OAE2006/OAE2006-hero.jpg",
-      "excerpt": "AT MoCA Shanghai",
+      "excerpt": "Venue: MoCA, Shanghai",
       "content": "<p></p>",
       "images": [
         "images/journal/OAE2006/OAE2006 (1).jpg",
@@ -893,14 +875,41 @@
         "images/journal/OAE2006/OAE2006 (13).jpg"
       ]
     },
-    
     {
-      "id": "urban-dialogues-2026",
-      "date": "2025.10.12",
-      "title": "New Series Coming Spring 2026",
-      "excerpt": "After a year of creation, a new series titled 'Urban Dialogues' will be unveiled in spring 2026, presenting the artist's profound observations of modern urban life.",
-      "image": "images/journal/new-series.jpg",
-      "content": "<p>After a year of intensive creative work, Johnny Leo is preparing to unveil his new series titled 'Urban Dialogues' in spring 2026. This ambitious body of work represents the artist's most comprehensive exploration of modern urban life to date.</p><p>The series emerged from Leo's year-long observation and documentation of urban spaces across multiple cities. Through his distinctive visual language, he captures the complex interplay between individuals and their urban environments, exploring themes of connection, isolation, movement, and stillness within the contemporary metropolis.</p><h2>Artistic Evolution</h2><p>'Urban Dialogues' marks a significant evolution in Leo's artistic practice. While maintaining his characteristic attention to emotional depth and human experience, the new works incorporate innovative techniques and a broader color palette. The series experiments with scale and composition in ways that create immersive viewing experiences, inviting audiences to step into the urban landscapes Leo has created.</p><p>The official unveiling is scheduled for March 2026, with venues and dates to be announced in the coming months. Art institutions and galleries across Asia and Europe have already expressed strong interest in hosting exhibitions from this highly anticipated series.</p>"
+      "id": "OAE2008",
+      "title": "Art Exhibition",
+      "date": "2008",
+      "image": "images/journal/OAE2008/OAE2008-hero.jpg",
+      "excerpt": "Venue: Metaphysical Art Gallery, Taipei",
+      "content": "<p></p>",
+      "images": [
+        "images/journal/OAE2008/OAE2008 (1).jpg",
+        "images/journal/OAE2008/OAE2008 (2).jpg"
+        
+      ]
+    },
+    {
+      "id": "OAE2008A",
+      "title": "Original Animation and Comic Exhibition",
+      "date": "2008",
+      "image": "images/journal/OAE2008A/OAE2008A-hero.jpg",
+      "excerpt": "Venue: MoCA, Shanghai",
+      "content": "<p></p>",
+      "images": [
+        "images/journal/OAE2008A/OAE2008A (1).jpg",
+        "images/journal/OAE2008A/OAE2008A (2).jpg",
+        "images/journal/OAE2008A/OAE2008A (3).jpg",
+        "images/journal/OAE2008A/OAE2008A (4).jpg",
+        "images/journal/OAE2008A/OAE2008A (5).jpg",
+        "images/journal/OAE2008A/OAE2008A (6).jpg",
+        "images/journal/OAE2008A/OAE2008A (7).jpg",
+        "images/journal/OAE2008A/OAE2008A (8).jpg",
+        "images/journal/OAE2008A/OAE2008A (9).jpg",
+        "images/journal/OAE2008A/OAE2008A (10).jpg",
+        "images/journal/OAE2008A/OAE2008A (11).jpg",
+        "images/journal/OAE2008A/OAE2008A (12).jpg"
+      ]
     }
+    
   ]
 }
