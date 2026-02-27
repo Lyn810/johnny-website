@@ -871,21 +871,29 @@
       ]
     },
     {
-      "id": "artist-of-the-year-2025",
-      "date": "2025.12.20",
-      "title": "Selected as Artist of the Year",
-      "excerpt": "Honored to be selected as one of the most influential contemporary artists of 2025 by Asian Art Magazine, recognizing outstanding contributions to the field of contemporary art.",
-      "image": "images/journal/artist-year.jpg",
-      "content": "<p>Johnny Leo has been named one of the most influential contemporary artists of 2025 by Asian Art Magazine, a prestigious recognition that celebrates outstanding contributions to the field of contemporary art.</p><p>The selection committee praised Leo's innovative approach to traditional techniques and his ability to bridge Eastern and Western artistic traditions. His work has been noted for its profound emotional depth and its capacity to speak to universal human experiences while maintaining a distinctive cultural perspective.</p><h2>Recognition and Impact</h2><p>This honor comes after a year of significant achievements, including solo exhibitions in major cities and the completion of several important commissioned works. The award particularly recognizes Leo's commitment to pushing the boundaries of contemporary art while maintaining accessibility and emotional resonance with diverse audiences.</p><p>In his acceptance statement, Leo expressed gratitude to his supporters and emphasized his commitment to continuing to explore new artistic territories while staying true to his core vision of art as a medium for human connection and understanding.</p>"
+      "id": "Original-Animation-Exhibition-2006",
+      "title": "International 'Original Animation Exhibition'",
+      "date": "July, 2006",
+      "image": "images/journal/OAE2006/OAE2006-hero.jpg",
+      "excerpt": "Shanghai Museum of Contemporary Art",
+      "content": "<p></p>",
+      "images": [
+        "images/journal/OAE2006/OAE2006 (1).jpg",
+        "images/journal/OAE2006/OAE2006 (2).jpg",
+        "images/journal/OAE2006/OAE2006 (3).jpg",
+        "images/journal/OAE2006/OAE2006 (4).jpg",
+        "images/journal/OAE2006/OAE2006 (5).jpg",
+        "images/journal/OAE2006/OAE2006 (6).jpg",
+        "images/journal/OAE2006/OAE2006 (7).jpg",
+        "images/journal/OAE2006/OAE2006 (8).jpg",
+        "images/journal/OAE2006/OAE2006 (9).jpg",
+        "images/journal/OAE2006/OAE2006 (10).jpg",
+        "images/journal/OAE2006/OAE2006 (11).jpg",
+        "images/journal/OAE2006/OAE2006 (12).jpg",
+        "images/journal/OAE2006/OAE2006 (13).jpg"
+      ]
     },
-    {
-      "id": "taipei-exhibition-2025",
-      "date": "2025.11.08",
-      "title": "Taipei Solo Exhibition Successfully Concluded",
-      "excerpt": "The one-month solo exhibition at Taipei Museum of Contemporary Art was a great success, attracting over 10,000 art enthusiasts and collectors from around the region.",
-      "image": "images/journal/taipei-exhibition.jpg",
-      "content": "<p>Johnny Leo's highly anticipated solo exhibition at the Taipei Museum of Contemporary Art concluded this week after a successful one-month run. The exhibition attracted over 10,000 visitors from across Taiwan and the broader Asian region, establishing new attendance records for the museum's contemporary art programming.</p><p>Titled 'Echoes of Silence,' the exhibition featured over 40 works spanning the past five years of Leo's artistic practice. The carefully curated selection showcased the artist's evolution and his consistent exploration of themes related to urban life, human connection, and the search for meaning in contemporary society.</p><h2>Critical and Public Reception</h2><p>The exhibition received widespread critical acclaim, with reviewers praising the cohesive narrative and the emotional impact of the installed works. Local media highlighted the exhibition as one of the year's most important cultural events, noting Leo's ability to create work that resonates deeply with both art world insiders and general audiences.</p><p>Several pieces from the exhibition have been acquired by major collectors and institutions, further cementing Leo's position as one of the leading voices in contemporary Asian art. The museum has indicated interest in organizing a touring version of the exhibition to reach broader audiences across the region.</p>"
-    },
+    
     {
       "id": "urban-dialogues-2026",
       "date": "2025.10.12",
