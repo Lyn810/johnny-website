@@ -853,40 +853,12 @@
   ],
   "journal": [
     {
-      "id": "art-future-2021",
-      "title": "ART FUTURE Art Fair 2021",
-      "date": "February 5-7, 2021",
-      "excerpt": "Participated in the 3rd ART FUTURE Art Fair at Taipei Grand Hyatt Hotel, featuring 50 galleries",
-      "image": "images/journal/art-future-thumb.jpg",
-      "content": "<p>The 3rd ART FUTURE brought together 50 leading galleries from across Asia Pacific, showcasing contemporary art and emerging artists in a prestigious setting.</p><p>The fair provided an excellent platform for dialogue between artists, galleries, and collectors.</p>",
-      "images": [
-        "images/journal/art-future-1.jpg",
-        "images/journal/art-future-2.jpg",
-        "images/journal/art-future-3.jpg",
-        "images/journal/art-future-4.jpg",
-        "images/journal/art-future-5.jpg"
-      ]
-    },
-    {
-      "id": "temple-art-2020",
-      "title": "Temple Deity Art Competition",
-      "date": "November 22, 2020",
-      "excerpt": "Attended Taipei Bangka Temple Cute Deity Art Competition award ceremony as presenter",
-      "image": "images/journal/temple-thumb.jpg",
-      "content": "<p>A unique celebration of traditional temple art with contemporary interpretations.</p>",
-      "images": [
-        "images/journal/temple-1.jpg",
-        "images/journal/temple-2.jpg",
-        "images/journal/temple-3.jpg"
-      ]
-    },
-    {
       "id": "Original-Animation-Exhibition-2006",
-      "title": "International 'Original Animation Exhibition' Shanghai Museum of Contemporary Art",
+      "title": "International 'Original Animation Exhibition'",
       "date": "July, 2006",
       "image": "images/journal/OAE2006/OAE2006-hero.jpg",
-      "excerpt": "Participated in the 3rd ART FUTURE...",
-      "content": "<p>The event brought together...</p>",
+      "excerpt": "Shanghai Museum of Contemporary Art",
+      "content": "<p></p>",
       "images": [
         "images/journal/OAE2006/OAE2006 (1).jpg",
         "images/journal/OAE2006/OAE2006 (2).jpg",
